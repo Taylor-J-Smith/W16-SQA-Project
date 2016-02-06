@@ -1,0 +1,8 @@
+login
+standard
+testuser1
+create
+delete
+disable
+changeplan
+logout
