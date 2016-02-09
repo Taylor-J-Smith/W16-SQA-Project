@@ -1,3 +1,0 @@
-Testcase1
-blah blah
-hello world
