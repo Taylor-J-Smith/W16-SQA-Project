@@ -1,0 +1,8 @@
+login
+standard
+testuser1
+transfer
+00001
+00000
+verify 
+logout
