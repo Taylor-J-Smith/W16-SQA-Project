@@ -2,36 +2,69 @@ Welcome! type login to begin:
 
 **Sample Transaction**
 CC_AAAAAAAAAAAAAAAAAAAA_NNNNN_PPPPPPPP_MM
-00 TESTUSER1            00000 00000.00 
+10 ADMIN                00000 00000.00 A    #admin login
+10 TESTUSER1            00000 00000.00 S    #standard
+
+**Bad user Input**
+	#badinput!
 
 #Login
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+logout success
 
 #Logout
-[logout] Error: Need to log in first!
+[logout] ERROR: NEED TO LOG IN FIRST
+[logout] ERROR: INVALID INPUT
 
 #Withdrawal
-[withdrawal] Error: Need to log in first!
+[withdrawal] ERROR: NEED TO LOG IN FIRST
+[withdrawal] ERROR: INVALID INPUT
+[withdrawal] Enter the account holder name:
+[withdrawal] Enter the account number:
 
 #Transfer
-[transfer] Error: Need to log in first!
+[transfer] ERROR: NEED TO LOG IN FIRST
+[transfer] ERROR: INVALID INPUT
+[transfer] Enter the first account holder name:
+[transfer] Enter the first account number:
 
 #Paybill
-[paybill] Error: Need to log in first!
+[paybill] ERROR: NEED TO LOG IN FIRST
+[paybill] ERROR: INVALID INPUT
+[paybill] Enter the account holder name:
+[paybill] Enter the account number:
 
 #Deposit
-[deposit] Error: Need to log in first!
+[deposit] ERROR: NEED TO LOG IN FIRST
+[deposit] ERROR: INVALID INPUT
+[deposit] Enter the account holder name:
+[deposit] Enter the account number:
 
 #create
-[create] Error: Need to log in first!
+[create] ERROR: NEED TO LOG IN FIRST
+[create] ERROR: INVALID INPUT
+[create] Enter the account holder name:
+[create] Enter the initial balance:
 
 #Delete
-[delete] Error: Need to log in first!
+[delete] ERROR: NEED TO LOG IN FIRST
+[delete] ERROR: INVALID INPUT
+[delete] Enter the account holder name:
+[delete] Enter the account number:
 
 #Disable
-[disable] Error: Need to log in first!
+[disable] ERROR: NEED TO LOG IN FIRST
+[disable] ERROR: INVALID INPUT
+[disable] Enter the account holder name:
+[disable] Enter the account number:
 
 #Changeplan
-[changeplan] Error: Need to log in first!
+[changeplan] ERROR: NEED TO LOG IN FIRST
+[changeplan] ERROR: INVALID INPUT
+[changeplan] Enter the account holder name:
+[changeplan] Enter the account number:
 
 
 

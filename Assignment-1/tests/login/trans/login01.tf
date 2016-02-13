@@ -1,1 +1,1 @@
-00 TESTUSER1            00000 00000.00 
+#File is only placeholder and should not actually be generated since there was never a successful logout

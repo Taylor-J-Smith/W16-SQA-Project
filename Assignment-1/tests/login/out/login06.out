@@ -1,0 +1,21 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+[withdrawal] Enter the account number:
+[withdrawal] Error: Invalid Input!
+[transfer] Enter the first account number:
+[transfer] Error: Invalid Input!
+[paybill] Enter the account number:
+[paybill] Error: Invalid Input!
+[deposit] Enter the account number:
+[deposit] Error: Invalid Input!
+[create] Enter the initial balance:
+[create] Error: Invalid Input!
+[delete] Enter the account number:
+[delete] Error: Invalid Input!
+[disable] Enter the account number:
+[disable] Error: Invalid Input!
+[changeplan] Enter the account number:
+[changeplan] Error: Invalid Input!
+logout success
