@@ -1,0 +1,9 @@
+Welcome! type login to begin:
+please enter the type of account:
+login success: admin
+Type in a transaction command:
+[withdrawal]account holder:
+[withdrawal]account number:
+withdrawal error: account holder and number do not match!
+Type in a transaction command:
+logout success

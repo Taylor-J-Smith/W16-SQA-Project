@@ -1,0 +1,9 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+Type in a transaction command:
+[withdrawal]account number:
+[withdrawal]withdrawal ammount:
+Type in a transaction command:
+logout success

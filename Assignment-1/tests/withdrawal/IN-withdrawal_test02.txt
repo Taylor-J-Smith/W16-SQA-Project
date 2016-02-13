@@ -1,0 +1,6 @@
+login
+admin
+withdrawal
+testuser1
+#badinput$
+logout

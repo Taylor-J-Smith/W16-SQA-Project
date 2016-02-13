@@ -1,0 +1,7 @@
+login
+admin
+withdrawal
+teststudent1
+99999
+1.00
+logout
