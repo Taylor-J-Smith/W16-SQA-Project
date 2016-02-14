@@ -1,0 +1,7 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+[transfer] Enter the first account number:
+[transfer] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
+logout success

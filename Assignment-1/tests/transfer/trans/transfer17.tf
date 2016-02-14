@@ -1,0 +1,4 @@
+10 ADMIN                   00000 00000.00 A
+02 TESTSTUDENT3            99996 00005.00 A
+02 TESTSTUDENT1            99998 00005.00 A
+00 ADMIN                   00000 00000.00 A
