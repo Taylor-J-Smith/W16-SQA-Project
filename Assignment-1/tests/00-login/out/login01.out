@@ -1,5 +1,5 @@
 Welcome! type login to begin:
-[login] ERROR: NEED TO LOG IN FIRST
+[logout] ERROR: NEED TO LOG IN FIRST
 [withdrawal] ERROR: NEED TO LOG IN FIRST
 [transfer] ERROR: NEED TO LOG IN FIRST
 [paybill] ERROR: NEED TO LOG IN FIRST
