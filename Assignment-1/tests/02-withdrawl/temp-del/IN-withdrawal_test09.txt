@@ -1,6 +1,0 @@
-login
-standard
-teststudent1
-withdrawal
-00000
-logout

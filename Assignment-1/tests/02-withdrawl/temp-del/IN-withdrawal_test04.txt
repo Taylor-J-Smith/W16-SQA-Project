@@ -1,7 +1,0 @@
-login
-admin
-withdrawal
-testuser1
-00000
-#badinput$
-logout

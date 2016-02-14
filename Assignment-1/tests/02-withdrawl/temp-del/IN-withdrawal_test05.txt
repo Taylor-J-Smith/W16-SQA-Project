@@ -1,6 +1,0 @@
-login
-admin
-withdrawal
-testuser1
-00001
-logout

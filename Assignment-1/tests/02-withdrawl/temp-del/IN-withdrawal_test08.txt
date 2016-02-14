@@ -1,7 +1,0 @@
-login
-standard
-teststudent1
-withdrawal
-99999
-#badinput$
-logout
