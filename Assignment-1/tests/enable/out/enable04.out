@@ -1,0 +1,23 @@
+Welcome! type login to begin:
+please enter the type of account:
+login success: admin
+[enable] Enter the account holder name:
+[enable] Enter the account number:
+[enable] Account enabled successfully
+[withdrawal] Enter the account holder name:
+[withdrawal] Enter the account number:
+[withdrawal] Enter amount to withdraw:
+[withdrawal] Success!
+[transfer] Enter the first account holder name:
+[transfer] Enter the first account number:
+[transfer] Enter the second account number:
+[transfer] Enter amount to transfer:
+[paybill] Enter the account holder name:
+[paybill] Enter the account number:
+[paybill] Enter the company to pay:
+[paybill] Bill successfully paid!
+[deposit] Enter the account holder name:
+[deposit] Enter the account number:
+[deposit] Enter the amount to deposit:
+[deposit] Success!
+logout success
