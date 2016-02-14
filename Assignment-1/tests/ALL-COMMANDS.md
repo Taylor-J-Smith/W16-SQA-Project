@@ -2,7 +2,7 @@ Welcome! type login to begin:
 
 **Sample Transaction**
 CC_AAAAAAAAAAAAAAAAAAAA_NNNNN_PPPPPPPP_MM
-10 TESTSTUDENT3            99996 00000.00 S
+10 TESTSTUDENT3         99996 00000.00 S
 
 
 **Bad user Input**
@@ -10,7 +10,7 @@ CC_AAAAAAAAAAAAAAAAAAAA_NNNNN_PPPPPPPP_MM
 
 #Login
 10 ADMIN                00000 00000.00 A    #admin login
-10 TESTUSER1            00000 00000.00 S    #standard login
+10 TESTUSER1            00001 00000.00 S    #standard login
 [login] ERROR: ALREADY LOGGED IN
 [login] ERROR: INVALID TRANSACTION COMMAND
 [login] ERROR: NEED TO LOG IN FIRST
@@ -24,7 +24,7 @@ logout success
 [logout] ERROR: INVALID INPUT
 
 #Withdrawal
-01 TESTUSER1            00000 00001.00
+01 TESTUSER1            00001 00001.00
 [withdrawal] ERROR: NEED TO LOG IN FIRST
 [withdrawal] ERROR: INVALID INPUT
 [withdrawal] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
@@ -36,20 +36,34 @@ logout success
 [withdrawal] Success!
 
 #Transfer
-02 TESTUSER1            00000 00001.00
+02 TESTUSER1            00001 00001.00
 [transfer] ERROR: NEED TO LOG IN FIRST
 [transfer] ERROR: INVALID INPUT
+[transfer] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
+[transfer] ERROR: ACCOUNT HOLDER DOES NOT EXIST
+[transfer] ERROR: AMOUNT EXCEEDS THE 1000.00 LIMIT
+[transfer] ERROR: INSUFFICIENT FUNDS
 [transfer] Enter the first account holder name:   #admin
 [transfer] Enter the first account number:
 [transfer] Enter the second account number:
 [transfer] Enter amount to transfer:
+[transfer] Success!
 
 
 #Paybill
+03 TESTUSER1            00001 00000.00
 [paybill] ERROR: NEED TO LOG IN FIRST
+[paybill] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
+[paybill] ERROR: ACCOUNT HOLDER DOES NOT EXIST
+[paybill] ERROR: AMOUNT EXCEEDS THE 2000.00 LIMIT
+[paybill] ERROR: INSUFFICIENT FUNDS
 [paybill] ERROR: INVALID INPUT
+[paybill] ERROR: NO COMPANY FOUND WITH THAT NAME
 [paybill] Enter the account holder name:          #admin
 [paybill] Enter the account number:
+[paybill] Enter the company to pay:
+[paybill] Enter amount to pay:
+[paybill] Success!
 
 #Deposit
 [deposit] ERROR: NEED TO LOG IN FIRST
