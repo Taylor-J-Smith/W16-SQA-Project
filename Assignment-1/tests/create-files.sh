@@ -9,17 +9,20 @@ fi
 NAME=$1
 numFiles=$2
 
+echo mkdir "$NAME"
+echo mkdir "$NAME/in"
+echo mkdir "$NAME/out"
+echo mkdir "$NAME/trans"
+echo mkdir "$NAME"
+mkdir "$NAME"
+mkdir "$NAME/in"
+mkdir "$NAME/out"
+mkdir "$NAME/trans"
+
 for (( i = 1 ; i <= $numFiles ; i++ ))
 do
     #if [ ! -d "$NAME" ]; then
-	echo mkdir "$NAME"
-	echo mkdir "$NAME/in"
-	echo mkdir "$NAME/out"
-	echo mkdir "$NAME/trans"
-	echo mkdir "$NAME"
-	mkdir "$NAME/in"
-	mkdir "$NAME/out"
-	mkdir "$NAME/trans"
+
 #    fi
     if(( $i < 10 )); then
 	echo touch "$NAME/in/$NAME"0"$i".in
