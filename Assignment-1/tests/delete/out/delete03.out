@@ -1,0 +1,7 @@
+Welcome! type login to begin:
+please enter the type of account:
+login success: admin
+[delete] Enter the account holder name:
+[delete] Enter the account number:
+[delete] ERROR: INVALID INPUT
+logout success

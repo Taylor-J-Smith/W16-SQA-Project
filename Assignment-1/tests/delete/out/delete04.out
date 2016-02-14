@@ -1,0 +1,19 @@
+Welcome! type login to begin:
+please enter the type of account:
+login success: admin
+[delete] Enter the account holder name:
+[delete] Enter the account number:
+[delete] Account disabled successfully
+[withdrawal] Enter the account holder name:
+[withdrawal] Enter the account number:
+[withdrawal] ERROR: INVALID INPUT
+[transfer] Enter the first account holder name:
+[transfer] Enter the first account number:
+[transfer] ERROR INVALID INPUT
+[paybill] Enter the account holder name:
+[paybill] Enter the account number:
+[paybill] ERROR INVALID INPUT
+[deposit] Enter the account holder name:
+[deposit] Enter the account number:
+[deposit] ERROR INVALID INPUT
+logout success
