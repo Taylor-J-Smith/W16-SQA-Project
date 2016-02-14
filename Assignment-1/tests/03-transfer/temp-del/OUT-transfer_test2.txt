@@ -1,5 +1,0 @@
-Welcome! Type Login to begin:
-please enter the type of account:
-please type the account holders name:
-login success: testuser1
-logout success

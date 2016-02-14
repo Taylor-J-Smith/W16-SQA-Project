@@ -1,9 +1,0 @@
-login
-standard
-testuser1
-transfer
-00001
-00000
-510.00
-verify amount
-logout

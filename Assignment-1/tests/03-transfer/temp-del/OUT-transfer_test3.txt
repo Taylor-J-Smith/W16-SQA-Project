@@ -1,6 +1,0 @@
-Welcome! Type Login to begin:
-please enter the type of account:
-please type the account holders name:
-login success: testuser1
-Transfer account number: 00000
-logout success 
