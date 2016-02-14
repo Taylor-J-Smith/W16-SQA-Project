@@ -2,7 +2,6 @@ Welcome! type login to begin:
 please enter the type of account:
 please enter the account holder name:
 login success: testuser1
-[transfer] Enter the first account number:
-[transfer] Enter the second account number:
-[transfer] ERROR: INVALID INPUT
+[paybill] Enter the account number:
+[paybill] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
 logout success
