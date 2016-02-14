@@ -60,62 +60,37 @@ logout success
 #create
 [create] ERROR: NEED TO LOG IN FIRST
 [create] ERROR: INVALID INPUT
-[create] ERROR: PRIVILEGED ACCESS ONLY 
+[create] ERROR: PRIVILEGED ACCESS ONLY
 [create] Enter the account holder name:
 [create] Enter the initial balance:
 
 #Delete
 [delete] ERROR: NEED TO LOG IN FIRST
 [delete] ERROR: INVALID INPUT
-[delete] ERROR: PRIVILEGED ACCESS ONLY 
+[delete] ERROR: PRIVILEGED ACCESS ONLY
 [delete] Enter the account holder name:
 [delete] Enter the account number:
 
 #Disable
 [disable] ERROR: NEED TO LOG IN FIRST
 [disable] ERROR: INVALID INPUT
-[disable] ERROR: PRIVILEGED ACCESS ONLY 
+[disable] ERROR: PRIVILEGED ACCESS ONLY
 [disable] Enter the account holder name:
 [disable] Enter the account number:
 
 #Enable
 [enable] ERROR: NEED TO LOG IN FIRST
 [enable] ERROR: INVALID INPUT
-[enable] ERROR: PRIVILEGED ACCESS ONLY 
+[enable] ERROR: PRIVILEGED ACCESS ONLY
+[enable] ERROR: ACCOUNT ALREADY ENABLED
 [enable] Enter the account holder name:
 [enable] Enter the account number:
+[enable] Account enabled successfully
 
 #Changeplan
 [changeplan] ERROR: NEED TO LOG IN FIRST
 [changeplan] ERROR: INVALID INPUT
-[changeplan] ERROR: PRIVILEGED ACCESS ONLY 
+[changeplan] ERROR: PRIVILEGED ACCESS ONLY
 [changeplan] Enter the account holder name:
 [changeplan] Enter the account number:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[changeplan] Account plan changed successfully
