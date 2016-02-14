@@ -1,9 +1,0 @@
-Welcome! Type login to begin:
-please enter the type of account:
-please enter the account holder name:
-login success: testuser1
-create error: need to be admin
-delete error: need to be admin
-disable error: need to be admin
-changeplan error: need to be admin
-logout success

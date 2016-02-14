@@ -1,4 +1,0 @@
-Welcome! Type login to begin:
-please enter the type of account:
-login success: admin
-logout success

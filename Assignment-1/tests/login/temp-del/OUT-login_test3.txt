@@ -1,8 +1,0 @@
-widthdrawal error: need to be logged in
-transfer error: need to be logged in
-paybill error: need to be logged in
-deposit error: need to be logged in
-create error: need to be logged in
-delete error: need to be logged in
-disable error: need to be logged in
-changeplan error: need to be logged in
