@@ -1,0 +1,7 @@
+Welcome! type login to begin:
+[login] ERROR: NEED TO LOG IN FIRST
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+[login] ERROR: NEED TO LOG IN FIRST
+logout success

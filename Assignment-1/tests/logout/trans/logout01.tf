@@ -1,0 +1,1 @@
+#File is only placeholder and should not actually be generated since there was never a successful logout
