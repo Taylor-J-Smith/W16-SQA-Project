@@ -1,0 +1,11 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser5
+[deposit] Enter the account number:
+[deposit] Enter the amount to deposit:
+[deposit] Success!
+[withdrawal] Enter the account number:
+[withdrawal] Enter amount to withdraw:
+[withdrawal] ERROR: INSUFFICIENT FUNDS
+logout success

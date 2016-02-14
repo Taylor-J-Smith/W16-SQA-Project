@@ -1,0 +1,8 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+[deposit] Enter the account number:
+[deposit] Enter the amount to deposit:
+[deposit] ERROR: INVALID INPUT
+logout success

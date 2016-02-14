@@ -66,10 +66,17 @@ logout success
 [paybill] Success!
 
 #Deposit
+04 TESTUSER1            00001 00000.00
 [deposit] ERROR: NEED TO LOG IN FIRST
+[deposit] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
+[deposit] ERROR: ACCOUNT HOLDER DOES NOT EXIST
+[deposit] ERROR: AMOUNT EXCEEDS THE 2000.00 LIMIT
+[deposit] ERROR: INSUFFICIENT FUNDS
 [deposit] ERROR: INVALID INPUT
-[deposit] Enter the account holder name:
+[deposit] Enter the account holder name:         #admin
 [deposit] Enter the account number:
+[deposit] Enter the amount to deposit:
+[deposit] Success!
 
 #create
 [create] ERROR: NEED TO LOG IN FIRST
