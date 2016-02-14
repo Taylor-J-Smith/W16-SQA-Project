@@ -1,0 +1,14 @@
+Welcome! type login to begin:
+please enter the type of account:
+login success: admin
+[create] Enter the account holder name:
+[create] ERROR: INVALID INPUT
+[delete] Enter the account holder name:
+[delete] ERROR: INVALID INPUT
+[disable] Enter the account holder name:
+[disable] ERROR: INVALID INPUT
+[enable] Enter the account holder name:
+[enable] ERROR: INVALID INPUT
+[changeplan] Enter the account holder name:
+[changeplan] ERROR: INVALID INPUT
+logout success

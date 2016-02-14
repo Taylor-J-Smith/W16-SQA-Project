@@ -1,0 +1,13 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: testuser1
+[withdrawal] Enter the account number:
+[withdrawal] ERROR: INVALID INPUT
+[transfer] Enter the first account number:
+[transfer] ERROR: INVALID INPUT
+[paybill] Enter the account number:
+[paybill] ERROR: INVALID INPUT
+[deposit] Enter the account number:
+[deposit] ERROR: INVALID INPUT
+logout success

@@ -1,0 +1,9 @@
+Welcome! type login to begin:
+please enter the type of account:
+please enter the account holder name:
+login success: admin
+[withdrawal] Enter the account holder name:
+[withdrawal] Enter the account number:
+[withdrawal] Enter amount to withdraw:
+[withdrawal] Success!
+logout success
