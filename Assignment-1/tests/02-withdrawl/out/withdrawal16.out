@@ -1,8 +1,8 @@
 Welcome! type login to begin:
-please enter the type of account:
-please enter the account holder name:
-login success: teststudent3
+[login] please enter the type of account:
+[login] please enter the account holder name:
+[login] login success: teststudent3
 [withdrawal] Enter the account number:
 [withdrawal] Enter amount to withdraw:
 [withdrawal] ERROR: INSUFFICIENT FUNDS
-logout success
+[logout] Success!

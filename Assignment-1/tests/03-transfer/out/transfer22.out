@@ -1,9 +1,9 @@
 Welcome! type login to begin:
-please enter the type of account:
-login success: admin
+[login] please enter the type of account:
+[login] login success: admin
 [transfer] Enter the first account name:
 [transfer] Enter the first account number:
 [transfer] Enter the second account number:
 [transfer] Enter amount to transfer:
 [transfer] ERROR: INVALID AMOUNT!
-logout success
+[logout] Success!

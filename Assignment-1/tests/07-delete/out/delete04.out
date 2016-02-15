@@ -1,6 +1,6 @@
 Welcome! type login to begin:
-please enter the type of account:
-login success: admin
+[login] please enter the type of account:
+[login] login success: admin
 [delete] Enter the account holder name:
 [delete] Enter the account number:
 [delete] Account disabled successfully
@@ -16,4 +16,4 @@ login success: admin
 [deposit] Enter the account holder name:
 [deposit] Enter the account number:
 [deposit] ERROR INVALID INPUT
-logout success
+[logout] Success!

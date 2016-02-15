@@ -1,8 +1,8 @@
 Welcome! type login to begin:
-please enter the type of account:
-please enter the account holder name:
-login success: teststudent2
+[login] please enter the type of account:
+[login] please enter the account holder name:
+[login] login success: teststudent2
 [withdrawal] Enter the account number:
 [withdrawal] Enter amount to withdraw:
 [withdrawal] Success!
-logout success
+[logout] Success!

@@ -1,8 +1,8 @@
 Welcome! type login to begin:
-please enter the type of account:
-please enter the account holder name:
-login success: testyser1
+[login] please enter the type of account:
+[login] please enter the account holder name:
+[login] login success: testyser1
 [withdrawal] Enter the account number:
 [withdrawal] Enter amount to withdraw:
 [withdrawal] ERROR: AMOUNT EXCEEDS THE 500.00 LIMIT
-logout success
+[logout] Success!

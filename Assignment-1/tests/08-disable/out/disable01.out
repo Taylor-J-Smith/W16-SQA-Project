@@ -1,7 +1,7 @@
 Welcome! type login to begin:
-please enter the type of account:
-login success: admin
+[login] please enter the type of account:
+[login] login success: admin
 [disable] Enter the account holder name:
 [disable] Enter the account number:
 [disable] Account disabled successfully
-logout success
+[logout] Success!
