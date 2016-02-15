@@ -15,13 +15,14 @@ CC_AAAAAAAAAAAAAAAAAAAA_NNNNN_PPPPPPPP_MM
 [login] ERROR: INVALID TRANSACTION COMMAND
 [login] ERROR: NEED TO LOG IN FIRST
 [login] ERROR: USERNAME DOES NOT EXIST
-please enter the type of account:
-please enter the account holder name:
-login success: testuser1
-logout success
+[login] please enter the type of account:
+[login] please enter the account holder name:
+[login] login success: testuser1
 
 #Logout
 [logout] ERROR: INVALID INPUT
+[logout] ERROR: NEED TO LOG IN FIRST
+[logout] Success!
 
 #Withdrawal
 01 TESTUSER1            00001 00001.00
