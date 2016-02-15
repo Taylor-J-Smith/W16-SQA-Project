@@ -3,5 +3,5 @@ standard
 testuser1
 withdrawal
 00001
-5.00
+#badinput!
 logout
