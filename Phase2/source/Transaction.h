@@ -18,6 +18,8 @@ class Transaction{
 			 std::string account_number,
 			 std::string amount,
 			 std::string misc);
+
+  std::string to_string();
   
   //MEMBERS
   std::string transaction_code_;

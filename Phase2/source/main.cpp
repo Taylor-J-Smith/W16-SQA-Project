@@ -5,6 +5,7 @@
 #include "AccountConstants.h"
 #include "Transaction.h"
 #include "TransactionMapper.h"
+#include "TransactionWriter.h"
 
 using namespace std;
 
@@ -33,6 +34,12 @@ int main(){
   cout << "Transaction names/codes:" << endl;
   cout << tm1.map_["logout"] << endl;
   cout << tm1.map_["login"] << endl;
+  //cout << TransactionMapper::map_["logout"] << endl;
+  cout << "--------------------------------" << endl;
+
+  cout << "---------Transaction-------" << endl;
+  Transaction t1("login", "test_name", "01234", "5.00", "no");  
+  cout << t1.to_string() << endl;
   //cout << TransactionMapper::map_["logout"] << endl;
   cout << "--------------------------------" << endl;
   return 0;
