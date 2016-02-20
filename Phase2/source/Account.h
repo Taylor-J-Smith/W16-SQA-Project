@@ -1,9 +1,8 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#ifndef ACCOUNT_H_
+#define ACCOUNT_H_
 
 #include <iostream>
 #include <string>
-#include <regex>
 
 class Account{
   //CONSTANTS
