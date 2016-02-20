@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 #include "Account.h"
 #include "AccountsDatabase.h"
 #include "AccountConstants.h"
@@ -38,9 +39,17 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------Transaction-------" << endl;
-  Transaction t1("login", "test_name", "01234", "5.00", "no");  
+  Transaction t1("login", "test_name", "01234", "5.00", "no");
+  Transaction t2("login", "test_name2", "54321", "10.00", "no");  
   cout << t1.to_string() << endl;
   //cout << TransactionMapper::map_["logout"] << endl;
+  cout << "--------------------------------" << endl;
+
+  cout << "---------TransactionWriter-------" << endl;
+  vector<Transaction> testTransVec;
+  testTransVec.push_back(t1);
+  testTransVec.push_back(t2);
+  TransactionWriter::write("test1.trans", testTransVec);
   cout << "--------------------------------" << endl;
   return 0;
 }
