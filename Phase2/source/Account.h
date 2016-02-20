@@ -2,9 +2,9 @@
 #define ACCOUNT_H
 
 class Account{
- private:
   
  public:
+  void testPrint();
 };
 
 #endif

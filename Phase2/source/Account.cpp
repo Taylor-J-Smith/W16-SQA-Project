@@ -1,5 +1,39 @@
+#include <iostream>
 #include "Account.h"
 
-class Account{
-  
-};
+using namespace std;
+
+void Account::testPrint(){
+  cout << "Hello from Accounts" << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,7 +5,11 @@
 using namespace std;
 
 int main(){
-  cout << "test" << endl;
+  //  cout << "test" << endl;
+  Account a1;
+  a1.testPrint();
+
+  return 0;
 }
 
 
