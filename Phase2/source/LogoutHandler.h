@@ -14,7 +14,7 @@ class LogoutHandler: public TransactionHandler{
   int static session_number_;
 
   //METHODS
-  void static handle(Account current_account, 
+  void static handle(Account &current_account, 
 				AccountsDatabase account_database,
 				  std::vector<Transaction> &session_transactions);
 };

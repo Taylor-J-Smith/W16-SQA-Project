@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <stddef.h>
 #include "Account.h"
 #include "AccountsDatabase.h"
 #include "AccountConstants.h"
@@ -24,15 +25,90 @@
 using namespace std;
 
 int main(){
+  
+  //INITIALIZE
+  Account *current_user = new Account();  //Declare the Current User account
+  AccountsDatabase accounts_database("test.cbaf");  //create the Account Database
+  vector<Transaction> session_transactions;  //Declare the vector of transactions
+  TransactionMapper transaction_map;
+  std::string const kWelcomePrompt = "Welcome! type login to begin:";
+  
+  //Main control loop for Front End
+  while(true){
+    //User has not logged in yet
+    if ((*current_user).name_.compare("") == 0){
+      cout << kWelcomePrompt << endl;
+    }
+
+    //Get input from user
+    string user_input;
+    cout << ">> ";
+    cin >> user_input;
+
+    if (!CommandValidator::validate( *current_user, user_input)){
+      //user inputs an invalid command
+      cout << "ERROR: INVALID COMMAND" << endl;      
+    }else{
+      //user inputs a VALID command
+      //cout << "VALID COMMAND!" << endl;
+      //get the integer representation of the user transaction command
+      int user_input_integer = stoi(transaction_map.map_[user_input]);
+      //cout << "user_input_integer: " << user_input_integer << endl;
+      
+      switch(user_input_integer){
+      case 0: //logout
+	LogoutHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 1: //withdrawal
+	WithdrawalHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 2: //transfer
+	TransferHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 3: //paybill
+	PaybillHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 4: //deposit
+	DepositHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 5: //create
+	CreateHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 6: //delete
+	DeleteHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 7: //disable
+	DisableHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 8: //changeplan
+	ChangeplanHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 9: //enable
+	EnableHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
+      case 10: //login
+	LoginHandler::handle(*current_user, accounts_database, session_transactions);
+	break;	
+      default:
+	cout << "Case does not exist!" << endl;
+	return 0;
+      }
+    }
+  }  
+
+  
+  
+  //TESTCODE FOR INDIVIDUAL FUNCTIONALITY
+  /*
   //  cout << "test" << endl;
   cout << "---------Account-------" << endl;
-  Account a1("12345 TESTHOLDERNAME       A 000001.1 S");
+  Account *a1 = new Account("12345 TESTHOLDERNAME       A 000001.1 S");
   cout << "-----------------------" << endl;
 
   cout << "---------AccountsDatabase-------" << endl;
   AccountsDatabase ad1("test.cbaf");
   if (ad1.nameExists("test1") && ad1.isValidAccount("test1", "12345")){
-    cout << "found test name and number in database" << endl;
+  cout << "found test name and number in database" << endl;
   }
   cout << "--------------------------------" << endl;
 
@@ -67,12 +143,12 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------CommandValidator-------" << endl;
-  if (CommandValidator::validate(a1,"logout")){
-    cout << "Logout Validated" << endl;
+  if (CommandValidator::validate(*a1,"logout")){
+  cout << "Logout Validated" << endl;
   }
   //expecting a fail = no output
-  if (CommandValidator::validate(a1,"adwdw")){
-    cout << "Gibberish Validated" << endl;
+  if (CommandValidator::validate(*a1,"adwdw")){
+  cout << "Gibberish Validated" << endl;
   }
   cout << "--------------------------------" << endl;
 
@@ -129,9 +205,10 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------LoginHandler-------" << endl;
-  LoginHandler::handle(a1, ad1, testTransVec);
-  LogoutHandler::handle(a1, ad1, testTransVec);
+  //LoginHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
+  */
   return 0;
 }
 

@@ -4,7 +4,7 @@
 
 //Constructor for an admin account
 Account::Account(){
-  this->name_ = "admin";
+  this->name_ = "";
 }
 
 //Constructor for standard/regular account

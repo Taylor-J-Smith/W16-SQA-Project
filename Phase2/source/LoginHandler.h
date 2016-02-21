@@ -8,7 +8,7 @@
 class LoginHandler: public TransactionHandler{
   
  public:
-  void static handle(Account current_account, 
+  void static handle(Account &current_account, 
 		     AccountsDatabase account_database,
 		     std::vector<Transaction> &session_transactions);
 };

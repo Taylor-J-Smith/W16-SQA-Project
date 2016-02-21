@@ -2,7 +2,7 @@
 
 AccountsDatabase::AccountsDatabase(std::string curr_bank_accounts_file_name){
   //begin reading in from current bank accounts file
-  std::cout <<"Reading in " + curr_bank_accounts_file_name << std::endl;
+  //std::cout <<"Reading in " + curr_bank_accounts_file_name << std::endl;
   std::string line;
   std::ifstream input_file;
   input_file.open(curr_bank_accounts_file_name);
@@ -13,7 +13,7 @@ AccountsDatabase::AccountsDatabase(std::string curr_bank_accounts_file_name){
     // create an account based on the the string read in
     Account new_account_(line); 
     this->database_.push_back(new_account_);
-    std::cout << "Account \"" << new_account_.name_ << "\" added to Database!"<< std::endl;
+    //std::cout << "Account \"" << new_account_.name_ << "\" added to Database!"<< std::endl;
   }
   input_file.close();
 }
