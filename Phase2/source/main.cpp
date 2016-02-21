@@ -16,6 +16,7 @@
 #include "DepositHandler.h"
 #include "CreateHandler.h"
 #include "DeleteHandler.h"
+#include "DisableHandler.h"
 
 using namespace std;
 
@@ -105,7 +106,12 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------DeleteHandler-------" << endl;
-  DeleteHandler::handle(a1, ad1, testTransVec);
+  //DeleteHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------DisableHandler-------" << endl;
+  DisableHandler::handle(a1, ad1, testTransVec);
   LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;
