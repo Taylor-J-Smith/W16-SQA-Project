@@ -3,6 +3,7 @@
 
 #include <string>
 #include "TransactionHandler.h"
+#include "TransactionWriter.h"
 
 class LogoutHandler: public TransactionHandler{
  public:
