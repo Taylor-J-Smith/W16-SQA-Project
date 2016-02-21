@@ -11,6 +11,8 @@
 #include "TransactionHandler.h"
 #include "LogoutHandler.h"
 #include "WithdrawalHandler.h"
+#include "TransferHandler.h"
+#include "PaybillHandler.h"
 
 using namespace std;
 
@@ -75,7 +77,17 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------WithdrawalHandler-------" << endl;
-  WithdrawalHandler::handle(a1, ad1, testTransVec);
+  //WithdrawalHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------TransferHandler-------" << endl;
+  //TransferHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------PaybillHandler-------" << endl;
+  PaybillHandler::handle(a1, ad1, testTransVec);
   LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;
