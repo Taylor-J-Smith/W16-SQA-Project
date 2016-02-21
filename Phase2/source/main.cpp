@@ -17,6 +17,7 @@
 #include "CreateHandler.h"
 #include "DeleteHandler.h"
 #include "DisableHandler.h"
+#include "EnableHandler.h"
 
 using namespace std;
 
@@ -111,7 +112,12 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------DisableHandler-------" << endl;
-  DisableHandler::handle(a1, ad1, testTransVec);
+  //DisableHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------EnableHandler-------" << endl;
+  EnableHandler::handle(a1, ad1, testTransVec);
   LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;
