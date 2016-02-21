@@ -15,6 +15,7 @@
 #include "PaybillHandler.h"
 #include "DepositHandler.h"
 #include "CreateHandler.h"
+#include "DeleteHandler.h"
 
 using namespace std;
 
@@ -99,7 +100,12 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------CreateHandler-------" << endl;
-  CreateHandler::handle(a1, ad1, testTransVec);
+  //CreateHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------DeleteHandler-------" << endl;
+  DeleteHandler::handle(a1, ad1, testTransVec);
   LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;

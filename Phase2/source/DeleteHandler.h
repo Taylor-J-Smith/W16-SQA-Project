@@ -1,11 +1,11 @@
-#ifndef CREATEHANDLER_H_
-#define CREATEHANDLER_H_
+#ifndef DELETEHANDLER_H_
+#define DELETEHANDLER_H_
 
 #include <string>
 #include "TransactionHandler.h"
 #include "AccountConstants.h"
 
-class CreateHandler: public TransactionHandler{
+class DeleteHandler: public TransactionHandler{
   
  public:
   void static handle(Account current_account, 
