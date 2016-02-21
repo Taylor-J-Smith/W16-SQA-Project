@@ -19,6 +19,7 @@
 #include "DisableHandler.h"
 #include "EnableHandler.h"
 #include "ChangeplanHandler.h"
+#include "LoginHandler.h"
 
 using namespace std;
 
@@ -123,7 +124,12 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------ChangeplanHandler-------" << endl;
-  ChangeplanHandler::handle(a1, ad1, testTransVec);
+  //ChangeplanHandler::handle(a1, ad1, testTransVec);
+  //LogoutHandler::handle(a1, ad1, testTransVec);
+  cout << "--------------------------------" << endl;
+
+  cout << "---------LoginHandler-------" << endl;
+  LoginHandler::handle(a1, ad1, testTransVec);
   LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;
