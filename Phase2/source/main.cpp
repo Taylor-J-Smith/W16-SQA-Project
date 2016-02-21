@@ -7,6 +7,7 @@
 #include "Transaction.h"
 #include "TransactionMapper.h"
 #include "TransactionWriter.h"
+#include "CommandValidator.h"
 
 using namespace std;
 
@@ -49,8 +50,19 @@ int main(){
   vector<Transaction> testTransVec;
   testTransVec.push_back(t1);
   testTransVec.push_back(t2);
+  cout << "wrote to test1.trans temporary file" << endl;
   TransactionWriter::write("test1.trans", testTransVec);
   cout << "--------------------------------" << endl;
+
+  cout << "---------CommandValidator-------" << endl;
+  if (CommandValidator::validate(a1,"logout")){
+    cout << "Logout Validated" << endl;
+  }
+  //expecting a fail = no output
+  if (CommandValidator::validate(a1,"adwdw")){
+    cout << "Gibberish Validated" << endl;
+  }
+  cout << "--------------------------------" << endl;  
   return 0;
 }
 

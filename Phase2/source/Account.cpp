@@ -1,6 +1,13 @@
 #include "Account.h"
 
-//Constructor
+//Constructors
+
+//Constructor for an admin account
+Account::Account(){
+  this->name_ = "admin";
+}
+
+//Constructor for standard/regular account
 Account::Account(std::string cbaf_input_line){
   //std::cout << "raw cbaf format: " +  cbaf_input_line << std::endl; //temp
 

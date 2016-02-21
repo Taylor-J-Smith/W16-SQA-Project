@@ -28,7 +28,8 @@ class Account{
  public:
   //Methods
   //cbaf_input_line: takes in raw input in the form NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_Q
-  Account(std::string cbaf_input_line);  
+  Account(); //constructor for an admin account
+  Account(std::string cbaf_input_line);  //constructor for a regular/standard account
   void testPrint();//temp
  
   //Members
