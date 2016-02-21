@@ -8,6 +8,8 @@
 #include "TransactionMapper.h"
 #include "TransactionWriter.h"
 #include "CommandValidator.h"
+#include "TransactionHandler.h"
+#include "LogoutHandler.h"
 
 using namespace std;
 
@@ -62,6 +64,13 @@ int main(){
   if (CommandValidator::validate(a1,"adwdw")){
     cout << "Gibberish Validated" << endl;
   }
+  cout << "--------------------------------" << endl;
+
+  cout << "---------LogoutHandler-------" << endl;
+  LogoutHandler::handle(a1, ad1, testTransVec);  
+  cout << LogoutHandler::session_number_ << endl;
+  LogoutHandler::handle(a1, ad1, testTransVec);  
+  cout << LogoutHandler::session_number_ << endl;
   cout << "--------------------------------" << endl;  
   return 0;
 }
