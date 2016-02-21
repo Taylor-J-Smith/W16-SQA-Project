@@ -39,7 +39,7 @@ void TransferHandler::handle(Account current_account,
   std::cout << success_prompt << std::endl;
 
   
-  
+  //TODO: update the accounts database in the frontend (not done in prototype)  
   //make a new transaction
   Transaction new_transaction1("transfer", account1_name, account1_number, amount, misc);
   Transaction new_transaction2("transfer", account2_name, account2_number, amount, misc);

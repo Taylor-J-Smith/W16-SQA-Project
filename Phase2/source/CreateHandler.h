@@ -1,11 +1,11 @@
-#ifndef PAYBILLHANDLER_H_
-#define PAYBILLHANDLER_H_
+#ifndef CREATEHANDLER_H_
+#define CREATEHANDLER_H_
 
 #include <string>
 #include "TransactionHandler.h"
 #include "AccountConstants.h"
 
-class PaybillHandler: public TransactionHandler{
+class CreateHandler: public TransactionHandler{
 
  private:
   AccountConstants constants_;
@@ -17,32 +17,3 @@ class PaybillHandler: public TransactionHandler{
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
