@@ -10,6 +10,7 @@
 #include "CommandValidator.h"
 #include "TransactionHandler.h"
 #include "LogoutHandler.h"
+#include "WithdrawalHandler.h"
 
 using namespace std;
 
@@ -71,6 +72,11 @@ int main(){
   cout << LogoutHandler::session_number_ << endl;
   LogoutHandler::handle(a1, ad1, testTransVec);  
   cout << LogoutHandler::session_number_ << endl;
+  cout << "--------------------------------" << endl;
+
+  cout << "---------WithdrawalHandler-------" << endl;
+  WithdrawalHandler::handle(a1, ad1, testTransVec);
+  LogoutHandler::handle(a1, ad1, testTransVec);
   cout << "--------------------------------" << endl;  
   return 0;
 }

@@ -4,7 +4,7 @@
 int LogoutHandler::session_number_ = 0;
 std::string LogoutHandler::kPathName = "Daily-Transactions/test";
 
-void TransactionHandler::handle(Account current_account, 
+void LogoutHandler::handle(Account current_account, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
 
