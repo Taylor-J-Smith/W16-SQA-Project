@@ -9,7 +9,7 @@ class TransactionMapper{
   
  public:
   //CONSTANTS
-  //****************************TODO:this should be static, pls fix
+  //**TODO:this should be static [PROTOTYPE]
   std::map<std::string, std::string> map_ = {
     {"logout", "00"},
     {"withdrawal", "01"},

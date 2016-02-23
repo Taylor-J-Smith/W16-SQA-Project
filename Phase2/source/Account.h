@@ -27,12 +27,14 @@ class Account{
   const int kAccPlanStart = 38;
   const int kAccPlanEnd = 1;
  public:
-  //Methods
+  //METHODS
   //cbaf_input_line: takes in raw input in the form NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_Q
-  Account(); //constructor for an admin account
-  Account(std::string cbaf_input_line);  //constructor for a regular/standard account
+  // Constructor without any arguments, creates an admin account
+  Account(); 
+  //Overloaded constructor that takes in a raw current bank account file line and parses it to fill in the appropriate members of an Account object: number, name, status, balance, plan
+  Account(std::string cbaf_input_line); 
  
-  //Members
+  //MEMBERS
   std::string number_; //the account number
   std::string name_; //account holder name
   std::string status_; //either enabled or disabled

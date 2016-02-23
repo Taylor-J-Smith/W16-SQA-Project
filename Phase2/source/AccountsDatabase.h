@@ -10,17 +10,16 @@
 //Data Structure containing all accounts and helper methods 
 class AccountsDatabase{
  public:
-  //CONSTANTS
-
   //METHODS
-  //constructor
+  //Constructor that takes in the current bank account file for the day and populates an internal datastructure that holds all Account Classes
   AccountsDatabase(std::string curr_bank_accounts_file_name);
-  //checks if an account name exists in the database, and returns true if so, otherwise returns false  
+  //Checks to see if the given account name exists in the database, if it does it returns true, otherwise it returns false
   bool nameExists(std::string account_holder_name);
-  //Checks to see if both the account name and number match the same account, returns true if they do, false otherwise
+  //Checks that the given account name and number correspond to the same account in the database, returns true if theu do, false otherwise
   bool isValidAccount(std::string account_holder_name, std::string account_number);
   
   //MEMBERS
+  //A vector of accounts that are populated at the start of each day from the current bank accounts file
   std::vector<Account> database_;
   
 };

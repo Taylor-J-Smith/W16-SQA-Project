@@ -11,6 +11,7 @@ class TransactionWriter{
   
  public:
   //MEMBERS
+  //Takes in a list of Transaction objects pertaining to a given session, and writes all of them in the correct format to the provided filename
   void static write(std::string filename, std::vector<Transaction> session_transactions);
 };
 

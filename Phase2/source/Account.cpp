@@ -1,8 +1,6 @@
 #include "Account.h"
 
-//Constructors
-
-//Constructor for an admin account
+//Constructs an account with a blank name, treated as an admin [PROTOTYPE]
 Account::Account(){
   this->name_ = "";
 }

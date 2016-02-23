@@ -14,7 +14,7 @@ void LogoutHandler::handle(Account &current_account,
   Transaction new_transaction("logout", "logout_name", "12345", "00000.00", "  ");
   //push it to the session_transactions
   session_transactions.push_back(new_transaction);
-  //write the 
+  //write the transactions to a transaction file
   TransactionWriter::write(filename, session_transactions);
   //Clear the transactions of the current session
   session_transactions.clear();

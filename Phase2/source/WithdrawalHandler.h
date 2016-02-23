@@ -17,6 +17,7 @@ class WithdrawalHandler: public TransactionHandler{
   AccountConstants constants_;
 
  public:
+  //Handles the removal of money from the given bank account and adds a withdrawal transaction to the session_transactions once it completes successfully. The account database is then updated to reflect the transaction.
   void static handle(Account current_account, 
 		     AccountsDatabase account_database,
 		     std::vector<Transaction> &session_transactions);
