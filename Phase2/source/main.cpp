@@ -1,3 +1,34 @@
+/*
+******************************ALL CODE HAS BEEN PAIR PROGRAMMED******************************
+*----------------------------------------Taylor Smith---------------------------------------*
+*-------------------------------------Alexandar Mihaylov------------------------------------*
+*-----------------------------------------Talha Zia-----------------------------------------*
+*********************************************************************************************
+
+Program Intention:
+A Command Line User Interface for a Banking System that can handle different
+types of transactions and account management.
+
+Input Files: test.cbaf -> Takes a current bank accounts file that contains
+the accounts used for that given day
+
+Output Files: Daily-Transactions/test#.tf -> Contains all transactions done
+in session #
+
+How Program is Intended to run:
+make -> This is a Command Line user interface where commands are entered in
+the terminal and output is displayed to the terminal. The program can be
+executed with the makefile provided.
+
+[PROTOTYPE -> RELEASE] TODO:
+* Check constraints in Front End
+* Take an input file as a command line argument? (maybe)
+* Restructure dependencies 
+* Output files are not contained in source folder
+* More comments?
+* Fix EMACS indenting :'(
+
+*/
 #include <stdio.h>
 #include <iostream>
 #include <vector>
@@ -25,14 +56,14 @@
 using namespace std;
 
 int main(){
-
+  
   //INITIALIZE
-  Account *current_user = new Account();  //Declare the Current User account
-  AccountsDatabase accounts_database("test.cbaf");  //create the Account Database
-  vector<Transaction> session_transactions;  //Declare the vector of transactions
+  Account *current_user = new Account(); //Declare the Current User account
+  AccountsDatabase accounts_database("test.cbaf"); //create the Account Database
+  vector<Transaction> session_transactions; //Declare the vector of transactions
   TransactionMapper transaction_map;
   std::string const kWelcomePrompt = "Welcome! type login to begin:";
-
+  
   //Main control loop for Front End
   while(true){
     //User has not logged in yet
@@ -47,18 +78,18 @@ int main(){
 
     if (!CommandValidator::validate( *current_user, user_input)){
       //user inputs an invalid command
-      cout << "ERROR: INVALID COMMAND" << endl;
+      cout << "ERROR: INVALID COMMAND" << endl;      
     }else{
       //user inputs a VALID command
       //cout << "VALID COMMAND!" << endl;
       //get the integer representation of the user transaction command
       int user_input_integer = stoi(transaction_map.map_[user_input]);
       //cout << "user_input_integer: " << user_input_integer << endl;
-
+      
       switch(user_input_integer){
       case 0: //logout
-	      LogoutHandler::handle(*current_user, accounts_database, session_transactions);
-	      break;
+	LogoutHandler::handle(*current_user, accounts_database, session_transactions);
+	break;
       case 1: //withdrawal
 	WithdrawalHandler::handle(*current_user, accounts_database, session_transactions);
 	break;
@@ -88,16 +119,16 @@ int main(){
 	break;
       case 10: //login
 	LoginHandler::handle(*current_user, accounts_database, session_transactions);
-	break;
+	break;	
       default:
 	cout << "Case does not exist!" << endl;
 	return 0;
       }
     }
-  }
+  }  
 
-
-
+  
+  
   //TESTCODE FOR INDIVIDUAL FUNCTIONALITY
   /*
   //  cout << "test" << endl;
@@ -116,11 +147,11 @@ int main(){
   AccountConstants ac1;
   cout << "Some constants:" << endl;
   cout << ac1.kStudentFee << endl;
-  cout << ac1.kNonStudentFee << endl;
+  cout << ac1.kNonStudentFee << endl;  
   cout << "--------------------------------" << endl;
 
   cout << "---------TransactionMapper-------" << endl;
-  TransactionMapper tm1;
+  TransactionMapper tm1;  
   cout << "Transaction names/codes:" << endl;
   cout << tm1.map_["logout"] << endl;
   cout << tm1.map_["login"] << endl;
@@ -129,7 +160,7 @@ int main(){
 
   cout << "---------Transaction-------" << endl;
   Transaction t1("login", "test_name", "01234", "5.00", "no");
-  Transaction t2("login", "test_name2", "54321", "10.00", "no");
+  Transaction t2("login", "test_name2", "54321", "10.00", "no");  
   cout << t1.to_string() << endl;
   //cout << TransactionMapper::map_["logout"] << endl;
   cout << "--------------------------------" << endl;
@@ -153,9 +184,9 @@ int main(){
   cout << "--------------------------------" << endl;
 
   cout << "---------LogoutHandler-------" << endl;
-  LogoutHandler::handle(a1, ad1, testTransVec);
+  LogoutHandler::handle(a1, ad1, testTransVec);  
   cout << LogoutHandler::session_number_ << endl;
-  LogoutHandler::handle(a1, ad1, testTransVec);
+  LogoutHandler::handle(a1, ad1, testTransVec);  
   cout << LogoutHandler::session_number_ << endl;
   cout << "--------------------------------" << endl;
 
@@ -207,7 +238,37 @@ int main(){
   cout << "---------LoginHandler-------" << endl;
   //LoginHandler::handle(a1, ad1, testTransVec);
   //LogoutHandler::handle(a1, ad1, testTransVec);
-  cout << "--------------------------------" << endl;
+  cout << "--------------------------------" << endl;  
   */
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
