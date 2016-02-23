@@ -8,21 +8,25 @@ void DisableHandler::handle(Account current_account,
   std::string account_name_prompt = "[disable] Enter the account holder name:";
   std::string account_number_prompt = "[disable] Enter the account number:";
   std::string success_prompt = "[disable] Success!";
- 
+
+  //Init all the variables that will hold user input data
   std::string basic_prompt = ">> ";
   std::string account_name;
   std::string account_number;
   std::string amount = "00000.00";
   std::string misc = "A ";
 
+  //Read in the Account Name from the user
   std::cout << account_name_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> account_name; //take input from the user
 
+  //Read in the Account Number from the user
   std::cout << account_number_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> account_number; //take input from the user
 
+  //[PROTOTYPE] TODO: only succeed on success
   //success message
   std::cout << success_prompt << std::endl;
 

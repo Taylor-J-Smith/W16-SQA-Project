@@ -10,29 +10,35 @@ void PaybillHandler::handle(Account current_account,
   std::string company_prompt = "[paybill] Enter the company to pay:";
   std::string amount_prompt = "[paybill] Enter amount to pay:";
   std::string success_prompt = "[paybill] Success!";
- 
+
+  //init all the variables that will hold user input data
   std::string basic_prompt = ">> ";
   std::string account_name;
   std::string account_number;
   std::string company_ACK;
   std::string amount;
 
+  //Read in the Account name from the user
   std::cout << account_name_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> account_name; //take input from the user
 
+  //Read in the account number
   std::cout << account_number_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> account_number; //take input from the user
 
+  //Read in the company that is being paid
   std::cout << company_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> company_ACK; //take input from the user
 
+  //Read in the amount being paid
   std::cout << amount_prompt << std::endl;
   std::cout << basic_prompt;    
   std::cin >> amount; //take input from the user
 
+  //[PROTOTYPE] TODO: only succeed on success
   //success message
   std::cout << success_prompt << std::endl;
 
