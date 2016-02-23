@@ -1,0 +1,9 @@
+hello?
+login
+std
+hello
+deposit
+hello
+12345
+5.00
+logout
