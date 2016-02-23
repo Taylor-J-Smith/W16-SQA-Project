@@ -23,12 +23,7 @@ class TransactionMapper{
     {"enable", "09"},
     {"login", "10"}
   };
-  
-  //METHODS
-  //constructor
-  
-  //MEMBERS
-  
+ 
 };
 
 #endif

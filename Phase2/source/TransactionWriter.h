@@ -10,11 +10,6 @@
 class TransactionWriter{
   
  public:
-  //CONSTANTS
-  
-  //METHODS
-  //constructor
-  
   //MEMBERS
   void static write(std::string filename, std::vector<Transaction> session_transactions);
 };

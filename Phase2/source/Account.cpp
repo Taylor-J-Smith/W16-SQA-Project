@@ -8,6 +8,7 @@ Account::Account(){
 }
 
 //Constructor for standard/regular account
+//format of cbaf_input_line: 00001 TESTUSER1            A 99999.99 N
 Account::Account(std::string cbaf_input_line){
   //std::cout << "raw cbaf format: " +  cbaf_input_line << std::endl; //temp
 
@@ -29,9 +30,6 @@ Account::Account(std::string cbaf_input_line){
   //std::cout << "plan:" + this->plan_  << std::endl; //temp
 }
 
-void Account::testPrint(){
-  std::cout << "testPrint:" << std::endl;
-}
 
 
 

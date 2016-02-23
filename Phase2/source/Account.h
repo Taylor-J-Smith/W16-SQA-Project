@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+//Holds all information relating to a single account for the given day
 class Account{
   //CONSTANTS
   //account Number
@@ -30,7 +31,6 @@ class Account{
   //cbaf_input_line: takes in raw input in the form NNNNN_AAAAAAAAAAAAAAAAAAAA_S_PPPPPPPP_Q
   Account(); //constructor for an admin account
   Account(std::string cbaf_input_line);  //constructor for a regular/standard account
-  void testPrint();//temp
  
   //Members
   std::string number_; //the account number

@@ -18,14 +18,6 @@ class AccountConstants{
   const float kPaybillCQMax = 2000.00;
   const float kPaybillECMax = 2000.00;
   const float kPaybillTVMax = 2000.00;
-
-  
-  
-  //METHODS
-  //constructor
-
-  
-  //MEMBERS
   
 };
 
