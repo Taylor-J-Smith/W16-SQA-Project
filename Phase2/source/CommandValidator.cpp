@@ -7,6 +7,7 @@ bool CommandValidator::validate(Account curr_account, std::string user_input){
 
   if(user_input.empty())
   {
+    std::cout << "End of file reached: program exitting" << std::endl;
     exit(0);
   }
 
