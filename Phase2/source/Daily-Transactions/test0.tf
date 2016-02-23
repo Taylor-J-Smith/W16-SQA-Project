@@ -1,3 +1,3 @@
-10 alex                 12345 00000.00 S 
-01 alex                 12345 00500.00 A 
+10 hello                12345 00000.00 S 
+04 hello                hello? 0HELLO!? A 
 00 logout_name          12345 00000.00   

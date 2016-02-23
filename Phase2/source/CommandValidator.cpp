@@ -2,6 +2,14 @@
 
 //just a prototype version, needs changing for actual version
 bool CommandValidator::validate(Account curr_account, std::string user_input){
+
+  //std::cout << "USER INPUT: " + user_input << std::endl;
+
+  if(user_input.empty())
+  {
+    exit(0);
+  }
+
   if (user_input.compare("logout") == 0 ||
       user_input.compare("withdrawal") == 0 ||
       user_input.compare("transfer") == 0 ||
@@ -18,32 +26,3 @@ bool CommandValidator::validate(Account curr_account, std::string user_input){
   }
   return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
