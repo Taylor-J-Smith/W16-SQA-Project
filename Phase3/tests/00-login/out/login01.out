@@ -1,0 +1,11 @@
+Welcome! type login to begin:
+[logout] ERROR: NEED TO LOG IN FIRST
+[withdrawal] ERROR: NEED TO LOG IN FIRST
+[transfer] ERROR: NEED TO LOG IN FIRST
+[paybill] ERROR: NEED TO LOG IN FIRST
+[deposit] ERROR: NEED TO LOG IN FIRST
+[create] ERROR: NEED TO LOG IN FIRST
+[delete] ERROR: NEED TO LOG IN FIRST
+[disable] ERROR: NEED TO LOG IN FIRST
+[enable] ERROR: NEED TO LOG IN FIRST
+[changeplan] ERROR: NEED TO LOG IN FIRST

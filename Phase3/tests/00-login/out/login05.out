@@ -1,0 +1,5 @@
+Welcome! type login to begin:
+[login] please enter the type of account:
+[login] login success: admin
+[login] ERROR: ALREADY LOGGED IN
+[logout] Success!

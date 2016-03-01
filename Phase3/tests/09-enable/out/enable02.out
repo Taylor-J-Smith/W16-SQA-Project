@@ -1,0 +1,6 @@
+Welcome! type login to begin:
+[login] please enter the type of account:
+[login] login success: admin
+[enable] Enter the account holder name:
+[enable] ERROR: INVALID INPUT
+[logout] Success!

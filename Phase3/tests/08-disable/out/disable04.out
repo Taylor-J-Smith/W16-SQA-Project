@@ -1,0 +1,19 @@
+Welcome! type login to begin:
+[login] please enter the type of account:
+[login] login success: admin
+[disable] Enter the account holder name:
+[disable] Enter the account number:
+[disable] Account disabled successfully
+[withdrawal] Enter the account holder name:
+[withdrawal] Enter the account number:
+[withdrawal] ERROR: DISABLED ACCOUNT
+[transfer] Enter the first account holder name:
+[transfer] Enter the first account number:
+[transfer] ERROR DISABLED ACCOUNT
+[paybill] Enter the account holder name:
+[paybill] Enter the account number:
+[paybill] ERROR DISABLED ACCOUNT
+[deposit] Enter the account holder name:
+[deposit] Enter the account number:
+[deposit] ERROR DISABLED ACCOUNT
+[logout] Success!

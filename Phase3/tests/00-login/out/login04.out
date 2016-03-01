@@ -1,0 +1,6 @@
+Welcome! type login to begin:
+[login] please enter the type of account:
+[login] please enter the account holder name:
+[login] login success: testuser1
+[login] ERROR: ALREADY LOGGED IN
+[logout] Success!
