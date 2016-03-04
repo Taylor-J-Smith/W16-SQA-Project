@@ -56,22 +56,33 @@ executed with the makefile provided.
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
   
   //INITIALIZE
+  //Obtain the command line arguments
+  if (argc != 3){
+    //Error not enough arguments
+    cerr << "Usage: banksys <currentaccounts.txt> <transout.atf>" << endl;
+    exit(0);
+  }
+
+  string input_cbaf = argv[1];
+  cout << input_cbaf << endl;
+    
   //Account *current_user = new Account(); //Declare the Current User account
   SessionStatus current_status; //create a struct for the current user
-  AccountsDatabase accounts_database("test.cbaf"); //create the Account Database
+  current_status.filename = argv[2]; //load the output file into the current status
+  AccountsDatabase accounts_database(input_cbaf); //create the Account Database with the input cbaf
   vector<Transaction> session_transactions; //Declare the vector of transactions
   TransactionMapper transaction_map;
-  std::string const kWelcomePrompt = "Welcome! type login to begin:";
+  string const kWelcomePrompt = "Welcome! type login to begin:";
   
   //Main control loop for Front End
   while(true){
     //User has not logged in yet
-    //if ((current_status).name_.compare("") == 0){
-    //cout << kWelcomePrompt << endl;
-    //}
+    if (!current_status.is_logged_in){
+      cout << kWelcomePrompt << endl;
+    }
 
     //Get input from user
     string user_input;

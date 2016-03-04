@@ -16,7 +16,14 @@ AccountsDatabase::AccountsDatabase(std::string curr_bank_accounts_file_name){
 }
 
 bool AccountsDatabase::nameExists(std::string account_holder_name){
-  return true;
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++) {
+    if (account_holder_name.compare(this->database_[i].name_) == 0){
+      //found the account
+      return true;
+    }
+  }
+  //Did not find the account
+  return false;
 }
 
 bool AccountsDatabase::isValidAccount(std::string account_holder_name, std::string account_number){

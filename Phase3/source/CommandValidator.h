@@ -13,7 +13,7 @@ class CommandValidator{
   
   //METHODS
   //Given an account and the user provided input by that same account, checks to see if the command is a valid command for that particular type of account  
-  bool static validate(SessionStatus curr_session, std::string user_input);
+  bool static validate(SessionStatus &current_status, std::string user_input);
   
   //MEMBERS
 };
