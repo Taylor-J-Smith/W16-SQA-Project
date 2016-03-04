@@ -1,6 +1,6 @@
 #include "CreateHandler.h"
 
-void CreateHandler::handle(Account current_account, 
+void CreateHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

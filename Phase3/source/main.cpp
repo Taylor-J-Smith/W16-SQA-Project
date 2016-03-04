@@ -52,13 +52,15 @@ executed with the makefile provided.
 #include "EnableHandler.h"
 #include "ChangeplanHandler.h"
 #include "LoginHandler.h"
+#include "SessionStatus.h"
 
 using namespace std;
 
 int main(){
   
   //INITIALIZE
-  Account *current_user = new Account(); //Declare the Current User account
+  //Account *current_user = new Account(); //Declare the Current User account
+  SessionStatus current_status; //create a struct for the current user
   AccountsDatabase accounts_database("test.cbaf"); //create the Account Database
   vector<Transaction> session_transactions; //Declare the vector of transactions
   TransactionMapper transaction_map;
@@ -67,16 +69,16 @@ int main(){
   //Main control loop for Front End
   while(true){
     //User has not logged in yet
-    if ((*current_user).name_.compare("") == 0){
-      cout << kWelcomePrompt << endl;
-    }
+    //if ((current_status).name_.compare("") == 0){
+    //cout << kWelcomePrompt << endl;
+    //}
 
     //Get input from user
     string user_input;
     cout << ">> ";
     cin >> user_input;
 
-    if (!CommandValidator::validate( *current_user, user_input)){
+    if (!CommandValidator::validate( current_status, user_input)){
       //user inputs an invalid command
       cout << "ERROR: INVALID COMMAND" << endl;      
     }else{
@@ -88,37 +90,37 @@ int main(){
       
       switch(user_input_integer){
       case 0: //logout
-	LogoutHandler::handle(*current_user, accounts_database, session_transactions);
+	LogoutHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 1: //withdrawal
-	WithdrawalHandler::handle(*current_user, accounts_database, session_transactions);
+	WithdrawalHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 2: //transfer
-	TransferHandler::handle(*current_user, accounts_database, session_transactions);
+	TransferHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 3: //paybill
-	PaybillHandler::handle(*current_user, accounts_database, session_transactions);
+	PaybillHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 4: //deposit
-	DepositHandler::handle(*current_user, accounts_database, session_transactions);
+	DepositHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 5: //create
-	CreateHandler::handle(*current_user, accounts_database, session_transactions);
+	CreateHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 6: //delete
-	DeleteHandler::handle(*current_user, accounts_database, session_transactions);
+	DeleteHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 7: //disable
-	DisableHandler::handle(*current_user, accounts_database, session_transactions);
+	DisableHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 8: //changeplan
-	ChangeplanHandler::handle(*current_user, accounts_database, session_transactions);
+	ChangeplanHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 9: //enable
-	EnableHandler::handle(*current_user, accounts_database, session_transactions);
+	EnableHandler::handle(current_status, accounts_database, session_transactions);
 	break;
       case 10: //login
-	LoginHandler::handle(*current_user, accounts_database, session_transactions);
+	LoginHandler::handle(current_status, accounts_database, session_transactions);
 	break;	
       default:
 	cout << "Case does not exist!" << endl;

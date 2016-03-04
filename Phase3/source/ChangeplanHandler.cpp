@@ -1,6 +1,6 @@
 #include "ChangeplanHandler.h"
 
-void ChangeplanHandler::handle(Account current_account, 
+void ChangeplanHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

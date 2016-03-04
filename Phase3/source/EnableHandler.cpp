@@ -1,6 +1,6 @@
 #include "EnableHandler.h"
 
-void EnableHandler::handle(Account current_account, 
+void EnableHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

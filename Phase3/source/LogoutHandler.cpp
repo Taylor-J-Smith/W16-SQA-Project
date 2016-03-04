@@ -4,7 +4,7 @@
 int LogoutHandler::session_number_ = 0;
 std::string LogoutHandler::kPathName = "Daily-Transactions/test";
 
-void LogoutHandler::handle(Account &current_account, 
+void LogoutHandler::handle(SessionStatus &current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
 
@@ -21,7 +21,7 @@ void LogoutHandler::handle(Account &current_account,
   //delete the memory holding the current Account
   //delete current_account; PROTOTYPE FEATURE: MEMORY LEAK
   //clear the currentAccount
-  current_account.name_ = "";
+  current_status.account_name = "";
   //Increment the session number
   LogoutHandler::session_number_++;
   std::cout << success_prompt << std::endl;

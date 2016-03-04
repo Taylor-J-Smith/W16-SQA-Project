@@ -1,6 +1,6 @@
 #include "LoginHandler.h"
 
-void LoginHandler::handle(Account &current_account, 
+void LoginHandler::handle(SessionStatus &current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   
@@ -33,7 +33,7 @@ void LoginHandler::handle(Account &current_account,
 
   //PROTOTYPE ONLY
   //current_account = new Account();
-  current_account.name_ = "admin";
+  current_status.account_name = "admin";
   
   //TODO: update the accounts database in the frontend (not done in prototype)
   //make a new transaction

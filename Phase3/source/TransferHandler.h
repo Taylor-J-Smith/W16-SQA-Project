@@ -4,6 +4,7 @@
 #include <string>
 #include "TransactionHandler.h"
 #include "AccountConstants.h"
+#include "SessionStatus.h"
 
 class TransferHandler: public TransactionHandler{
 
@@ -12,7 +13,7 @@ class TransferHandler: public TransactionHandler{
 
  public:
   //Handles the transfer of money from one account to another. On success, adds two transactions to the session_transactions, one for the first account and another for the second. The account database is then updated to reflect the transaction.
-  void static handle(Account current_account, 
+  void static handle(SessionStatus current_status, 
 		     AccountsDatabase account_database,
 		     std::vector<Transaction> &session_transactions);
 };

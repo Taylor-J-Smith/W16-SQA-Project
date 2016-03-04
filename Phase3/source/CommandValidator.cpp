@@ -1,7 +1,7 @@
 #include "CommandValidator.h"
 
 //just a prototype version, needs changing for actual version
-bool CommandValidator::validate(Account curr_account, std::string user_input){
+bool CommandValidator::validate(SessionStatus curr_status, std::string user_input){
 
   //std::cout << "USER INPUT: " + user_input << std::endl;
 

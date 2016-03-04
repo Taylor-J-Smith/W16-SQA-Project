@@ -1,6 +1,6 @@
 #include "WithdrawalHandler.h"
 
-void WithdrawalHandler::handle(Account current_account, 
+void WithdrawalHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
 

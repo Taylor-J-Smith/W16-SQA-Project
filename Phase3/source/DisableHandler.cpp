@@ -1,6 +1,6 @@
 #include "DisableHandler.h"
 
-void DisableHandler::handle(Account current_account, 
+void DisableHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

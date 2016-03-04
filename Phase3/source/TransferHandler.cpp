@@ -1,6 +1,6 @@
 #include "TransferHandler.h"
 
-void TransferHandler::handle(Account current_account, 
+void TransferHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

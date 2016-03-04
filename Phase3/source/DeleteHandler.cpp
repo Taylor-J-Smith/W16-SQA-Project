@@ -1,6 +1,6 @@
 #include "DeleteHandler.h"
 
-void DeleteHandler::handle(Account current_account, 
+void DeleteHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

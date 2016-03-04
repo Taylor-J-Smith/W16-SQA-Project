@@ -1,6 +1,6 @@
 #include "PaybillHandler.h"
 
-void PaybillHandler::handle(Account current_account, 
+void PaybillHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

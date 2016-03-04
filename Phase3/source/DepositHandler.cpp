@@ -1,6 +1,6 @@
 #include "DepositHandler.h"
 
-void DepositHandler::handle(Account current_account, 
+void DepositHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   

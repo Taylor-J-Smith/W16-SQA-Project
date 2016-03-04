@@ -2,7 +2,8 @@
 #define COMMANDVALIDATOR_H_
 
 #include <string>
-#include "Account.h"
+#include <iostream>
+#include "SessionStatus.h"
 
 //It validates user input commands to ensure that they are in the correct format and do not break the Front End
 class CommandValidator{
@@ -12,7 +13,7 @@ class CommandValidator{
   
   //METHODS
   //Given an account and the user provided input by that same account, checks to see if the command is a valid command for that particular type of account  
-  bool static validate(Account curr_account, std::string user_input);
+  bool static validate(SessionStatus curr_session, std::string user_input);
   
   //MEMBERS
 };
