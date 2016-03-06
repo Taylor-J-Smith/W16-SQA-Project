@@ -67,7 +67,6 @@ int main(int argc, char* argv[]){
   }
 
   string input_cbaf = argv[1];
-  cout << input_cbaf << endl;
     
   //Account *current_user = new Account(); //Declare the Current User account
   SessionStatus current_status; //create a struct for the current user

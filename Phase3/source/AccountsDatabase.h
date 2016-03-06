@@ -17,6 +17,8 @@ class AccountsDatabase{
   bool nameExists(std::string account_holder_name);
   //Checks that the given account name and number correspond to the same account in the database, returns true if theu do, false otherwise
   bool isValidAccount(std::string account_holder_name, std::string account_number);
+  //Returns the account number based on the account name that is given as a parameter
+  std::string getAccountNumber(std::string account_holder_name);
   
   //MEMBERS
   //A vector of accounts that are populated at the start of each day from the current bank accounts file
