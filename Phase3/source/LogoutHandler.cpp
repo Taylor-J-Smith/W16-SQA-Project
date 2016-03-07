@@ -6,7 +6,13 @@ void LogoutHandler::handle(SessionStatus &current_status,
 
   std::string success_prompt = "[logout] Success!";
   //Create the logout transaction
-  Transaction new_transaction("logout", current_status.account_name, current_status.account_number, "00000.00", "  ");
+  std::string misc;
+  if (current_status.is_admin){
+    misc = "A ";
+  }else {
+    misc = "S ";
+  }
+  Transaction new_transaction("logout", current_status.account_name, current_status.account_number, "00000.00", misc);
   //push it to the session_transactions
   session_transactions.push_back(new_transaction);
   //write the transactions to a transaction file
