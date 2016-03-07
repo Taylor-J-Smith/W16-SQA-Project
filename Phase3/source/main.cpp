@@ -88,9 +88,9 @@ int main(int argc, char* argv[]){
     cout << ">> ";
     cin >> user_input;
 
-    if (!CommandValidator::validate( current_status, user_input)){
+    if (!CommandValidator::validate(current_status, user_input)){
       //user inputs an invalid command
-      cout << "ERROR: INVALID COMMAND" << endl;      
+      //do nothing
     }else{
       //user inputs a VALID command
       //cout << "VALID COMMAND!" << endl;

@@ -16,6 +16,7 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
     if (user_input.compare("login") == 0){
       return true;
     }else{
+      std::cout << "ERROR: NEED TO LOG IN FIRST" << std::endl;
       return false;
     }
   }

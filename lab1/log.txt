@@ -315,3 +315,1103 @@
 > 
 > 
 > 
+1c1,317
+< file1 content
+---
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1,44
+> < file1 content
+> ---
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1,135
+> < file1 content
+> ---
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > 1c1,44
+> > < file1 content
+> > ---
+> > > 1c1,41
+> > > < file1 content
+> > > ---
+> > > > #!/bin/bash
+> > > > #file2="file2.txt"
+> > > > 
+> > > > for file in *;
+> > > > do
+> > > >     if ! diff -q $1 $file > /dev/null
+> > > >     then
+> > > > 	echo $1 "and" $file "are different"
+> > > > 	diff $1 $file >> "log.txt"
+> > > >     else
+> > > > 	#echo "file and file_name are the same"
+> > > > 	echo $1 "and" $file "are the same"
+> > > >     fi
+> > > > done
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+1c1,41
+< file1 content
+---
+> #!/bin/bash
+> #file2="file2.txt"
+> 
+> for file in *;
+> do
+>     if ! diff -q $1 $file > /dev/null
+>     then
+> 	echo $1 "and" $file "are different"
+> 	diff $1 $file >> "log.txt"
+>     else
+> 	#echo "file and file_name are the same"
+> 	echo $1 "and" $file "are the same"
+>     fi
+> done
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+1c1
+< file1 content
+---
+> file2 content
+1c1,685
+< file1 content
+---
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1,44
+> < file1 content
+> ---
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1,135
+> < file1 content
+> ---
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > 1c1,44
+> > < file1 content
+> > ---
+> > > 1c1,41
+> > > < file1 content
+> > > ---
+> > > > #!/bin/bash
+> > > > #file2="file2.txt"
+> > > > 
+> > > > for file in *;
+> > > > do
+> > > >     if ! diff -q $1 $file > /dev/null
+> > > >     then
+> > > > 	echo $1 "and" $file "are different"
+> > > > 	diff $1 $file >> "log.txt"
+> > > >     else
+> > > > 	#echo "file and file_name are the same"
+> > > > 	echo $1 "and" $file "are the same"
+> > > >     fi
+> > > > done
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1,317
+> < file1 content
+> ---
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > 1c1,44
+> > < file1 content
+> > ---
+> > > 1c1,41
+> > > < file1 content
+> > > ---
+> > > > #!/bin/bash
+> > > > #file2="file2.txt"
+> > > > 
+> > > > for file in *;
+> > > > do
+> > > >     if ! diff -q $1 $file > /dev/null
+> > > >     then
+> > > > 	echo $1 "and" $file "are different"
+> > > > 	diff $1 $file >> "log.txt"
+> > > >     else
+> > > > 	#echo "file and file_name are the same"
+> > > > 	echo $1 "and" $file "are the same"
+> > > >     fi
+> > > > done
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > 1c1,135
+> > < file1 content
+> > ---
+> > > 1c1,41
+> > > < file1 content
+> > > ---
+> > > > #!/bin/bash
+> > > > #file2="file2.txt"
+> > > > 
+> > > > for file in *;
+> > > > do
+> > > >     if ! diff -q $1 $file > /dev/null
+> > > >     then
+> > > > 	echo $1 "and" $file "are different"
+> > > > 	diff $1 $file >> "log.txt"
+> > > >     else
+> > > > 	#echo "file and file_name are the same"
+> > > > 	echo $1 "and" $file "are the same"
+> > > >     fi
+> > > > done
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > 1c1,44
+> > > < file1 content
+> > > ---
+> > > > 1c1,41
+> > > > < file1 content
+> > > > ---
+> > > > > #!/bin/bash
+> > > > > #file2="file2.txt"
+> > > > > 
+> > > > > for file in *;
+> > > > > do
+> > > > >     if ! diff -q $1 $file > /dev/null
+> > > > >     then
+> > > > > 	echo $1 "and" $file "are different"
+> > > > > 	diff $1 $file >> "log.txt"
+> > > > >     else
+> > > > > 	#echo "file and file_name are the same"
+> > > > > 	echo $1 "and" $file "are the same"
+> > > > >     fi
+> > > > > done
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > 
+> > > 1c1,41
+> > > < file1 content
+> > > ---
+> > > > #!/bin/bash
+> > > > #file2="file2.txt"
+> > > > 
+> > > > for file in *;
+> > > > do
+> > > >     if ! diff -q $1 $file > /dev/null
+> > > >     then
+> > > > 	echo $1 "and" $file "are different"
+> > > > 	diff $1 $file >> "log.txt"
+> > > >     else
+> > > > 	#echo "file and file_name are the same"
+> > > > 	echo $1 "and" $file "are the same"
+> > > >     fi
+> > > > done
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > > > 
+> > 1c1,41
+> > < file1 content
+> > ---
+> > > #!/bin/bash
+> > > #file2="file2.txt"
+> > > 
+> > > for file in *;
+> > > do
+> > >     if ! diff -q $1 $file > /dev/null
+> > >     then
+> > > 	echo $1 "and" $file "are different"
+> > > 	diff $1 $file >> "log.txt"
+> > >     else
+> > > 	#echo "file and file_name are the same"
+> > > 	echo $1 "and" $file "are the same"
+> > >     fi
+> > > done
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> > > 
+> 1c1,41
+> < file1 content
+> ---
+> > #!/bin/bash
+> > #file2="file2.txt"
+> > 
+> > for file in *;
+> > do
+> >     if ! diff -q $1 $file > /dev/null
+> >     then
+> > 	echo $1 "and" $file "are different"
+> > 	diff $1 $file >> "log.txt"
+> >     else
+> > 	#echo "file and file_name are the same"
+> > 	echo $1 "and" $file "are the same"
+> >     fi
+> > done
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > 
+> 1c1
+> < file1 content
+> ---
+> > file2 content
+1c1,41
+< file1 content
+---
+> #!/bin/bash
+> #file2="file2.txt"
+> 
+> for file in *;
+> do
+>     if ! diff -q $1 $file > /dev/null
+>     then
+> 	echo $1 "and" $file "are different"
+> 	diff $1 $file >> "log.txt"
+>     else
+> 	#echo "file and file_name are the same"
+> 	echo $1 "and" $file "are the same"
+>     fi
+> done
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+> 
