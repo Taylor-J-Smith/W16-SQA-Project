@@ -62,8 +62,7 @@ void LoginHandler::handle(SessionStatus &current_status,
       current_status.account_number = account_database.getAccountNumber(account_name);
       current_status.is_logged_in = true;
     }else{
-      std::cout << "TEMP: |" << account_name << "|" << std::endl; //temp
-      std::cout << "[TEMP ERROR]: Account Name not in database" << std::endl;
+      std::cout << "[login] ERROR: USERNAME DOES NOT EXIST" << std::endl;
       return;
     }    
   }else{

@@ -1,4 +1,6 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] please enter the account holder name:
-[login] ERROR: USERNAME DOES NOT EXIST
+>> [login] Enter the type of account:
+>> [login] Enter the account holder name:
+>> [login] ERROR: USERNAME DOES NOT EXIST
+Welcome! type login to begin:
+>> End of file reached: program exitting

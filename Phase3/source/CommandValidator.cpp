@@ -11,6 +11,22 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
     exit(0);    
   }
 
+  //If the user does not enter a valid transaction  
+  if (user_input.compare("login") != 0 &&
+      user_input.compare("logout") != 0 &&
+      user_input.compare("withdrawal") != 0 &&
+      user_input.compare("transfer") != 0 &&
+      user_input.compare("paybill") != 0 &&
+      user_input.compare("deposit") != 0 &&
+      user_input.compare("create") != 0 &&
+      user_input.compare("delete") != 0 &&
+      user_input.compare("disable") != 0 &&
+      user_input.compare("changeplan") != 0 &&
+      user_input.compare("enable") != 0){
+    std::cout << "ERROR: INVALID TRANSACTION COMMAND" << std::endl;
+    return false;
+  }
+  
   if(!current_status.is_logged_in){
     //User is not logged in - only acceptable command is login
     if (user_input.compare("login") == 0){

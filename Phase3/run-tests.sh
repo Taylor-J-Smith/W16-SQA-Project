@@ -2,10 +2,11 @@
 
 counter=1
 test_name=""
+green="\e[1;32m"
+red="\e[1;31m"
+reset_color="\033[0m"
+
 cd tests
-
-
-
 for i in *;
 do
     cd $i
@@ -32,7 +33,7 @@ do
 	    tf_output="../outputs/$test_name$counter_string.atf"
 	    if  ! diff -q $tf_filename $tf_output > /dev/null; then
 		echo "Transaction files are different"
-		echo "$test_name$counter_string FAILED"
+		echo -e "$red$test_name$counter_string FAILED${color_reset}"
 		atf_passed=false
 	    else
 		atf_passed=true
@@ -47,11 +48,11 @@ do
 	    actual_output="../outputs/$test_name$counter_string.out"
 	    if  ! diff -q $actual_output $expeced_output > /dev/null; then
 	       echo "Output files are different"
-	       echo "$test_name$counter_string FAILED"
+	       echo -e "$red$test_name$counter_string FAILED${color_reset}"
 	       out_passed=false
 	   else
 	       out_passed=true
-	       echo "$test_name$counter_string PASSED"
+	       echo -e "$green$test_name$counter_string PASSED${color_reset}"
 	   fi
 	fi
 	read test
