@@ -7,8 +7,8 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
 
   if(user_input.empty())
   {
-    std::cout << "End of file reached: program exitting" << std::endl;
-    exit(0);
+    std::cout << "End of file reached: program exitting" << std::endl;    
+    exit(0);    
   }
 
   if(!current_status.is_logged_in){
@@ -19,6 +19,12 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
       std::cout << "ERROR: NEED TO LOG IN FIRST" << std::endl;
       return false;
     }
+  }
+
+  //If user is already logged in
+  if(user_input.compare("login") == 0){
+    std::cout << "ERROR: ALREADY LOGGED IN" << std::endl;
+    return false;
   }
   
   //From this point on, user has succesfully logged in
@@ -41,6 +47,13 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
 	  user_input.compare("deposit") == 0){
 	return true;
       }else{
+	if (user_input.compare("create") == 0 ||
+	    user_input.compare("delete") == 0 ||
+	    user_input.compare("disable") == 0 ||
+	    user_input.compare("changeplan") == 0 ||
+	    user_input.compare("enable") == 0){
+	  std::cout << "ERROR: PRIVILEGED ACCESS ONLY" << std::endl;
+	}
 	return false;
       }
   }
