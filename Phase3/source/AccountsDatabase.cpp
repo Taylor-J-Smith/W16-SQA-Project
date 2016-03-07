@@ -41,7 +41,16 @@ std::string AccountsDatabase::getAccountNumber(std::string account_holder_name){
   return "00000";
 }
 
-
+std::string AccountsDatabase::getAccountName(std::string account_number){
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
+    if (account_number.compare(this->database_[i].number_) == 0){
+      //found the account
+      return this->database_[i].name_;
+    }
+  }
+  //Did not find the account name 
+  return "                    ";
+}
 
 
 

@@ -18,12 +18,21 @@ void TransferHandler::handle(SessionStatus current_status,
   std::string account1_number;
   std::string account2_number;
   std::string amount;
-  std::string misc = "A "; //admin - prototype only
+  std::string misc = "  "; //admin - prototype only
 
-  //Read in the Account name from the user
-  std::cout << account_name_prompt << std::endl;
-  std::cout << basic_prompt;
-  std::cin >> account1_name; //take input from the user
+  if (current_status.is_admin){
+    //Read in Account Name from the user
+    std::cout << account_name_prompt << std::endl;
+    std::cout << basic_prompt;
+    std::cin.ignore();
+    std::getline(std::cin, account1_name);
+    //pad the inputted account name to 20 characters with whitespace
+    while (account1_name.length() < 20){
+      account1_name += " ";
+    }
+  }else{
+    account1_name = current_status.account_name;
+  }
 
   //Read in the first account number from user
   std::cout << account1_number_prompt << std::endl;
@@ -44,6 +53,8 @@ void TransferHandler::handle(SessionStatus current_status,
   //success message
   std::cout << success_prompt << std::endl;
 
+  //get the second account name based on the account number given
+  account2_name = account_database.getAccountName(account2_number);
   
   //TODO: update the accounts database in the frontend (not done in prototype)  
   //make a new transaction
