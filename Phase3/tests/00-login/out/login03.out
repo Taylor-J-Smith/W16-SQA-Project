@@ -1,4 +1,6 @@
 Welcome! type login to begin:
-[login]please enter the type of account:
-[login]login success: admin
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting
