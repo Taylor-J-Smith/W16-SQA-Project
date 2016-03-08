@@ -47,7 +47,7 @@ class Account{
   //paybill amounts paid to each individual credit card company
   float cq_amount_paid_; //Cumulative amount paid to CQ 
   float ec_amount_paid_; //Cumulative amount paid to EC
-  float tb_amount_paid_; //Cumulative amount paid to TB 
+  float tv_amount_paid_; //Cumulative amount paid to TB 
 };
 
 #endif

@@ -1,8 +1,10 @@
 #include "PaybillHandler.h"
 
+AccountConstants PaybillHandler::constants_;
+
 void PaybillHandler::handle(SessionStatus current_status, 
-				AccountsDatabase &account_database,
-				std::vector<Transaction> &session_transactions){
+			    AccountsDatabase &account_database,
+			    std::vector<Transaction> &session_transactions){
   
   //init the prompts
   std::string account_name_prompt = "[paybill] Enter the account holder name:";
@@ -59,10 +61,17 @@ void PaybillHandler::handle(SessionStatus current_status,
   std::cout << amount_prompt << std::endl;
   std::cout << basic_prompt;    
   std::cin >> amount; //take input from the user
-
+  
   //verify that the user enterd a properly formated amount
   if (!CommandValidator::validateAmountFormat(amount)){
     std::cout << "[paybill] ERROR: INVALID INPUT" << std::endl;
+    return;
+  }
+  
+  //Check if the user is standard and if so then check that they are under the max withdrawal limit
+  if (!PaybillHandler::isUnderPaybillLimit(account_database, account_number ,amount, company_ACK) &&
+      !current_status.is_admin){
+    std::cout << "[paybill] ERROR: AMOUNT EXCEEDS THE LIMIT" << std::endl;
     return;
   }
 
@@ -85,4 +94,93 @@ bool PaybillHandler::isValidCompany(std::string company_ACK){
   }else{
     return false;
   }
+}
+
+//Verify that the amount being paid is <= the daily limit 2000 
+bool PaybillHandler::isUnderPaybillLimit(AccountsDatabase account_database,
+					       std::string account_number,
+					       std::string user_amount,
+					       std::string company_ACK){
+  Account user_account = account_database.getAccountObject(account_number);
+  float user_amount_float = stof(user_amount);
+  //need to init to make compiler happy
+  float company_limit = 2000.00; //the max for paybill for a given company 
+  float company_amount_paid = 0; //the amount already paid towards the given company
+  //[REDUNDANT-TOFIX] Find which company is being paid - //update the XX_amount_paid_	
+  if (company_ACK.compare("CQ") == 0){	
+    company_limit=PaybillHandler::constants_.kPaybillCQMax;
+    company_amount_paid=user_account.cq_amount_paid_;
+  }else if(company_ACK.compare("EC") == 0){
+    company_limit=PaybillHandler::constants_.kPaybillECMax;
+    company_amount_paid=user_account.ec_amount_paid_;
+  }else if(company_ACK.compare("TV") == 0){
+    company_limit=PaybillHandler::constants_.kPaybillTVMax;
+    company_amount_paid=user_account.tv_amount_paid_;
+  }else{
+    //this should never reach, but just in case
+    std::cout << "[PaybillHandler::isUnderPaybillLimit] Could not find company" << std::endl;
+  }
+  if ((company_amount_paid + user_amount_float) <= company_limit){
+    //Is under the limit
+    return true;
+  }else{
+    //Over the permitted limit
+    return false;
+  }
+}
+
+//update the XX_amount_paid and the available_balance_ for the account with the paybill_instance
+void PaybillHandler::updatePaybillAmount(AccountsDatabase &account_database,
+					 std::string account_number,
+					 std::string paybill_instance,
+					 std::string company_ACK){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){
+      //found the account - update the account
+      //[REDUNDANT-TOFIX] Find which company is being paid - //update the XX_amount_paid_	
+      if (company_ACK.compare("CQ") == 0){	
+	account_database.database_[i].cq_amount_paid_ += stof(paybill_instance); 
+      }else if(company_ACK.compare("EC") == 0){
+	account_database.database_[i].ec_amount_paid_ += stof(paybill_instance); 
+      }else if(company_ACK.compare("TV") == 0){
+	account_database.database_[i].tv_amount_paid_ += stof(paybill_instance); 
+      }else{
+	//this should never reach, but just in case
+	std::cout << "[PaybillHandler::updatePaybillAmount] Could not find company" << std::endl;
+      }
+      //update the available_balance
+      account_database.database_[i].available_balance_ -= stof(paybill_instance);
+      return;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[PaybillHandler::updatePaybillAmount] did not find account" << std::endl;
+}
+
+
+//Check if the amount to be paid is possible with that account's balance
+bool PaybillHandler::isPaybillPossible(AccountsDatabase &account_database,
+				       std::string account_number,
+				       std::string paybill_instance,
+				       std::string company_ACK){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){      
+      //found the account - update the account
+      float fee = 0.10;
+      //check if it is a student account
+      if (account_database.database_[i].plan_.compare("S") == 0){
+	//is is a student account
+	fee = 0.05;
+      }
+      //check if given the account balance the paybill is possible
+      if ((roundf((account_database.database_[i].available_balance_ - stof(paybill_instance) - fee)*100)/100.0) < 0){
+	//the user does not have the funds
+	return false;
+      }else{
+	return true;
+      }
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[PaybillHandler::isPaybillPossible] did not find account" << std::endl;  
 }

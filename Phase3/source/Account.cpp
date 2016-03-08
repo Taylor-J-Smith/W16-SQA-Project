@@ -28,7 +28,11 @@ Account::Account(std::string cbaf_input_line){
   //std::cout << "plan:" + this->plan_  << std::endl; //temp
   this->available_balance_ = this->balance_;
   this->withdrawn_amount_ = 0.00;
-  this->transfered_amount_ = 0.00;  
+  this->transfered_amount_ = 0.00;
+  //Init all the XX_amount_paid_
+  this->cq_amount_paid_ = 0;
+  this->ec_amount_paid_ = 0;
+  this->tv_amount_paid_ = 0;
 }
 
 
