@@ -1,7 +1,7 @@
 #include "ChangeplanHandler.h"
 
-void ChangeplanHandler::handle(SessionStatus current_status, 
-				AccountsDatabase account_database,
+void ChangeplanHandler::handle(SessionStatus &current_status, 
+				AccountsDatabase &account_database,
 				std::vector<Transaction> &session_transactions){
   
   //init the prompts
@@ -53,4 +53,23 @@ void ChangeplanHandler::handle(SessionStatus current_status,
   //make a new transaction
   Transaction new_transaction("changeplan", account_name, account_number, amount, misc);
   session_transactions.push_back(new_transaction);
+}
+
+void ChangeplanHandler::changeAccountPlan(AccountsDatabase &account_database,
+								std::string account_number){
+									
+		for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+	    if (account_number.compare(account_database.database_[i].number_) == 0){
+	      //found the account - update the account
+	      if(account_database.database_[i].plan_.compare("S")){
+					account_database.database_[i].plan_ = "N";
+				}else{
+					account_database.database_[i].plan_ = "S";
+				}
+	      return;
+	    }
+	  }
+	  //Did not find the account - something went wrong
+	  std::cout << "[ChangeplanHandler::changeAccountPlan] did not find account" << std::endl;
+	
 }
