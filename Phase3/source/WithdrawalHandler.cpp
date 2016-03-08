@@ -70,6 +70,7 @@ void WithdrawalHandler::handle(SessionStatus current_status,
 
   if (!account_database.isWithdrawalPossible(account_number, amount)){
     //the transaction is not possible
+    std::cout << "[withdrawal] ERROR: INSUFFICIENT FUNDS" << std::endl;
     return;
   }
 
