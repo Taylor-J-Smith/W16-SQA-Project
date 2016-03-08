@@ -27,6 +27,9 @@ class AccountsDatabase{
   void updateAccount(Account &updated_account);
   //Update the withdrawn amount for the given account number
   void updateWithdrawnAmount(std::string account_number, std::string withdrawn_instance);
+  //Check if the amount to be withdrawn is possible with that account's balance
+  bool isWithdrawalPossible(std::string account_number, std::string withdrawn_instance);
+    
   //MEMBERS
   //A vector of accounts that are populated at the start of each day from the current bank accounts file
   std::vector<Account> database_;

@@ -68,6 +68,11 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     return;
   }
 
+  if (!account_database.isWithdrawalPossible(account_number, amount)){
+    //the transaction is not possible
+    return;
+  }
+
   //success message
   std::cout << success_prompt << std::endl;
 

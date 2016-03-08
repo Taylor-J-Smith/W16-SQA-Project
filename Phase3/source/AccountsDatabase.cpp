@@ -72,18 +72,46 @@ Account AccountsDatabase::getAccountObject(std::string account_number){
   }  
 }
 
+//update the withdrawn_amount and the available_balance_ for the account with the withdrawn_instance
 void AccountsDatabase::updateWithdrawnAmount(std::string account_number, std::string withdrawn_instance){
-  //update the withdrawn_amount for the account with the withdrawn_instance
   for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
     if (account_number.compare(this->database_[i].number_) == 0){
       //found the account - update the account
-      this->database_[i].withdrawn_amount_ += stof(withdrawn_instance);
+      this->database_[i].withdrawn_amount_ += stof(withdrawn_instance); //update the withdrawn_amount_
+      this->database_[i].available_balance_ -= stof(withdrawn_instance);//update the available_balance
       return;
     }
   }
   //Did not find the account - something went wrong
   std::cout << "[AccountsDatabase::updateWithdrawnAmount] did not find account" << std::endl;
 }
+
+//Check if the amount to be withdrawn is possible with that account's balance
+bool AccountsDatabase::isWithdrawalPossible(std::string account_number,
+					    std::string withdrawn_instance){
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
+    if (account_number.compare(this->database_[i].number_) == 0){      
+      //found the account - update the account
+      float fee = 0.10;
+      //check if it is a student account
+      if (this->database_[i].plan_.compare("S") == 0){
+	//is is a student account
+	fee = 0.05;
+      }
+
+      //check if given the account balance the withdrawal is possible
+      if (this->database_[i].available_balance_ - stof(withdrawn_instance) - fee < 0){
+	//the user does not have the funds
+	return false;
+      }else{
+	return true;
+      }
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[AccountsDatabase::isWithdrawalPossible] did not find account" << std::endl;  
+}
+
 
 //Funciton not working
 void AccountsDatabase::updateAccount(Account &updated_account){
