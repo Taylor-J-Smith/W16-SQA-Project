@@ -4,7 +4,7 @@ Welcome! type login to begin:
 >> [login] Success!
 >> [transfer] Enter the first account number:
 >> [transfer] Enter the second account number:
->> [transfer] ERROR: INVALID INPUT
+>> [transfer] ERROR: ACCOUNT HOLDER DOES NOT EXIST
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting

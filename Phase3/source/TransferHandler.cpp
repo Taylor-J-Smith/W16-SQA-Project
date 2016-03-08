@@ -52,7 +52,7 @@ void TransferHandler::handle(SessionStatus current_status,
   std::cin >> account2_number; //take input from the user
 
   if (!account_database.numberExists(account2_number)){
-    std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
+    std::cout << "[transfer] ERROR: ACCOUNT HOLDER DOES NOT EXIST" << std::endl;
     return;
   }
 
