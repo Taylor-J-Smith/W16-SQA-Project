@@ -3,7 +3,7 @@ Welcome! type login to begin:
 >> [login] Enter the account holder name:
 >> [login] Success!
 >> [deposit] Enter the account number:
->> [withdrawal] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
+>> [deposit] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting

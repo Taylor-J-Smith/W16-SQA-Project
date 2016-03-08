@@ -121,7 +121,7 @@ bool DepositHandler::isDepositPossible(AccountsDatabase &account_database,
       }
 
       //check if given the account balance the deposit is possible
-      if ((roundf((account_database.database_[i].available_balance_ - stof(deposit_instance) - fee)*100)/100.0) < 0){
+      if ((roundf((account_database.database_[i].available_balance_ - stof(deposit_instance) - fee)*100)/100.0) < 0 ){
 	//the user does not have the funds
 	return false;
       }else{
