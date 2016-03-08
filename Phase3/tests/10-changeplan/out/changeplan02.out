@@ -1,6 +1,8 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] login success: admin
-[changeplan] Enter the account holder name:
-[changeplan] ERROR: INVALID INPUT
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [changeplan] Enter the account holder name:
+>> [changeplan] ERROR: USERNAME DOES NOT EXIST
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

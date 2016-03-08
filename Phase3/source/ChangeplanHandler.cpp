@@ -19,7 +19,17 @@ void ChangeplanHandler::handle(SessionStatus current_status,
   //Read in the Account Name from the user
   std::cout << account_name_prompt << std::endl;
   std::cout << basic_prompt;
-  std::cin >> account_name; //take input from the user
+	std::cin.ignore();
+	std::getline(std::cin, account_name);
+	//pad the inputted account name to 20 characters with whitespace
+	while (account_name.length() < 20){
+		account_name += " ";
+	}
+
+	if(!account_database.nameExists(account_name)){
+		std::cout << "[changeplan] ERROR: USERNAME DOES NOT EXIST" << std::endl;
+		return;
+	}    
 
   //Read in the Account Number from the user
   std::cout << account_number_prompt << std::endl;
