@@ -40,6 +40,11 @@ void ChangeplanHandler::handle(SessionStatus current_status,
 		std::cout << "[changeplan] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[changeplan] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //success message
   std::cout << success_prompt << std::endl;

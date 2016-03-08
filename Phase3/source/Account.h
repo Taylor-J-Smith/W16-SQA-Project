@@ -43,6 +43,7 @@ class Account{
   float available_balance_; //the remaining balance of the account
   float withdrawn_amount_; //cumulative amount that has been withdrawn in the current day
   float transfered_amount_; //cumulative amount that has been transfered in the current day
+  bool deleted_;
 
   //paybill amounts paid to each individual credit card company
   float cq_amount_paid_; //Cumulative amount paid to CQ 
@@ -51,5 +52,3 @@ class Account{
 };
 
 #endif
-
-

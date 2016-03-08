@@ -49,6 +49,11 @@ void WithdrawalHandler::handle(SessionStatus &current_status,
 		std::cout << "[withdrawal] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[withdrawal] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //Read in the Amount
   std::cout << amount_prompt << std::endl;

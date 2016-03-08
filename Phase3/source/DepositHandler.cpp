@@ -37,6 +37,11 @@ void DepositHandler::handle(SessionStatus current_status,
 		return;
 	}
 
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[deposit] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
+
   //Read in the Amount
   std::cout << amount_prompt << std::endl;
   std::cout << basic_prompt;    

@@ -52,6 +52,11 @@ void TransferHandler::handle(SessionStatus current_status,
 		std::cout << "[transfer] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account1_number).deleted_){
+		std::cout << "[transfer] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //Read in second account number from user
   std::cout << account2_number_prompt << std::endl;

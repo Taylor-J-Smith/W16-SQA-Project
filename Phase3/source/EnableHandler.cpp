@@ -45,6 +45,11 @@ void EnableHandler::handle(SessionStatus &current_status,
 		std::cout << "[enable] ERROR: ACCOUNT ALREADY ENABLED" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[withdrawal] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //success message
   std::cout << success_prompt << std::endl;

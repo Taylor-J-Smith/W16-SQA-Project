@@ -45,6 +45,11 @@ void DisableHandler::handle(SessionStatus &current_status,
 		std::cout << "[disable] ERROR: ACCOUNT ALREADY DISABLED" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[disable] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //success message
   std::cout << success_prompt << std::endl;

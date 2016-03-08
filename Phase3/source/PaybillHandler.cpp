@@ -50,6 +50,16 @@ void PaybillHandler::handle(SessionStatus current_status,
 		std::cout << "[paybill] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
 		return;
 	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[paybill] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
+	
+	if(account_database.getAccountObject(account_number).deleted_){
+		std::cout << "[paybill] ERROR: ACCOUNT NOT FOUND" << std::endl;
+		return;
+	}
 
   //Read in the company that is being paid
   std::cout << company_prompt << std::endl;

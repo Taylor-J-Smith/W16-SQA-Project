@@ -33,36 +33,6 @@ Account::Account(std::string cbaf_input_line){
   this->cq_amount_paid_ = 0;
   this->ec_amount_paid_ = 0;
   this->tv_amount_paid_ = 0;
+  
+  this->deleted_ = false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
