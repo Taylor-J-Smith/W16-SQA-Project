@@ -22,6 +22,16 @@ class TransferHandler: public TransactionHandler{
   bool static isUnderTransferLimit(AccountsDatabase account_database,
 				     std::string account_number,
 				     std::string user_amount);
+
+  //update the transfered_amount and the available_balance_ for the account with the withdrawn_instance
+  void static updateTransferedAmount(AccountsDatabase &account_database,
+					     std::string account_number,
+						      std::string transfer_instance);
+  
+  //Check if the amount to be transfered is possible with that account's balance
+  bool static isTransferPossible(AccountsDatabase &account_database,
+						  std::string account_number,
+						  std::string transfer_instance);
 };
 
 #endif

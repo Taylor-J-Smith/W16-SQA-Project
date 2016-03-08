@@ -69,6 +69,7 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     return;
   }
 
+  //Check to see if the withdrawal amount is possible given the account's balance
   if (!WithdrawalHandler::isWithdrawalPossible(account_database, account_number, amount) &&
       !current_status.is_admin){
     //the transaction is not possible
@@ -80,10 +81,8 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   std::cout << success_prompt << std::endl;
 
 
-  //Update the accounts database to reflec the amount withdrawn
+  //Update the accounts database to reflect the amount withdrawn
   WithdrawalHandler::updateWithdrawnAmount(account_database, account_number, amount);
-  //Account user_account = account_database.getAccountObject(account_number);
-  //std::cout << account_name << user_account.withdrawn_amount_ << "+=" << stof(amount) << std::endl;
   //make a new transaction
   Transaction new_transaction("withdrawal", account_name, account_number, amount, misc);
   session_transactions.push_back(new_transaction);
@@ -131,7 +130,7 @@ void WithdrawalHandler::updateWithdrawnAmount(AccountsDatabase &account_database
     }
   }
   //Did not find the account - something went wrong
-  std::cout << "[AccountsDatabase::updateWithdrawnAmount] did not find account" << std::endl;
+  std::cout << "[WithdrawalHandler::updateWithdrawnAmount] did not find account" << std::endl;
 }
 
 
@@ -160,7 +159,7 @@ bool WithdrawalHandler::isWithdrawalPossible(AccountsDatabase &account_database,
     }
   }
   //Did not find the account - something went wrong
-  std::cout << "[AccountsDatabase::isWithdrawalPossible] did not find account" << std::endl;  
+  std::cout << "[WithdrawalHandler::isWithdrawalPossible] did not find account" << std::endl;  
 }
 
 

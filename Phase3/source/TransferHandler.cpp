@@ -75,10 +75,21 @@ void TransferHandler::handle(SessionStatus current_status,
     std::cout << "[transfer] ERROR: AMOUNT EXCEEDS THE " << TransferHandler::constants_.kTransferMax << " LIMIT" << std::endl;
     return;
   }
+
+  //Check to see if the transfer amount is possible given the account's balance
+  if (!TransferHandler::isTransferPossible(account_database, account1_number, amount) &&
+      !current_status.is_admin){
+    //the transaction is not possible
+    std::cout << "[transfer] ERROR: INSUFFICIENT FUNDS" << std::endl;
+    return;
+  }
   
   //success message
   std::cout << success_prompt << std::endl;
 
+  //Update the accounts database to reflect the amount transfered
+  TransferHandler::updateTransferedAmount(account_database, account1_number, amount);
+  
   //get the second account name based on the account number given
   account2_name = account_database.getAccountName(account2_number);
   
@@ -103,4 +114,48 @@ bool TransferHandler::isUnderTransferLimit(AccountsDatabase account_database,
     //Over the permitted limit
     return false;
   }
+}
+
+//update the transfered_amount and the available_balance_ for the account with the withdrawn_instance
+void TransferHandler::updateTransferedAmount(AccountsDatabase &account_database,
+					     std::string account_number,
+					     std::string transfer_instance){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){
+      //found the account - update the account
+      account_database.database_[i].transfered_amount_ += stof(transfer_instance); //update the transfered_amount_
+      account_database.database_[i].available_balance_ -= stof(transfer_instance);//update the available_balance
+      return;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[TransferHandler::updateTransferedAmount] did not find account" << std::endl;
+}
+
+
+//Check if the amount to be transfered is possible with that account's balance
+bool TransferHandler::isTransferPossible(AccountsDatabase &account_database,
+					    std::string account_number,
+					    std::string transfer_instance){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){      
+      //found the account - update the account
+      float fee = 0.10;
+      //check if it is a student account
+      if (account_database.database_[i].plan_.compare("S") == 0){
+	//is is a student account
+	fee = 0.05;
+      }
+
+      //check if given the account balance the transfer is possible
+      if ((roundf((account_database.database_[i].available_balance_ - stof(transfer_instance) - fee)*100)/100.0) < 0){
+	//the user does not have the funds
+	return false;
+      }else{
+	return true;
+      }
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[TransferHandler::isTransferPossible] did not find account" << std::endl;  
 }
