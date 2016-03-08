@@ -1,19 +1,21 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] login success: admin
-[disable] Enter the account holder name:
-[disable] Enter the account number:
-[disable] Account disabled successfully
-[withdrawal] Enter the account holder name:
-[withdrawal] Enter the account number:
-[withdrawal] ERROR: DISABLED ACCOUNT
-[transfer] Enter the first account holder name:
-[transfer] Enter the first account number:
-[transfer] ERROR DISABLED ACCOUNT
-[paybill] Enter the account holder name:
-[paybill] Enter the account number:
-[paybill] ERROR DISABLED ACCOUNT
-[deposit] Enter the account holder name:
-[deposit] Enter the account number:
-[deposit] ERROR DISABLED ACCOUNT
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [disable] Enter the account holder name:
+>> [disable] Enter the account number:
+>> [disable] Success!
+>> [withdrawal] Enter the account holder name:
+>> [withdrawal] Enter the account number:
+>> [withdrawal] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED
+>> [transfer] Enter the account holder name:
+>> [transfer] Enter the first account number:
+>> [transfer] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED
+>> [paybill] Enter the account holder name:
+>> [paybill] Enter the account number:
+>> [paybill] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED
+>> [deposit] Enter the account holder name:
+>> [deposit] Enter the account number:
+>> [deposit] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

@@ -46,6 +46,11 @@ void PaybillHandler::handle(SessionStatus current_status,
     return;
   }
 
+	if(account_database.getAccountObject(account_number).status_.compare("D") == 0){
+		std::cout << "[paybill] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
+		return;
+	}
+
   //Read in the company that is being paid
   std::cout << company_prompt << std::endl;
   std::cout << basic_prompt;

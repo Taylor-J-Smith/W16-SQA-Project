@@ -48,6 +48,11 @@ void TransferHandler::handle(SessionStatus current_status,
     return;
   }
 
+	if(account_database.getAccountObject(account1_number).status_.compare("D") == 0){
+		std::cout << "[transfer] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
+		return;
+	}
+
   //Read in second account number from user
   std::cout << account2_number_prompt << std::endl;
   std::cout << basic_prompt;

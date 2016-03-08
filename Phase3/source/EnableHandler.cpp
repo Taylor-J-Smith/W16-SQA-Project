@@ -1,7 +1,7 @@
 #include "EnableHandler.h"
 
-void EnableHandler::handle(SessionStatus current_status, 
-				AccountsDatabase account_database,
+void EnableHandler::handle(SessionStatus &current_status, 
+				AccountsDatabase &account_database,
 				std::vector<Transaction> &session_transactions){
   
   //init the prompts
@@ -49,8 +49,23 @@ void EnableHandler::handle(SessionStatus current_status,
   //success message
   std::cout << success_prompt << std::endl;
 
+	enableAccount(account_database, account_number);
+
   //TODO: update the accounts database in the frontend (not done in prototype)
   //make a new transaction
   Transaction new_transaction("enable", account_name, account_number, amount, misc);
   session_transactions.push_back(new_transaction);
+}
+
+void EnableHandler::enableAccount(AccountsDatabase &account_database,
+					     											std::string account_number){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){
+      //found the account - update the account
+      account_database.database_[i].status_ = "A";
+      return;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[EnableHandler::enableAccount] did not find account" << std::endl;
 }

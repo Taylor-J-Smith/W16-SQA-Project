@@ -2,7 +2,7 @@
 
 AccountConstants WithdrawalHandler::constants_;
 
-void WithdrawalHandler::handle(SessionStatus current_status, 
+void WithdrawalHandler::handle(SessionStatus &current_status, 
 				AccountsDatabase &account_database,
 				std::vector<Transaction> &session_transactions){
 
@@ -44,6 +44,11 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     std::cout << "[withdrawal] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
     return;
   }
+
+	if(account_database.getAccountObject(account_number).status_.compare("D") == 0){
+		std::cout << "[withdrawal] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
+		return;
+	}
 
   //Read in the Amount
   std::cout << amount_prompt << std::endl;
@@ -160,26 +165,3 @@ bool WithdrawalHandler::isWithdrawalPossible(AccountsDatabase &account_database,
   //Did not find the account - something went wrong
   std::cout << "[WithdrawalHandler::isWithdrawalPossible] did not find account" << std::endl;  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,6 +4,11 @@ void DepositHandler::handle(SessionStatus current_status,
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
   
+	if(current_status.is_disabled){
+		std::cout << "[deposit] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
+		return;
+	}
+	
   //init the prompts
   std::string account_name_prompt = "[deposit] Enter the account holder name:";
   std::string account_number_prompt = "[deposit] Enter the account number:";
@@ -27,12 +32,16 @@ void DepositHandler::handle(SessionStatus current_status,
   std::cout << basic_prompt;
   std::cin >> account_number; //take input from the user
 
+	if(account_database.getAccountObject(account_number).status_.compare("D") == 0){
+		std::cout << "[deposit] ERROR: TRANSACTION NOT AVAILABLE WHILE ACCOUNT IS DISABLED" << std::endl;
+		return;
+	}
+
   //Read in the Amount
   std::cout << amount_prompt << std::endl;
   std::cout << basic_prompt;    
   std::cin >> amount; //take input from the user
 
-  //[PROTOTYPE] TODO: only succeed on success
   //success message
   std::cout << success_prompt << std::endl;
 
