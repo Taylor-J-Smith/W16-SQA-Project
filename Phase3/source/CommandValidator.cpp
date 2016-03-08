@@ -1,6 +1,5 @@
 #include "CommandValidator.h"
 
-//just a prototype version, needs changing for actual version
 bool CommandValidator::validate(SessionStatus &current_status, std::string user_input){
 
   //std::cout << "USER INPUT: " + user_input << std::endl;
@@ -94,3 +93,54 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
 
   return false;
 }
+
+bool CommandValidator::validateAmount(std::string user_amount){
+  //TODO: REGEX
+  if (user_amount[5] == '.'){
+    return true;
+  }else{
+    return false; 
+  }
+}
+
+//Given an amount, verify that that amount withdrawn is a a paper current (mod 5)
+bool CommandValidator::isPaperCurrency(std::string user_amount){
+  float user_float = stof(user_amount);
+  if (fmod(user_float,5) == 0){
+    //cout << "Paper currency" << endl;
+    return true;
+  }else{
+    //cout << "NOT Paper currency" << endl;
+    return false;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,10 +36,28 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   std::cout << basic_prompt;
   std::cin >> account_number; //take input from the user
 
+  //check if account number matches the user
+  if (!account_database.isValidAccount(current_status.account_name, account_number)){
+    std::cout << "[withdrawal] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
+    return;
+  }
+
   //Read in the Amount
   std::cout << amount_prompt << std::endl;
   std::cout << basic_prompt;    
   std::cin >> amount; //take input from the user
+  
+  //verify that the user enterd a properly formated amount
+  if (!CommandValidator::validateAmount(amount)){
+    std::cout << "[withdrawal] ERROR: INVALID INPUT" << std::endl;
+    return;
+  }
+
+  //verify that the user enterd a paper currency
+  if (!CommandValidator::isPaperCurrency(amount)){
+    std::cout << "[withdrawal] ERROR: INVALID INPUT" << std::endl;
+    return;
+  }
 
   //[PROTOTYPE] TODO: only succeed on success
   //success message

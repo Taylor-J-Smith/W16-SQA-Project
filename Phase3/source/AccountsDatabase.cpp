@@ -27,7 +27,18 @@ bool AccountsDatabase::nameExists(std::string account_holder_name){
 }
 
 bool AccountsDatabase::isValidAccount(std::string account_holder_name, std::string account_number){
-  return true;
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++) {
+    if (account_holder_name.compare(this->database_[i].name_) == 0){
+      //found the account
+      if (this->database_[i].number_.compare(account_number) == 0){
+	return true;
+      }else{
+	return false;
+      }
+    }
+  }
+  //Did not find the account
+  return false;  
 }
 
 std::string AccountsDatabase::getAccountNumber(std::string account_holder_name){
