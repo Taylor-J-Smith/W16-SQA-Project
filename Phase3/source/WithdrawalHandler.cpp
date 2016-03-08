@@ -63,12 +63,14 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   }
 
   //Check if the user is standard and if so then check that they are under the max withdrawal limit
-  if (!WithdrawalHandler::isUnderWithdrawalLimit(account_database, account_number ,amount) && !current_status.is_admin){
+  if (!WithdrawalHandler::isUnderWithdrawalLimit(account_database, account_number ,amount) &&
+      !current_status.is_admin){
     std::cout << "[withdrawal] ERROR: AMOUNT EXCEEDS THE " << WithdrawalHandler::constants_.kWithdrawalMax << " LIMIT" << std::endl;
     return;
   }
 
-  if (!account_database.isWithdrawalPossible(account_number, amount)){
+  if (!account_database.isWithdrawalPossible(account_number, amount) &&
+      !current_status.is_admin){
     //the transaction is not possible
     std::cout << "[withdrawal] ERROR: INSUFFICIENT FUNDS" << std::endl;
     return;
