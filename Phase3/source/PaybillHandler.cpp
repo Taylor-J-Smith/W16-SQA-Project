@@ -51,7 +51,7 @@ void PaybillHandler::handle(SessionStatus current_status,
 
   //check if the the company name is valid
   if (!PaybillHandler::isValidCompany(company_ACK)){
-    std::cout << "[paybill] ERROR: INVALID COMPANY" << std::endl;
+    std::cout << "[paybill] ERROR: NO COMPANY FOUND WITH THAT NAME" << std::endl;
     return;
   }
 

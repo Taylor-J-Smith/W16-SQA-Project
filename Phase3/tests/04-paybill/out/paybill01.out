@@ -4,7 +4,7 @@ Welcome! type login to begin:
 >> [login] Success!
 >> [paybill] Enter the account number:
 >> [paybill] Enter the company to pay:
->> [paybill] ERROR: INVALID COMPANY
+>> [paybill] ERROR: NO COMPANY FOUND WITH THAT NAME
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting
