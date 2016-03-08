@@ -1,9 +1,11 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] please enter the account holder name:
-[login] login success: testuser1
-[transfer] Enter the first account number:
-[transfer] Enter the second account number:
-[transfer] Enter amount to transfer:
-[transfer] ERROR: AMOUNT EXCEEDS THE 1000.00 LIMIT
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Enter the account holder name:
+>> [login] Success!
+>> [transfer] Enter the first account number:
+>> [transfer] Enter the second account number:
+>> [transfer] Enter amount to transfer:
+>> [transfer] ERROR: AMOUNT EXCEEDS THE 1000 LIMIT
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

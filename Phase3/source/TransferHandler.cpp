@@ -1,7 +1,9 @@
 #include "TransferHandler.h"
 
+AccountConstants TransferHandler::constants_;
+
 void TransferHandler::handle(SessionStatus current_status, 
-				AccountsDatabase account_database,
+				AccountsDatabase &account_database,
 				std::vector<Transaction> &session_transactions){
   
   //init the prompts
@@ -66,6 +68,13 @@ void TransferHandler::handle(SessionStatus current_status,
     std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
     return;
   }
+
+  //Check if the user is standard and if so then check that they are under the max transfer limit
+  if (!TransferHandler::isUnderTransferLimit(account_database, account1_number ,amount) &&
+      !current_status.is_admin){
+    std::cout << "[transfer] ERROR: AMOUNT EXCEEDS THE " << TransferHandler::constants_.kTransferMax << " LIMIT" << std::endl;
+    return;
+  }
   
   //success message
   std::cout << success_prompt << std::endl;
@@ -79,4 +88,19 @@ void TransferHandler::handle(SessionStatus current_status,
   Transaction new_transaction2("transfer", account2_name, account2_number, amount, misc);
   session_transactions.push_back(new_transaction1);
   session_transactions.push_back(new_transaction2);  
+}
+
+bool TransferHandler::isUnderTransferLimit(AccountsDatabase account_database,
+					       std::string account_number,
+					       std::string user_amount){
+  Account user_account = account_database.getAccountObject(account_number);
+  float user_amount_float = stof(user_amount);  
+  if ((user_account.transfered_amount_ + user_amount_float) <=
+      TransferHandler::constants_.kTransferMax){
+    //Is under the limit
+    return true;
+  }else{
+    //Over the permitted limit
+    return false;
+  }
 }
