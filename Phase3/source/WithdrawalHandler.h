@@ -24,6 +24,15 @@ class WithdrawalHandler: public TransactionHandler{
 				     std::string account_number,
 				     std::string user_amount);
 
+  //Update the withdrawn amount for the given account number
+  void static updateWithdrawnAmount(AccountsDatabase &account_database,
+				    std::string account_number,
+				    std::string withdrawn_instance);
+  //Check if the amount to be withdrawn is possible with that account's balance
+  bool static isWithdrawalPossible(AccountsDatabase &account_database,
+				   std::string account_number,
+				   std::string withdrawn_instance);
+
  public:
   //Handles the removal of money from the given bank account and adds a withdrawal transaction to the session_transactions once it completes successfully. The account database is then updated to reflect the transaction.
   void static handle(SessionStatus current_status, 

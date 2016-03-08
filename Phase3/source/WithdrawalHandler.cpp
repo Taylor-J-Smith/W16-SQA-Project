@@ -69,7 +69,7 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     return;
   }
 
-  if (!account_database.isWithdrawalPossible(account_number, amount) &&
+  if (!WithdrawalHandler::isWithdrawalPossible(account_database, account_number, amount) &&
       !current_status.is_admin){
     //the transaction is not possible
     std::cout << "[withdrawal] ERROR: INSUFFICIENT FUNDS" << std::endl;
@@ -81,7 +81,7 @@ void WithdrawalHandler::handle(SessionStatus current_status,
 
 
   //Update the accounts database to reflec the amount withdrawn
-  account_database.updateWithdrawnAmount(account_number, amount);
+  WithdrawalHandler::updateWithdrawnAmount(account_database, account_number, amount);
   //Account user_account = account_database.getAccountObject(account_number);
   //std::cout << account_name << user_account.withdrawn_amount_ << "+=" << stof(amount) << std::endl;
   //make a new transaction
@@ -118,8 +118,50 @@ bool WithdrawalHandler::isUnderWithdrawalLimit(AccountsDatabase account_database
   }
 }
 
+//update the withdrawn_amount and the available_balance_ for the account with the withdrawn_instance
+void WithdrawalHandler::updateWithdrawnAmount(AccountsDatabase &account_database,
+					     std::string account_number,
+					     std::string withdrawn_instance){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){
+      //found the account - update the account
+      account_database.database_[i].withdrawn_amount_ += stof(withdrawn_instance); //update the withdrawn_amount_
+      account_database.database_[i].available_balance_ -= stof(withdrawn_instance);//update the available_balance
+      return;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[AccountsDatabase::updateWithdrawnAmount] did not find account" << std::endl;
+}
 
 
+//Check if the amount to be withdrawn is possible with that account's balance
+bool WithdrawalHandler::isWithdrawalPossible(AccountsDatabase &account_database,
+					    std::string account_number,
+					    std::string withdrawn_instance){
+  for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
+    if (account_number.compare(account_database.database_[i].number_) == 0){      
+      //found the account - update the account
+      float fee = 0.10;
+      //check if it is a student account
+      if (account_database.database_[i].plan_.compare("S") == 0){
+	//is is a student account
+	fee = 0.05;
+      }
+
+      //check if given the account balance the withdrawal is possible
+      if ((roundf((account_database.database_[i].available_balance_ - stof(withdrawn_instance) - fee)*100)/100.0) < 0){
+	//the user does not have the funds
+	//std::cout << "TEMP:" << database_[i].available_balance_ - stof(withdrawn_instance) - fee << std::endl;
+	return false;
+      }else{
+	return true;
+      }
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[AccountsDatabase::isWithdrawalPossible] did not find account" << std::endl;  
+}
 
 
 
