@@ -26,7 +26,7 @@ void DeleteHandler::handle(SessionStatus current_status,
 		account_name += " ";
 	}
 	if(!account_database.nameExists(account_name)){
-		std::cout << "[enable] ERROR: USERNAME DOES NOT EXIST" << std::endl;
+		std::cout << "[delete] ERROR: USERNAME DOES NOT EXIST" << std::endl;
 		return;
 	}  
 

@@ -1,7 +1,9 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] login success: admin
-[create] Enter the account holder name:
-[create] Enter the initial balance:
-[create] ERROR INVLAID INPUT
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [create] Enter the account holder name:
+>> [create] Enter the initial balance:
+>> [create] ERROR: INVALID INPUT
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

@@ -2,7 +2,7 @@ Welcome! type login to begin:
 >> [login] Enter the type of account:
 >> [login] Success!
 >> [delete] Enter the account holder name:
->> [enable] ERROR: USERNAME DOES NOT EXIST
+>> [delete] ERROR: USERNAME DOES NOT EXIST
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting

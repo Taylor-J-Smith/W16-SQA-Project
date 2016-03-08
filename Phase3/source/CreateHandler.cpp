@@ -16,15 +16,34 @@ void CreateHandler::handle(SessionStatus current_status,
   std::string init_balance;
   std::string misc = "A ";
 
-  //Read in Account Name from the user
-  std::cout << account_name_prompt << std::endl;
-  std::cout << basic_prompt;
-  std::cin >> account_name; //take input from the user
+	//Read in the Account Name from the user
+	std::cout << account_name_prompt << std::endl;
+	std::cout << basic_prompt;
+	std::cin.ignore();
+	std::getline(std::cin, account_name);
+	//pad the inputted account name to 20 characters with whitespace
+	while (account_name.length() < 20){
+		account_name += " ";
+	}
+	
+	if(account_name.length() > 20){
+		account_name = account_name.substr(0,20);
+	}
+	
+	if(account_database.nameExists(account_name)){
+		std::cout << "[create] ERROR: USERNAME ALREADY EXIST" << std::endl;
+		return;
+	} 
 
   //Read in the amount that the account is init with
   std::cout << init_balance_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> init_balance; //take input from the user
+
+	if(!CommandValidator::validateAmountFormat(init_balance)){
+		std::cout << "[create] ERROR: INVALID INPUT" << std::endl;
+		return;
+	}
 
   //[PROTOTYPE] TODO: only succeed on success
   //success message
