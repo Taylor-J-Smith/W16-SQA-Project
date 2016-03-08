@@ -5,6 +5,7 @@
 #include "TransactionHandler.h"
 #include "AccountConstants.h"
 #include "SessionStatus.h"
+#include "CommandValidator.h"
 
 class TransferHandler: public TransactionHandler{
 

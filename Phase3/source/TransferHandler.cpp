@@ -61,7 +61,12 @@ void TransferHandler::handle(SessionStatus current_status,
   std::cout << basic_prompt;    
   std::cin >> amount; //take input from the user
 
-  //[PROTOTYPE] TODO: only succeed on success
+  //verify that the user enterd a properly formated amount
+  if (!CommandValidator::validateAmountFormat(amount)){
+    std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
+    return;
+  }
+  
   //success message
   std::cout << success_prompt << std::endl;
 
