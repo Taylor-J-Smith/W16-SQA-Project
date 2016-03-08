@@ -97,7 +97,7 @@ void DepositHandler::updateDepositAmount(AccountsDatabase &account_database,
   for(std::vector<Account>::size_type i = 0; i != account_database.database_.size(); i++){
     if (account_number.compare(account_database.database_[i].number_) == 0){
       //found the account - update the account
-      account_database.database_[i].balance_ += stof(deposit_instance); //update the deposit_instance
+      account_database.database_[i].deposited_amount_ += stof(deposit_instance); //update the deposit_instance
       return;
     }
   }
@@ -121,8 +121,14 @@ bool DepositHandler::isDepositPossible(AccountsDatabase &account_database,
       }
 
       //check if given the account balance the deposit is possible
-      if ((roundf((account_database.database_[i].available_balance_ - stof(deposit_instance) - fee)*100)/100.0) < 0){
+      if ((roundf((account_database.database_[i].available_balance_ - stof(deposit_instance) - fee)*100)/100.0) < 0 ){
 	//the user does not have the funds
+	return false;
+	
+      }else if(account_database.database_[i].available_balance_ +
+	       account_database.database_[i].deposited_amount_ +
+	       stof(deposit_instance) -
+	       fee >= DepositHandler::constants_.kAccountBalanceMax){
 	return false;
       }else{
 	return true;

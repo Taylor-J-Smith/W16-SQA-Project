@@ -38,11 +38,11 @@ class Account{
   std::string number_; //the account number
   std::string name_; //account holder name
   std::string status_; //either enabled or disabled
-  float balance_; //the account balance
   std::string plan_; //Either student or non-student
   float available_balance_; //the remaining balance of the account
   float withdrawn_amount_; //cumulative amount that has been withdrawn in the current day
   float transfered_amount_; //cumulative amount that has been transfered in the current day
+  float deposited_amount_; //the account balance
   bool deleted_;
 
   //paybill amounts paid to each individual credit card company

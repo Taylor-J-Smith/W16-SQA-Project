@@ -21,12 +21,12 @@ Account::Account(std::string cbaf_input_line){
   this->status_ = cbaf_input_line.substr(kAccStatusStart, kAccStatusEnd);
   //std::cout << "status:" + this->status_  << std::endl; //temp
   //account balance
-  this->balance_ = ::atof(cbaf_input_line.substr(kAccBalanceStart, kAccBalanceEnd).c_str());
+  this->available_balance_ = ::atof(cbaf_input_line.substr(kAccBalanceStart, kAccBalanceEnd).c_str());
   //std::cout << "balance:" << this->balance_  << std::endl; //temp
   //account status
   this->plan_ = cbaf_input_line.substr(kAccPlanStart, kAccPlanEnd);
   //std::cout << "plan:" + this->plan_  << std::endl; //temp
-  this->available_balance_ = this->balance_;
+  this->deposited_amount_ = 0.00;
   this->withdrawn_amount_ = 0.00;
   this->transfered_amount_ = 0.00;
   //Init all the XX_amount_paid_

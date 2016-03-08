@@ -1,14 +1,16 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] login success: admin
-[create] Enter the account holder name:
-[create] ERROR: INVALID INPUT
-[delete] Enter the account holder name:
-[delete] ERROR: INVALID INPUT
-[disable] Enter the account holder name:
-[disable] ERROR: INVALID INPUT
-[enable] Enter the account holder name:
-[enable] ERROR: INVALID INPUT
-[changeplan] Enter the account holder name:
-[changeplan] ERROR: INVALID INPUT
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [create] Enter the account holder name:
+>> [create] ERROR: USERNAME ALREADY EXIST
+>> [delete] Enter the account holder name:
+>> [delete] ERROR: USERNAME DOES NOT EXIST
+>> [disable] Enter the account holder name:
+>> [disable] ERROR: USERNAME DOES NOT EXIST
+>> [enable] Enter the account holder name:
+>> [enable] ERROR: USERNAME DOES NOT EXIST
+>> [changeplan] Enter the account holder name:
+>> [changeplan] ERROR: USERNAME DOES NOT EXIST
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

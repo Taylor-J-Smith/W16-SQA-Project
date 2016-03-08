@@ -18,7 +18,9 @@ class AccountConstants{
   const float kPaybillCQMax = 2000.00; //the limit for CQ company
   const float kPaybillECMax = 2000.00; //the limit for EC company
   const float kPaybillTVMax = 2000.00; //the limit for TV company
-  
+
+  //Account balance max
+  const float kAccountBalanceMax = 99999.99; //the limit for TV company
 };
 
 #endif
