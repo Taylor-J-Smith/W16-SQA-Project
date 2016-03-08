@@ -1,5 +1,7 @@
 #include "WithdrawalHandler.h"
 
+AccountConstants WithdrawalHandler::constants_;
+
 void WithdrawalHandler::handle(SessionStatus current_status, 
 				AccountsDatabase account_database,
 				std::vector<Transaction> &session_transactions){
@@ -48,18 +50,22 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   std::cin >> amount; //take input from the user
   
   //verify that the user enterd a properly formated amount
-  if (!CommandValidator::validateAmount(amount)){
+  if (!CommandValidator::validateAmountFormat(amount)){
     std::cout << "[withdrawal] ERROR: INVALID INPUT" << std::endl;
     return;
   }
 
   //verify that the user enterd a paper currency
-  if (!CommandValidator::isPaperCurrency(amount)){
+  if (!WithdrawalHandler::isPaperCurrency(amount)){
     std::cout << "[withdrawal] ERROR: INVALID INPUT" << std::endl;
     return;
   }
 
-  //[PROTOTYPE] TODO: only succeed on success
+  if (!WithdrawalHandler::isUnderWithdrawalLimit(amount)){
+    std::cout << "[withdrawal] ERROR: AMOUNT EXCEEDS THE " << WithdrawalHandler::constants_.kWithdrawalMax << " LIMIT" << std::endl;
+    return;
+  }
+
   //success message
   std::cout << success_prompt << std::endl;
 
@@ -70,7 +76,28 @@ void WithdrawalHandler::handle(SessionStatus current_status,
 }
 
 
+//Given an amount, verify that that amount withdrawn is a a paper current (mod 5)
+bool WithdrawalHandler::isPaperCurrency(std::string user_amount){
+  float user_amount_float = stof(user_amount);
+  if (fmod(user_amount_float,5) == 0){
+    //cout << "Paper currency" << endl;
+    return true;
+  }else{
+    //cout << "NOT Paper currency" << endl;
+    return false;
+  }
+}
 
+bool WithdrawalHandler::isUnderWithdrawalLimit(std::string user_amount){  
+  float user_amount_float = stof(user_amount);
+  if (user_amount_float <= WithdrawalHandler::constants_.kWithdrawalMax){
+    //Is under the limit
+    return true;
+  }else{
+    //Over the permitted limit
+    return false;
+  }
+}
 
 
 

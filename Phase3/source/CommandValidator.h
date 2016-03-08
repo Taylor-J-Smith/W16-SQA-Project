@@ -18,12 +18,13 @@ class CommandValidator{
   bool static validate(SessionStatus &current_status, std::string user_input);
 
   //Given an amount, verify that it meets the proper regex: \d{0,5}\.\d{2}
-  bool static validateAmount(std::string user_amount);
+  bool static validateAmountFormat(std::string user_amount);
 
   //WITHDRAWAL SPECIFIC FUNCTIONS  
-  //Given an amount, verify that that amount withdrawn is a a paper currency (mod 5)
-  bool static isPaperCurrency(std::string user_amount);
+  //Given an amount, verify that that amount withdrawn is a a paper currency (mod 5) and is under the limit
+  //bool static isPaperCurrency(std::string user_amount);
   //Verify that the amount being withdrawn is <= 500
+  //bool static isUnderWithdrawalLimit(std::string user_amount);
   
   //MEMBERS
 };
