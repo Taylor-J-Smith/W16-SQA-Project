@@ -36,7 +36,11 @@ void EnableHandler::handle(SessionStatus current_status,
   std::cout << basic_prompt;
   std::cin >> account_number; //take input from the user
 
-  //[PROTOTYPE] TODO: only succeed on success
+	if(!account_database.isValidAccount(account_name, account_number)){
+		std::cout << "[enable] ERROR: USERNAME AND NUMBER DO NOT MATCH" << std::endl;
+		return;
+	}
+
   //success message
   std::cout << success_prompt << std::endl;
 
