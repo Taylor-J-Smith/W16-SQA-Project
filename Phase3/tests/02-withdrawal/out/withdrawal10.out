@@ -1,9 +1,10 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] please enter the account holder name:
-[login] login success: admin
-[withdrawal] Enter the account holder name: 
-[withdrawal] Enter the account number:
-[withdrawal] Enter amount to withdraw:
-[withdrawal] Success!
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [withdrawal] Enter the account holder name:
+>> [withdrawal] Enter the account number:
+>> [withdrawal] Enter amount to withdraw:
+>> [withdrawal] Success!
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

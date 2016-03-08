@@ -39,7 +39,8 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   std::cin >> account_number; //take input from the user
 
   //check if account number matches the user
-  if (!account_database.isValidAccount(current_status.account_name, account_number)){
+  if (!account_database.isValidAccount(account_name, account_number)){
+    //std::cout << current_status.account_name << ":::" << account_number << std::endl;
     std::cout << "[withdrawal] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
     return;
   }
@@ -61,7 +62,7 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     return;
   }
 
-  if (!WithdrawalHandler::isUnderWithdrawalLimit(amount)){
+  if (!WithdrawalHandler::isUnderWithdrawalLimit(amount) && !current_status.is_admin){
     std::cout << "[withdrawal] ERROR: AMOUNT EXCEEDS THE " << WithdrawalHandler::constants_.kWithdrawalMax << " LIMIT" << std::endl;
     return;
   }
