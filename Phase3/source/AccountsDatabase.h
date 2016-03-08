@@ -21,7 +21,12 @@ class AccountsDatabase{
   std::string getAccountName(std::string account_number);
   //Returns the account number based on the account name that is given as a parameter
   std::string getAccountNumber(std::string account_holder_name);
-  
+  //Returns the Account object based on the the account_number given
+  Account getAccountObject(std::string account_number);
+  //Replaces an account in the database based on the provided account
+  void updateAccount(Account &updated_account);
+  //Update the withdrawn amount for the given account number
+  void updateWithdrawnAmount(std::string account_number, std::string withdrawn_instance);
   //MEMBERS
   //A vector of accounts that are populated at the start of each day from the current bank accounts file
   std::vector<Account> database_;

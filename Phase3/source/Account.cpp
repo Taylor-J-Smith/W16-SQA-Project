@@ -26,6 +26,9 @@ Account::Account(std::string cbaf_input_line){
   //account status
   this->plan_ = cbaf_input_line.substr(kAccPlanStart, kAccPlanEnd);
   //std::cout << "plan:" + this->plan_  << std::endl; //temp
+  this->available_balance_ = this->balance_;
+  this->withdrawn_amount_ = 0.00;
+  this->transfered_amount_ = 0.00;  
 }
 
 

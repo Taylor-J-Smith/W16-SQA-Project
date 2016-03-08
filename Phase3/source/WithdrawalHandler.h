@@ -19,13 +19,15 @@ class WithdrawalHandler: public TransactionHandler{
 
   //Given an amount, verify that that amount withdrawn is a a paper currency (mod 5) and is under the limit
   bool static isPaperCurrency(std::string user_amount);
-  //Verify that the amount being withdrawn is <= 500
-  bool static isUnderWithdrawalLimit(std::string user_amount);
+  //Verify that the amount being withdrawn is <= the daily limit 500 
+  bool static isUnderWithdrawalLimit(AccountsDatabase account_database,
+				     std::string account_number,
+				     std::string user_amount);
 
  public:
   //Handles the removal of money from the given bank account and adds a withdrawal transaction to the session_transactions once it completes successfully. The account database is then updated to reflect the transaction.
   void static handle(SessionStatus current_status, 
-		     AccountsDatabase account_database,
+		     AccountsDatabase &account_database,
 		     std::vector<Transaction> &session_transactions);
 };
 

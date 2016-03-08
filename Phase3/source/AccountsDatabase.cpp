@@ -63,9 +63,40 @@ std::string AccountsDatabase::getAccountName(std::string account_number){
   return "                    ";
 }
 
+Account AccountsDatabase::getAccountObject(std::string account_number){
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
+    if (account_number.compare(this->database_[i].number_) == 0){
+      //found the account
+      return this->database_[i];
+    }
+  }  
+}
 
+void AccountsDatabase::updateWithdrawnAmount(std::string account_number, std::string withdrawn_instance){
+  //update the withdrawn_amount for the account with the withdrawn_instance
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
+    if (account_number.compare(this->database_[i].number_) == 0){
+      //found the account - update the account
+      this->database_[i].withdrawn_amount_ += stof(withdrawn_instance);
+      return;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[AccountsDatabase::updateWithdrawnAmount] did not find account" << std::endl;
+}
 
-
+//Funciton not working
+void AccountsDatabase::updateAccount(Account &updated_account){
+  std::string account_number = updated_account.number_;
+  for(std::vector<Account>::size_type i = 0; i != this->database_.size(); i++){
+    if (account_number.compare(this->database_[i].number_) == 0){
+      //found the account - update the account
+      //this->database_[i] = updated_account;
+    }
+  }
+  //Did not find the account - something went wrong
+  std::cout << "[AccountsDatabase::updateAccount] did not find account" << std::endl;
+}
 
 
 

@@ -3,7 +3,7 @@
 AccountConstants WithdrawalHandler::constants_;
 
 void WithdrawalHandler::handle(SessionStatus current_status, 
-				AccountsDatabase account_database,
+				AccountsDatabase &account_database,
 				std::vector<Transaction> &session_transactions){
 
   //init the prompts
@@ -62,7 +62,8 @@ void WithdrawalHandler::handle(SessionStatus current_status,
     return;
   }
 
-  if (!WithdrawalHandler::isUnderWithdrawalLimit(amount) && !current_status.is_admin){
+  //Check if the user is standard and if so then check that they are under the max withdrawal limit
+  if (!WithdrawalHandler::isUnderWithdrawalLimit(account_database, account_number ,amount) && !current_status.is_admin){
     std::cout << "[withdrawal] ERROR: AMOUNT EXCEEDS THE " << WithdrawalHandler::constants_.kWithdrawalMax << " LIMIT" << std::endl;
     return;
   }
@@ -70,7 +71,11 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   //success message
   std::cout << success_prompt << std::endl;
 
-  //TODO: update the accounts database in the frontend (not done in prototype)
+
+  //Update the accounts database to reflec the amount withdrawn
+  account_database.updateWithdrawnAmount(account_number, amount);
+  //Account user_account = account_database.getAccountObject(account_number);
+  //std::cout << account_name << user_account.withdrawn_amount_ << "+=" << stof(amount) << std::endl;
   //make a new transaction
   Transaction new_transaction("withdrawal", account_name, account_number, amount, misc);
   session_transactions.push_back(new_transaction);
@@ -89,9 +94,14 @@ bool WithdrawalHandler::isPaperCurrency(std::string user_amount){
   }
 }
 
-bool WithdrawalHandler::isUnderWithdrawalLimit(std::string user_amount){  
-  float user_amount_float = stof(user_amount);
-  if (user_amount_float <= WithdrawalHandler::constants_.kWithdrawalMax){
+bool WithdrawalHandler::isUnderWithdrawalLimit(AccountsDatabase account_database,
+					       std::string account_number,
+					       std::string user_amount){
+  Account user_account = account_database.getAccountObject(account_number);
+  float user_amount_float = stof(user_amount);  
+  //  if (user_amount_float <= WithdrawalHandler::constants_.kWithdrawalMax){
+  if ((user_account.withdrawn_amount_ + user_amount_float) <=
+      WithdrawalHandler::constants_.kWithdrawalMax){
     //Is under the limit
     return true;
   }else{
