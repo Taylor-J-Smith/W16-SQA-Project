@@ -2,14 +2,16 @@
 
 counter=1
 test_name=""
-green="\e[1;32m"
+green="\e[1;32m" 
 red="\e[1;31m"
 reset_color="\033[0m"
 
 cd tests
+#iterate through all the different tests for each transaction
 for i in *;
 do
     cd $i
+    #remove all the old test outputs
     rm -rf outputs/*
     cd in
     ((counter=1))
