@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include "Account.h"
+#include <math.h>
 
 //Data Structure containing all accounts and helper methods 
 class AccountsDatabase{

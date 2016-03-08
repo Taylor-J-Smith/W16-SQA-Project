@@ -100,8 +100,9 @@ bool AccountsDatabase::isWithdrawalPossible(std::string account_number,
       }
 
       //check if given the account balance the withdrawal is possible
-      if (this->database_[i].available_balance_ - stof(withdrawn_instance) - fee < 0){
+      if ((roundf((this->database_[i].available_balance_ - stof(withdrawn_instance) - fee)*100)/100.0) < 0){
 	//the user does not have the funds
+	//std::cout << "TEMP:" << database_[i].available_balance_ - stof(withdrawn_instance) - fee << std::endl;
 	return false;
       }else{
 	return true;
