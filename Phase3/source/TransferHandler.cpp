@@ -67,6 +67,12 @@ void TransferHandler::handle(SessionStatus current_status,
   if (!CommandValidator::validateAmountFormat(amount)){
     std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
     return;
+  }else{
+    //is in proper format, check if strictly > 0
+    if (stof(amount) <= 0){
+      std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
+      return;
+    }
   }
 
   //Check if the user is standard and if so then check that they are under the max transfer limit
