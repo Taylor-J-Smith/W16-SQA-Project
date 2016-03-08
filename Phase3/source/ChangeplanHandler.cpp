@@ -37,11 +37,10 @@ void ChangeplanHandler::handle(SessionStatus current_status,
   std::cin >> account_number; //take input from the user
 	
 	if(!account_database.isValidAccount(account_name, account_number)){
-		std::cout << "[changeplan] ERROR: USERNAME AND NUMBER DO NOT MATCH" << std::endl;
+		std::cout << "[changeplan] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
 		return;
 	}
 
-  //[PROTOTYPE] TODO: only succeed on success
   //success message
   std::cout << success_prompt << std::endl;
 

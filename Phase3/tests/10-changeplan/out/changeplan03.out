@@ -3,7 +3,7 @@ Welcome! type login to begin:
 >> [login] Success!
 >> [changeplan] Enter the account holder name:
 >> [changeplan] Enter the account number:
->> [changeplan] ERROR: USERNAME AND NUMBER DO NOT MATCH
+>> [changeplan] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting

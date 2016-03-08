@@ -1,23 +1,27 @@
 Welcome! type login to begin:
-[login] please enter the type of account:
-[login] login success: admin
-[enable] Enter the account holder name:
-[enable] Enter the account number:
-[enable] Account enabled successfully
-[withdrawal] Enter the account holder name:
-[withdrawal] Enter the account number:
-[withdrawal] Enter amount to withdraw:
-[withdrawal] Success!
-[transfer] Enter the first account holder name:
-[transfer] Enter the first account number:
-[transfer] Enter the second account number:
-[transfer] Enter amount to transfer:
-[paybill] Enter the account holder name:
-[paybill] Enter the account number:
-[paybill] Enter the company to pay:
-[paybill] Bill successfully paid!
-[deposit] Enter the account holder name:
-[deposit] Enter the account number:
-[deposit] Enter the amount to deposit:
-[deposit] Success!
-[logout] Success!
+>> [login] Enter the type of account:
+>> [login] Success!
+>> [enable] Enter the account holder name:
+>> [enable] Enter the account number:
+>> [enable] Success!
+>> [withdrawal] Enter the account holder name:
+>> [withdrawal] Enter the account number:
+>> [withdrawal] Enter amount to withdraw:
+>> [withdrawal] Success!
+>> [transfer] Enter the account holder name:
+>> [transfer] Enter the first account number:
+>> [transfer] Enter the second account number:
+>> [transfer] Enter amount to transfer:
+>> [transfer] Success!
+>> [paybill] Enter the account holder name:
+>> [paybill] Enter the account number:
+>> [paybill] Enter the company to pay:
+>> [paybill] Enter amount to pay:
+>> [paybill] Success!
+>> [deposit] Enter the account holder name:
+>> [deposit] Enter the account number:
+>> [deposit] Enter amount to deposit:
+>> [deposit] Success!
+>> [logout] Success!
+Welcome! type login to begin:
+>> End of file reached: program exitting

@@ -37,7 +37,7 @@ void EnableHandler::handle(SessionStatus current_status,
   std::cin >> account_number; //take input from the user
 
 	if(!account_database.isValidAccount(account_name, account_number)){
-		std::cout << "[enable] ERROR: USERNAME AND NUMBER DO NOT MATCH" << std::endl;
+		std::cout << "[enable] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
 		return;
 	}
 

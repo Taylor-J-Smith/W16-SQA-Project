@@ -3,7 +3,7 @@ Welcome! type login to begin:
 >> [login] Success!
 >> [enable] Enter the account holder name:
 >> [enable] Enter the account number:
->> [enable] ERROR: USERNAME AND NUMBER DO NOT MATCH
+>> [enable] ERROR: ACCOUNT # DOES NOT MATCH HOLDER
 >> [logout] Success!
 Welcome! type login to begin:
 >> End of file reached: program exitting
