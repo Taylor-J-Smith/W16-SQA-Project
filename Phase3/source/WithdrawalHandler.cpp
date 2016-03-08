@@ -80,7 +80,6 @@ void WithdrawalHandler::handle(SessionStatus current_status,
   //success message
   std::cout << success_prompt << std::endl;
 
-
   //Update the accounts database to reflect the amount withdrawn
   WithdrawalHandler::updateWithdrawnAmount(account_database, account_number, amount);
   //make a new transaction

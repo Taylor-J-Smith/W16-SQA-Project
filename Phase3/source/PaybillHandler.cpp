@@ -75,11 +75,19 @@ void PaybillHandler::handle(SessionStatus current_status,
     return;
   }
 
-  //[PROTOTYPE] TODO: only succeed on success
+    //Check to see if the withdrawal amount is possible given the account's balance
+  if (!PaybillHandler::isPaybillPossible(account_database, account_number, amount, company_ACK) &&
+      !current_status.is_admin){
+    //the transaction is not possible
+    std::cout << "[paybill] ERROR: INSUFFICIENT FUNDS" << std::endl;
+    return;
+  }
+  
   //success message
   std::cout << success_prompt << std::endl;
 
-  //TODO: update the accounts database in the frontend (not done in prototype)
+  //Update the accounts database to reflect the amount withdrawn
+  PaybillHandler::updatePaybillAmount(account_database, account_number, amount, company_ACK);
   //make a new transaction
   Transaction new_transaction("paybill", account_name, account_number, amount, company_ACK);
   session_transactions.push_back(new_transaction);
