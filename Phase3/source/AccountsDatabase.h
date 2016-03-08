@@ -16,6 +16,8 @@ class AccountsDatabase{
   AccountsDatabase(std::string curr_bank_accounts_file_name);
   //Checks to see if the given account name exists in the database, if it does it returns true, otherwise it returns false
   bool nameExists(std::string account_holder_name);
+  //Check to see if the given account number exists in the database
+  bool numberExists(std::string account_number);
   //Checks that the given account name and number correspond to the same account in the database, returns true if theu do, false otherwise
   bool isValidAccount(std::string account_holder_name, std::string account_number);
   //Returns an account name based on the given number

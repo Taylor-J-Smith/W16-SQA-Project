@@ -39,10 +39,22 @@ void TransferHandler::handle(SessionStatus current_status,
   std::cout << basic_prompt;
   std::cin >> account1_number; //take input from the user
 
+  //check if account number matches the user
+  if (!account_database.isValidAccount(account1_name, account1_number)){
+    //std::cout << current_status.account_name << ":::" << account_number << std::endl;
+    std::cout << "[transfer] ERROR: ACCOUNT # DOES NOT MATCH HOLDER" << std::endl;
+    return;
+  }
+
   //Read in second account number from user
   std::cout << account2_number_prompt << std::endl;
   std::cout << basic_prompt;
   std::cin >> account2_number; //take input from the user
+
+  if (!account_database.numberExists(account2_number)){
+    std::cout << "[transfer] ERROR: INVALID INPUT" << std::endl;
+    return;
+  }
 
   //Read in the amount being transfered
   std::cout << amount_prompt << std::endl;
