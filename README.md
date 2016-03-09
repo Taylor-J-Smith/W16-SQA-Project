@@ -1,5 +1,25 @@
 # W16-SQA-Project
-Software quality assurance project in the winter 2016 semester.
+###Software quality assurance project in the winter 2016 semester.
+
+#DEPENDENCIES
+###g++-4.9 (Regex)
+
+	sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+	sudo apt-get update
+	sudo apt-get install g++-4.9
+
+###Update the alternatives
+
+	sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 60
+	sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 40
+
+###Switch with
+
+	sudo update-alternatives --config g++
+
+###Running g++-4.9
+
+	g++-4.9 -std=c++11 sample.cpp
 
 ##PHASE 1: DONE
 

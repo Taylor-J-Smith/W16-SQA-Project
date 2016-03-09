@@ -94,12 +94,15 @@ bool CommandValidator::validate(SessionStatus &current_status, std::string user_
   return false;
 }
 
+//Given an amount, verify that it meets the proper regex: \d{0,5}\.\d{2}
 bool CommandValidator::validateAmountFormat(std::string user_amount){
-  //TODO: REGEX
-  if (user_amount[5] == '.'){
+  std::regex rgx = std::regex("(\\d{0,5}\\.\\d{2})");
+  if (std::regex_match (user_amount, rgx)){
+    //The user_amount matched the proper format
     return true;
   }else{
-    return false; 
+    //The user_amount did not match the proper format
+    return false;
   }
 }
 

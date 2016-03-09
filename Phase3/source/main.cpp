@@ -5,6 +5,9 @@
 *-----------------------------------------Talha Zia-----------------------------------------*
 *********************************************************************************************
 
+DEPENDENCIES:
+requires g++4.9 - See README
+
 Program Intention:
 A Command Line User Interface for a Banking System that can handle different
 types of transactions and account management.
