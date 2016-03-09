@@ -2,8 +2,8 @@
 
 counter=1
 test_name=""
-green="\e[1;32m" 
-red="\e[1;31m"
+green="\033[1;32m" 
+red="\033[1;31m"
 reset_color="\033[0m"
 
 cd tests
@@ -42,7 +42,7 @@ do
 	    #Check if the expected tf and and actual tf match
 	    if  ! diff -q $tf_filename $tf_output > /dev/null; then
 		echo "Transaction files are different"
-		echo -e "$red$test_name$counter_string FAILED${color_reset}"
+		echo -e "$red$test_name$counter_string FAILED${reset_color}"
 		atf_passed=false #test did not pass
 	    else
 		atf_passed=true #test passed
@@ -59,11 +59,11 @@ do
 	    #Check if the output files differ
 	    if  ! diff -q $actual_output $expeced_output > /dev/null; then
 	       echo "Output files are different"
-	       echo -e "$red$test_name$counter_string FAILED${color_reset}"
+	       echo -e "$red$test_name$counter_string FAILED${reset_color}"
 	       out_passed=false #test failed
 	   else
 	       out_passed=true #test passed
-	       echo -e "$green$test_name$counter_string PASSED${color_reset}"
+	       echo -e "$green$test_name$counter_string PASSED${reset_color}"
 	   fi
 	fi
 	##read debug
