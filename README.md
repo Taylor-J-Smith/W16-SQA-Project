@@ -34,6 +34,6 @@ https://docs.google.com/document/d/1aRohYXiNBDG3F8cZ3SQCm8DIkCeVweuI7acF0B6VRio/
 
 https://docs.google.com/document/d/17OB_cvPojCfR6z4Xs2SBcI_XAg09YAe9QlNCf0CvEmc/edit
 
-1. Finish Front End
-2. Write Scripts for Testing
-3. Test each transaction + update Failure Log on google doc
+##PHASE 4: MARCH 18
+
+https://docs.google.com/document/d/1fJUaJXwDdZPbKat_sohlW4qL8buRnzbH3WykuZYlAiA/edit
