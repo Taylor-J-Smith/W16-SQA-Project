@@ -2,10 +2,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class TransFileReader{
-    //create an ArrayList of Strings to hold all the transactions
-    private static ArrayList<String> transactions_list = new ArrayList<String>();
-    
-    public TransFileReader(String[] trans_file_names){
+      
+    public static ArrayList<Transaction> read(String[] trans_file_names){
+
+      //create an ArrayList of Strings to hold all the transactions
+      ArrayList<Transaction> transactions_list = new ArrayList<Transaction>();
 
 	try {
 	    //Iterate through all the transaction files - ignore 1st since it is mbaf
@@ -22,7 +23,7 @@ public class TransFileReader{
 		while(curr_trans_line != null){
 		    //System.out.println(curr_trans_line); //temp
 		    //push the transaction string onto the arraylist
-		    this.transactions_list.add(curr_trans_line);
+		    transactions_list.add((new Transaction(curr_trans_line)));
 		    curr_trans_line = trans_file.readLine();
 		}
 		//close the current file being read in
@@ -35,37 +36,10 @@ public class TransFileReader{
 	}	
 
 	//TEMP - read out all the transactions from the arraylist
-	for (int i = 0; i < this.transactions_list.size(); i++){
+	for (int i = 0; i < transactions_list.size(); i++){
 	    //System.out.println(this.transactions_list.get(i));
 	}
+  
+  return transactions_list;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

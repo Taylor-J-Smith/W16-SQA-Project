@@ -13,7 +13,7 @@ public class backEnd{
 	BankAccounts bank_accounts = new BankAccounts(args[0]);
 	
 	//read in all the transaction files
-	TransFileReader trans_file_reader = new TransFileReader(args);
+	ArrayList<Transaction> transactionsList = TransFileReader.read(args);
   
   //while transactions still esits, process them
   
