@@ -32,7 +32,8 @@ public class TransactionHandler{
 	if (currAccount.balance_ - withdrawalAmount < 0){
 	    System.out.println("ERROR: Attempt to withdrawal more funds than possible");
 	}else{
-	    currAccount.balance_ -= withdrawalAmount;
+	    //finally remove the funds from the account balance
+	    currAccount.balance_ -= withdrawalAmount; 
 	    currAccount.num_trans_++; //increment the transaction number   
 	}
 	b.checkStatus(t.accountNumber); //temp
@@ -43,7 +44,37 @@ public class TransactionHandler{
 	b.checkStatus(t1.accountNumber); //temp
 	b.checkStatus(t2.accountNumber); //temp
 
-	
+	//obtain the current account in question
+	Account firstAccount = b.getAccount(t1.accountNumber);
+	Account secondAccount = b.getAccount(t2.accountNumber);
+	//remove the transfer amount
+	double transferAmount = t1.fundsInvolved;
+	double fee = 0.00;
+	//check if it is an admin
+	if (!isAdmin){
+	    //not an admin - apply fees	    
+	    if (firstAccount.plan_.compareTo("S") == 0){
+		//is a student account
+		fee = 0.05;
+	    }else{
+		//Not a student account
+		fee = 0.10;
+	    }
+	}
+	//add the fee to the transferAmount
+	transferAmount += fee;
+	//Check if the account balance is less than 0 once amount has been transfered
+	if (firstAccount.balance_ - transferAmount < 0){
+	    System.out.println("ERROR: Attempt to transfer more funds than possible");
+	}else{
+	    //finally remove the funds from the accounts balance
+	    firstAccount.balance_ -= transferAmount;
+	    secondAccount.balance_ += transferAmount - fee; 
+	    firstAccount.num_trans_++; //increment the transaction number
+	    secondAccount.num_trans_++; //increment the transaction number   
+	}
+	b.checkStatus(t1.accountNumber); //temp
+	b.checkStatus(t2.accountNumber); //temp
     }
 
     public static void paybill(Transaction t, BankAccounts b){
