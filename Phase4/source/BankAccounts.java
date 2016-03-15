@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class BankAccounts{
     private static ArrayList<Account> bank_accounts = new ArrayList<Account>();
-    
+
+    //constructor
     public BankAccounts(String mbaf_file_name){
 	try{
 	    //read in the mbaf file
@@ -55,6 +56,48 @@ public class BankAccounts{
 	}
 	System.out.println("[BankAccounts->checkStatus]ERROR: Did not find the account!");
     }
+
+    //Check if a given account name exists in the account database
+    public boolean checkExists(String account_name){
+	for (int i = 0; i < this.bank_accounts.size(); i++){
+	    if (account_name.compareTo(this.bank_accounts.get(i).name_) == 0){
+		//found the account
+		return true;
+	    }
+	}
+	//System.out.println("[BankAccounts->checkExists]ERROR: Did not find the account!");
+	return false;
+    }
+
+    //Find a unique account number
+    public String getUniqueAccountNumber(){
+	final int MAX_ACCOUNT_NUM = 99999;
+	for (int uniqueNumber = 1; uniqueNumber < MAX_ACCOUNT_NUM; uniqueNumber++){
+	    for (int i = 0; i < this.bank_accounts.size(); i++){
+		if (Integer.parseInt(this.bank_accounts.get(i).number_) == uniqueNumber){
+		    //Number exists, need to find another		    
+		    break;
+		}
+		//Found a unique number
+		if(i == this.bank_accounts.size() - 1){
+		    String uniqueNumber_string = String.valueOf(uniqueNumber);
+		    while(uniqueNumber_string.length() < 5){
+			uniqueNumber_string = "0" + uniqueNumber_string;
+		    }
+		    //System.out.println("[uniqueNumber]" + uniqueNumber_string);
+		    return uniqueNumber_string;
+		}
+	    }
+	    
+	}
+	System.out.println("[BankAccounts->checkExists]ERROR: Did not find the account!");
+	return null;
+    }
+
+    //Given an Account object adds it to the bank_accounts private ArrayList
+    public void addAccount(Account newAccount){
+	this.bank_accounts.add(newAccount);
+    }    
 }
 
 

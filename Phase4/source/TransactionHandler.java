@@ -1,3 +1,5 @@
+import java.text.*;
+
 public class TransactionHandler{    
 
     //members
@@ -143,7 +145,34 @@ public class TransactionHandler{
     }
 
     public static void create(Transaction t, BankAccounts b){
+	String newAccountNumber = "";
     	System.out.println(t.transactionType);
+	b.checkStatus(t.accountNumber); //temp
+	if(!b.checkExists(t.accountName)){
+	    //accunt does not exist
+	    newAccountNumber =  b.getUniqueAccountNumber();
+	    String newAccount_string = "";
+	    newAccount_string += newAccountNumber;
+	    newAccount_string += " ";
+	    newAccount_string += t.accountName;
+	    newAccount_string += " ";
+	    newAccount_string += "A";
+	    newAccount_string += " ";
+	    DecimalFormat df = new DecimalFormat("#.00");
+	    String init_balance = df.format(t.fundsInvolved);
+	    while (init_balance.length() < 8){
+		init_balance = "0" + init_balance;
+	    }
+	    newAccount_string += init_balance;
+	    newAccount_string += " ";
+	    newAccount_string += "N";
+	    newAccount_string += " ";
+	    newAccount_string += "0000";
+	    Account newAccount = new Account(newAccount_string);
+	    //System.out.println(newAccount.toString()); //temp
+	    b.addAccount(newAccount);//add the account to the database
+	};
+	b.checkStatus(newAccountNumber); //temp
     }
 
     public static void delete(Transaction t, BankAccounts b){

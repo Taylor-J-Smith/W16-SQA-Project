@@ -1,3 +1,6 @@
+import java.text.*;
+
+
 public class Account{
     //CONSTANTS
     //account Number
@@ -48,12 +51,13 @@ public class Account{
     @Override
     //Override the toString method for an account
     public String toString(){
+	DecimalFormat df = new DecimalFormat("#.00");
 	String returnString = "";
 	    returnString += this.number_ + " ";
 	    returnString += this.name_ + " ";
 	    returnString += this.status_ + " ";
 	    //need to pad the balance to 8 characters
-	    String balance_string = String.valueOf(this.balance_);
+	    String balance_string = df.format(this.balance_);
 	    while(balance_string.length() < 8){
 		balance_string = "0" + balance_string;
 	    }
