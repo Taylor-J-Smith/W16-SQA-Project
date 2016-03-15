@@ -1,5 +1,8 @@
 public class TransactionHandler{
-  
+
+    //members
+    private static boolean isAdmin = false;
+    
     public static void handle(Transaction t, BankAccounts b){
 
 	//Figure out the transaction type at question
@@ -42,16 +45,35 @@ public class TransactionHandler{
   
     private static void logout(Transaction t, BankAccounts b){
 	System.out.println(t.transactionType);
-	//Do nothing - does not affect the MBAF
+	//set the admin variable to false
+	isAdmin = false;
     }
   
     private static void withdrawal(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
-	
+	//obtain the current account in question
+	Account currAccount = b.getAccount(t.accountNumber);
+	b.checkStatus(t.accountNumber); //temp
+	//remove the withdrawn amount
+	currAccount.balance_ -= t.fundsInvolved;
+	//check if it is an admin
+	if (!isAdmin){
+	    //not an admin - apply fees
+	    if (currAccount.plan_.compareTo("S") == 0){
+		//is a student account
+		currAccount.balance_ -= 0.05;
+	    }else{
+		//Not a student account
+		currAccount.balance_ -= 0.10;
+	    }
+	}	
+	currAccount.num_trans_++;
+	b.checkStatus(t.accountNumber); //temp
     }
 
     private static void transfer(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
+	
     }
 
     private static void paybill(Transaction t, BankAccounts b){
@@ -83,6 +105,43 @@ public class TransactionHandler{
     }
     private static void login(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
-	//Do nothing - does not affect the MBAF
+	//check if it is an admin logging in
+	if (t.misc.compareTo("A ") == 0){
+	    //is an admin logged in
+	    isAdmin = true;
+	}else{
+	    //not an admin
+	    isAdmin = false;
+	}
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

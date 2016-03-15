@@ -59,7 +59,11 @@ public class Account{
 	    }
 	    returnString += balance_string + " ";
 	    returnString += this.plan_ + " ";
-	    returnString += this.num_trans_ + " ";   
+	    String num_trans_string = String.valueOf(this.num_trans_);
+	    while (num_trans_string.length() < 4){
+		num_trans_string = "0" + num_trans_string;
+	    }
+	    returnString += num_trans_string + " ";   
 	return returnString;
     }
 

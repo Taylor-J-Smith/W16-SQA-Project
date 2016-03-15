@@ -29,7 +29,32 @@ public class BankAccounts{
 	} catch (IOException e) {
 	    System.err.println("Caught IOException: " + e.getMessage());
 	}
-    }    
+    }
+
+    //Returns the account object given the account number if it is found
+    public Account getAccount(String account_number){
+	for (int i = 0; i < this.bank_accounts.size(); i++){
+	    if (account_number.compareTo(this.bank_accounts.get(i).number_) == 0){
+		//found the account
+		System.out.println("[FOUND ACCOUNT]!");
+		return this.bank_accounts.get(i);
+	    }
+	}
+	System.out.println("[BankAccounts->getAccount]ERROR: Did not find the account!");
+	return null;
+    }
+
+    //for debugging purposes prints the account
+    public void checkStatus(String account_number){
+	for (int i = 0; i < this.bank_accounts.size(); i++){
+	    if (account_number.compareTo(this.bank_accounts.get(i).number_) == 0){
+		//found the account
+		System.out.println(this.bank_accounts.get(i).toString());
+		return;
+	    }
+	}
+	System.out.println("[BankAccounts->checkStatus]ERROR: Did not find the account!");
+    }
 }
 
 
