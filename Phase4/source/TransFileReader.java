@@ -36,7 +36,7 @@ public class TransFileReader{
 
 	//TEMP - read out all the transactions from the arraylist
 	for (int i = 0; i < this.transactions_list.size(); i++){
-	    System.out.println(this.transactions_list.get(i));
+	    //System.out.println(this.transactions_list.get(i));
 	}
     }
 }

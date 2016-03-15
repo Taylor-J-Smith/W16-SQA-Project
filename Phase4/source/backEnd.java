@@ -9,7 +9,9 @@ public class backEnd{
 	    System.out.println("Usage: <old-mbaf> <list-of-transaction-files>");
 	    System.exit(0);
 	}
-
+	//read in the Master Bank Accounts File
+	BankAccounts bank_accounts = new BankAccounts(args[0]);
+	
 	//read in all the transaction files
 	TransFileReader trans_file_reader = new TransFileReader(args);
     }
