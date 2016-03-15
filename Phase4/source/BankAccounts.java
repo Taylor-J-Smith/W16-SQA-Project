@@ -36,7 +36,7 @@ public class BankAccounts{
 	for (int i = 0; i < this.bank_accounts.size(); i++){
 	    if (account_number.compareTo(this.bank_accounts.get(i).number_) == 0){
 		//found the account
-		System.out.println("[FOUND ACCOUNT]!");
+		//System.out.println("[FOUND ACCOUNT]!");
 		return this.bank_accounts.get(i);
 	    }
 	}
