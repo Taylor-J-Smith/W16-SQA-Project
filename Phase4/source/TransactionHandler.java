@@ -177,18 +177,35 @@ public class TransactionHandler{
 
     public static void delete(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
+	b.checkStatus(t.accountNumber); //temp
+	//b.removeAccount(t.accountNumber);  //other tests depend on this account
+	b.checkStatus(t.accountNumber); //temp
     }
 
     public static void disable(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
+	b.checkStatus(t.accountNumber); //temp
+	b.getAccount(t.accountNumber).status_ = "D";
+	b.checkStatus(t.accountNumber); //temp
     }
 
-    public static void changeplan(Transaction t, BankAccounts b){
+    public static void changeplan(Transaction t, BankAccounts b){	
     	System.out.println(t.transactionType);
+	b.checkStatus(t.accountNumber); //temp
+	String currentPlan = b.getAccount(t.accountNumber).plan_;
+	if (currentPlan.compareTo("N") == 0){
+	    b.getAccount(t.accountNumber).plan_ = "S";
+	}else{
+	    b.getAccount(t.accountNumber).plan_ = "N";
+	}
+	b.checkStatus(t.accountNumber); //temp
     }
 
     public static void enable(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
+	System.out.println(t.transactionType);
+	b.checkStatus(t.accountNumber); //temp
+	b.getAccount(t.accountNumber).status_ = "A";
+	b.checkStatus(t.accountNumber); //temp
     }
     public static void login(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);

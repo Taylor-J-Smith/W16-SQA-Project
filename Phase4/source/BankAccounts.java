@@ -97,7 +97,20 @@ public class BankAccounts{
     //Given an Account object adds it to the bank_accounts private ArrayList
     public void addAccount(Account newAccount){
 	this.bank_accounts.add(newAccount);
-    }    
+    }
+
+    //Given an account number, remove it from the database
+    public void removeAccount(String accountNumber){
+	for (int i = 0; i < this.bank_accounts.size(); i++){
+	    if (accountNumber.compareTo(this.bank_accounts.get(i).number_) == 0){
+		this.bank_accounts.remove(i);
+		//found the account
+		return;
+	    }
+	}
+	System.out.println("[BankAccounts->removeAccount]ERROR: Did not find the account!");
+	return;
+    }
 }
 
 
