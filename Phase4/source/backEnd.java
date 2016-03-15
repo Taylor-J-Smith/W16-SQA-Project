@@ -14,34 +14,10 @@ public class backEnd{
 	
 	//read in all the transaction files
 	TransFileReader trans_file_reader = new TransFileReader(args);
+  
+  //while transactions still esits, process them
+  
+  //write the end result of all the transactions being applied to new mbaf
+  
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
