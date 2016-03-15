@@ -9,6 +9,13 @@ public class TransFileReader{
       ArrayList<Transaction> transactions_list = new ArrayList<Transaction>();
 
 	try {
+	    //Create a writer for the merged transaction file
+	    String merged_trans_file = "trans-files/mergedTransactions.tf";
+	    File outFile = new File(merged_trans_file);
+	    Writer writer = new BufferedWriter(
+			    new OutputStreamWriter(
+			    new FileOutputStream(outFile)));
+	    
 	    //Iterate through all the transaction files - ignore 1st since it is mbaf
 	    for (int i = 1; i < trans_file_names.length; i++) {
 		//read in the current transaction file
@@ -24,11 +31,15 @@ public class TransFileReader{
 		    //System.out.println(curr_trans_line); //temp
 		    //push the transaction string onto the arraylist
 		    transactions_list.add((new Transaction(curr_trans_line)));
+		    writer.write(curr_trans_line + "\n");
+		    //read the next line in the file
 		    curr_trans_line = trans_file.readLine();
 		}
 		//close the current file being read in
 		trans_file.close();
 	    }
+	    //close the outfile
+	    writer.close();
 	} catch (IndexOutOfBoundsException e) {
 	    System.err.println("IndexOutOfBoundsException: " + e.getMessage());
 	} catch (IOException e) {
