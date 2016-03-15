@@ -15,14 +15,16 @@ public class backEnd{
 	//read in all the transaction files
 	ArrayList<Transaction> transactionsList = TransFileReader.read(args);
   
-  //while transactions still esits, process them
+	//while transactions still esits, process them
 
-  int numTransactions = transactionsList.size();
-  for(int i = 0; i < numTransactions; i++){
-    TransactionHandler.handle(transactionsList.get(i), bankAccounts);
-  }
+	int numTransactions = transactionsList.size();
+	for(int i = 0; i < numTransactions; i++){
+	    TransactionHandler.handle(transactionsList.get(i), bankAccounts);
+	}
+
+	TransactionName test = TransactionName.values()[0];
   
-  //write the end result of all the transactions being applied to new mbaf
+	//write the end result of all the transactions being applied to new mbaf
   
     }
 }

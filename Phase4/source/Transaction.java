@@ -1,5 +1,5 @@
 public class Transaction{
-  
+   
     final int TRANSACTION_CODE_START = 0;
     final int TRANSACTION_CODE_END = 2;
 
@@ -18,6 +18,7 @@ public class Transaction{
     public Transaction(String transactionFileLine){
       
       this.transactionCode = transactionFileLine.substring(TRANSACTION_CODE_START, TRANSACTION_CODE_END);
+      this.transactionType = TransactionName.values()[Integer.parseInt(transactionCode)];
       this.accountName = transactionFileLine.substring(ACCOUNT_NAME_START, ACCOUNT_NAME_END);
       this.accountNumber = transactionFileLine.substring(ACCOUNT_NUMBER_START, ACCOUNT_NUMBER_END);
       this.fundsInvolved = Float.parseFloat(transactionFileLine.substring(FUNDS_INVOLVED_START, FUNDS_INVOLVED_END));
@@ -26,6 +27,7 @@ public class Transaction{
     }
     
     String transactionCode;
+    TransactionName transactionType;
     String accountName;
     String accountNumber;
     float fundsInvolved;
