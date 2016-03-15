@@ -10,12 +10,17 @@ public class backEnd{
 	    System.exit(0);
 	}
 	//read in the Master Bank Accounts File
-	BankAccounts bank_accounts = new BankAccounts(args[0]);
+	BankAccounts bankAccounts = new BankAccounts(args[0]);
 	
 	//read in all the transaction files
 	ArrayList<Transaction> transactionsList = TransFileReader.read(args);
   
   //while transactions still esits, process them
+
+  int numTransactions = transactionsList.size();
+  for(int i = 0; i < numTransactions; i++){
+    TransactionHandler.handle(transactionsList.get(i), bankAccounts);
+  }
   
   //write the end result of all the transactions being applied to new mbaf
   
