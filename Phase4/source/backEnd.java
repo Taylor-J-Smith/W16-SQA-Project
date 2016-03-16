@@ -59,9 +59,9 @@ public class backEnd{
 		break; 
 	    }
 	}
-
-	TransactionName test = TransactionName.values()[0];
   
 	//write the end result of all the transactions being applied to new mbaf
+	String newMbafFileName = "new.mbaf";
+	bankAccounts.writeToFile(newMbafFileName);
     }
 }

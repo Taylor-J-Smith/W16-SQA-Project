@@ -111,6 +111,29 @@ public class BankAccounts{
 	System.out.println("[BankAccounts->removeAccount]ERROR: Did not find the account!");
 	return;
     }
+
+    //Writes all the Accounts in the database to a file provided as an argument
+    public void writeToFile(String filename){
+	//put the end of file account at the end of the file being writen to
+	String eofAccountNum = "99999";
+	Account eof = this.getAccount(eofAccountNum); //get the end of file account
+	this.removeAccount(eofAccountNum);
+	this.addAccount(eof);
+	
+	try{
+	    //make buffers of bufferedwriters of outputstreamed buffered writers
+	    File outFile = new File(filename);
+	    Writer writer = new BufferedWriter(
+			    new OutputStreamWriter(
+			    new FileOutputStream(outFile)));
+	    for (int i = 0; i < this.bank_accounts.size(); i++){
+		writer.write(this.bank_accounts.get(i).toString() + "\n");
+	    }
+	    writer.close();
+	} catch (IOException e) {
+	    System.err.println("Caught IOException: " + e.getMessage());
+	}
+    }
 }
 
 
