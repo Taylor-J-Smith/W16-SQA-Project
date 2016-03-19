@@ -1,7 +1,34 @@
+/*
+******************************ALL CODE HAS BEEN PAIR PROGRAMMED******************************
+*----------------------------------------Taylor Smith---------------------------------------*
+*-------------------------------------Alexandar Mihaylov------------------------------------*
+*-----------------------------------------Talha Zia-----------------------------------------*
+*********************************************************************************************
+
+Program Intention:
+The Back End of a Command Line User Interface for a Banking System that can handle different
+types of transactions and account management.
+
+Input Files: old.mbaf trans-files/*.tf
+
+Output Files: new.mbaf new.cbaf (trans-files/mergedTransactions.tf)
+
+How Program is Intended to run:
+make -> This is a Command Line user interface where commands are entered in
+the terminal and output is displayed to the terminal. The program can be
+executed with the makefile provided.
+*/
+
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * @author      ATT 
+ * @version     1.0
+ * @since       2016-03-16
+ */
 
+//The back end of the banking system that contains the main function. Takes in two arguments in the form  <old-mbaf>  <list-of-transaction-files> and is responsible for creating instances of other classes that read in the master bank accounts file and all the transaction files. It then Iterates through all the transactions and calls their respective handlers 
 public class backEnd{
     public static void main(String[] args){
 	//check how many arguments are given
