@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
+
 public class backEnd{
     public static void main(String[] args){
 	//check how many arguments are given
@@ -15,13 +16,11 @@ public class backEnd{
 	//read in all the transaction files
 	ArrayList<Transaction> transactionsList = TransFileReader.read(args);
   
-	//while transactions still esits, process them
-	
+	//while transactions still esits, process them	
 	int numTransactions = transactionsList.size();
 	for(int i = 0; i < numTransactions; i++){
 	    Transaction currTransaction = transactionsList.get(i);
-	    //TransactionHandler.handle(transactionsList.get(i), bankAccounts);
-	    	//Figure out the transaction type at question
+	    //Figure out the type of the current transaction 
 	    switch (currTransaction.transactionType) {
 	    case LOGOUT: 
 		TransactionHandler.logout(currTransaction, bankAccounts);
@@ -60,8 +59,12 @@ public class backEnd{
 	    }
 	}
   
-	//write the end result of all the transactions being applied to new mbaf
+	//MBAF - write the end result of all the transactions being applied to new mbaf
 	String newMbafFileName = "new.mbaf";
-	bankAccounts.writeToFile(newMbafFileName);
+	bankAccounts.writeToFile(newMbafFileName,true);
+
+	//CBAF - write the end result of all the transactions being applied to new mbaf
+	String newCbafFileName = "new.cbaf";
+	bankAccounts.writeToFile(newCbafFileName,false);
     }
 }

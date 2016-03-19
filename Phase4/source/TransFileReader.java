@@ -1,20 +1,26 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * @author      ATT 
+ * @version     1.0
+ * @since       2016-03-16
+ */
+
 public class TransFileReader{
       
     public static ArrayList<Transaction> read(String[] trans_file_names){
 
-      //create an ArrayList of Strings to hold all the transactions
-      ArrayList<Transaction> transactions_list = new ArrayList<Transaction>();
+	//Reads in a list of transaction file names and produces a mergedTransactions.tf containing all the transactions from every file provided. The constructor takes in an array of strings, with the first element being omitted (the old.mbaf file) and the rest of the strings in the array being names of transaction files. 
+	ArrayList<Transaction> transactions_list = new ArrayList<Transaction>();
 
 	try {
 	    //Create a writer for the merged transaction file
 	    String merged_trans_file = "trans-files/mergedTransactions.tf";
 	    File outFile = new File(merged_trans_file);
 	    Writer writer = new BufferedWriter(
-			    new OutputStreamWriter(
-			    new FileOutputStream(outFile)));
+					       new OutputStreamWriter(
+								      new FileOutputStream(outFile)));
 	    
 	    //Iterate through all the transaction files - ignore 1st since it is mbaf
 	    for (int i = 1; i < trans_file_names.length; i++) {
@@ -51,6 +57,6 @@ public class TransFileReader{
 	    //System.out.println(this.transactions_list.get(i));
 	}
   
-  return transactions_list;
+	return transactions_list;
     }
 }

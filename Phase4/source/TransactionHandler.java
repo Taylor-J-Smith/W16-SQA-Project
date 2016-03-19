@@ -1,16 +1,53 @@
 import java.text.*;
 
+/**
+ * @author      ATT 
+ * @version     1.0
+ * @since       2016-03-16
+ */
+
+/**
+ * Used to handle every single type of transaction in the banking system. 
+ * Has functions for every transaction and each handler typically takes in
+ * a Transaction object and the current bank account database. With each
+ * transaction it modifies the given account database accordingly. 
+*/
 public class TransactionHandler{    
 
-    //members
+    //MEMBERS
+    
+    //keeps track if the transaction being handled is done by an admin
     private static boolean isAdmin = false;
-  
+
+    /**
+     * logout responsible for the logout transaction
+     * <p>
+     * Does not actually affect the account database, simply sets the admin to false
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void logout(Transaction t, BankAccounts b){
 	System.out.println(t.transactionType);
 	//set the admin variable to false
 	isAdmin = false;
     }
-  
+
+    /**
+     * withdrawal responsible for the withdrawal transaction
+     * <p>
+     * Ensures that the funds being withdrawn are subtracted from the account's
+     * balance and also takes into account the fees depending on the user is
+     * a student or if the transaction is performed by an admin. After calculating
+     * the actual amount, it updates the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void withdrawal(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	//obtain the current account in question
@@ -42,6 +79,19 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * transfer responsible for the transfer transaction
+     * <p>
+     * Ensures that the funds being transfered are subtracted from the sender account's
+     * balance and added to the receivers account balance. Also takes into account the
+     * fees depending on the user is a student or if the transaction is performed by an
+     * admin. After calculating the actual amount, it updates the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void transfer(Transaction t1, Transaction t2, BankAccounts b){
 	System.out.println(t1.transactionType);
 	b.checkStatus(t1.accountNumber); //temp
@@ -82,6 +132,19 @@ public class TransactionHandler{
 	b.checkStatus(t2.accountNumber); //temp
     }
 
+    /**
+     * paybill responsible for the paybill transaction
+     * <p>
+     * Ensures that the funds being paid are subtracted from the account's
+     * balance and also takes into account the fees depending on the user is
+     * a student or if the transaction is performed by an admin. After calculating
+     * the actual amount, it updates the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void paybill(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	//obtain the current account in question
@@ -113,6 +176,19 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * deposit responsible for the deposit transaction
+     * <p>
+     * Ensures that the funds being deposited are added from the account's
+     * balance and also takes into account the fees depending on the user is
+     * a student or if the transaction is performed by an admin. After calculating
+     * the actual amount, it updates the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void deposit(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	//obtain the current account in question
@@ -144,6 +220,19 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * create responsible for the create transaction
+     * <p>
+     * Ensures that the funds being deposited are added from the account's
+     * balance and also takes into account the fees depending on the user is
+     * a student or if the transaction is performed by an admin. After calculating
+     * the actual amount, it updates the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void create(Transaction t, BankAccounts b){
 	String newAccountNumber = "";
     	System.out.println(t.transactionType);
@@ -175,6 +264,16 @@ public class TransactionHandler{
 	b.checkStatus(newAccountNumber); //temp
     }
 
+    /**
+     * delete responsible for the delete transaction
+     * <p>
+     * Removes the account involved in the transaction from the database
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void delete(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	b.checkStatus(t.accountNumber); //temp
@@ -182,6 +281,16 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * disable responsible for the disable transaction
+     * <p>
+     * Disables the account involved in the transaction by settings it status to "D"
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void disable(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	b.checkStatus(t.accountNumber); //temp
@@ -189,6 +298,17 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * changeplan responsible for the changeplan transaction
+     * <p>
+     * Toggles the account plan from Student to Non-Student by setting 
+     * its plan to "S" or "N" respectively
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void changeplan(Transaction t, BankAccounts b){	
     	System.out.println(t.transactionType);
 	b.checkStatus(t.accountNumber); //temp
@@ -201,12 +321,33 @@ public class TransactionHandler{
 	b.checkStatus(t.accountNumber); //temp
     }
 
+    /**
+     * enable responsible for the enable transaction
+     * <p>
+     * Enables the account involved in the transaction by settings it status to "E"
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void enable(Transaction t, BankAccounts b){
 	System.out.println(t.transactionType);
 	b.checkStatus(t.accountNumber); //temp
 	b.getAccount(t.accountNumber).status_ = "A";
 	b.checkStatus(t.accountNumber); //temp
     }
+
+    /**
+     * login responsible for the login transaction
+     * <p>
+     * Responsible for finding out if the transaction is being performed by an admin
+     * <p>
+     * @param t A Transaction object that contains all the required information
+     * of the current transaction being performed
+     * @param b The BankAccounts object that contains the current state of all
+     * the bank accounts in the system
+     */
     public static void login(Transaction t, BankAccounts b){
     	System.out.println(t.transactionType);
 	//check if it is an admin logging in

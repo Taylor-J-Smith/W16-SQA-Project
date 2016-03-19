@@ -4,5 +4,5 @@ compile:
 run: compile
 	java backEnd old.mbaf trans-files/*.tf
 clean:
-	rm *~
 	rm *.class
+	rm *~

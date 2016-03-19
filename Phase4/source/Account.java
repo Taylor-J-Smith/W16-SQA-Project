@@ -1,6 +1,12 @@
 import java.text.*;
 
+/**
+ * @author      ATT 
+ * @version     1.0
+ * @since       2016-03-16
+ */
 
+//Holds all the necessary information relating to an Account like the number, name, status, balance, plan, and the number of transactions. Is able to take in a string from a master bank accounts file, parse it and fill in its internal members of all the required information. Is also able to produce a string in the same format of the current account using its toString() function.
 public class Account{
     //CONSTANTS
     //account Number
@@ -28,60 +34,75 @@ public class Account{
     private final int kAccTransNumEnd = 44;
     
     //Members
-    String number_;
+    String number_; 
     String name_;
-    String status_;
+    String status_; //If Active or Disactivated
     double balance_;
-    String plan_;
-    int num_trans_;
+    String plan_; //If Student or non-Student plan
+    int num_trans_; //The number of transactions the account has to date
     
-    //Constructor
-    public Account (String mbaf_input_line){
+    /**
+     * Account Constructor
+     * <p>
+     * Takes in a raw string in the form of :
+     * 00001 TESTUSER1            A 99999.99 N 0000
+     * and parses each piece of information in the respective class members
+     * <p>
+     * @param mbafInputLine A string containing the raw Account String in the format above
+     */
+    public Account (String mbafInputLine){
 	//Parse the raw master bank account file line into the respective members
-	this.number_ = mbaf_input_line.substring(kAccNumStart, kAccNumEnd);
-	this.name_ = mbaf_input_line.substring(kAccNameStart, kAccNameEnd);
-	this.status_ = mbaf_input_line.substring(kAccStatusStart, kAccStatusEnd);
-	this.balance_ = Double.parseDouble(mbaf_input_line.substring(kAccBalanceStart,
+	this.number_ = mbafInputLine.substring(kAccNumStart, kAccNumEnd);
+	this.name_ = mbafInputLine.substring(kAccNameStart, kAccNameEnd);
+	this.status_ = mbafInputLine.substring(kAccStatusStart, kAccStatusEnd);
+	this.balance_ = Double.parseDouble(mbafInputLine.substring(kAccBalanceStart,
 								   kAccBalanceEnd));
-	this.plan_ = mbaf_input_line.substring(kAccPlanStart, kAccPlanEnd);
-	this.num_trans_ = Integer.parseInt(mbaf_input_line.substring(kAccTransNumStart,
+	this.plan_ = mbafInputLine.substring(kAccPlanStart, kAccPlanEnd);
+	this.num_trans_ = Integer.parseInt(mbafInputLine.substring(kAccTransNumStart,
 								     kAccTransNumEnd));
     }
 
-    @Override
-    //Override the toString method for an account
-    public String toString(){
+    /**
+     * toString converts an account object into a string
+     * <p>
+     * Returns a string with all the account information in the following format
+     * 00001 TESTUSER1            D 99992.69 N. If the boolean passed to this function
+     * is true, then the number of transactions are also included at the end of the string
+     * <p>
+     * @param withTransactionNum a boolean value indicating if the transactionNumber 
+     * number should be included in the final string being returned
+     * @return Returns a string in for followin format depending on withTransactionNum
+     * [true]  00001 TESTUSER1            D 99992.69 N 0003 
+     * [false] 00001 TESTUSER1            D 99992.69 N
+     */
+    public String toString(boolean withTransactionNum){
+	//set the format of how account balances will be read
 	DecimalFormat df = new DecimalFormat("#.00");
 	String returnString = "";
 	    returnString += this.number_ + " ";
 	    returnString += this.name_ + " ";
 	    returnString += this.status_ + " ";
 	    //need to pad the balance to 8 characters
-	    String balance_string = df.format(this.balance_);
-	    while(balance_string.length() < 8){
-		balance_string = "0" + balance_string;
+	    String balanceString = df.format(this.balance_);	    
+	    while(balanceString.length() < 8){
+		balanceString = "0" + balanceString;
 	    }
-	    returnString += balance_string + " ";
-	    returnString += this.plan_ + " ";
-	    String num_trans_string = String.valueOf(this.num_trans_);
-	    while (num_trans_string.length() < 4){
-		num_trans_string = "0" + num_trans_string;
+	    returnString += balanceString; //update the final string
+
+	    //Check if a transaction number for the account should be printed
+	    if (withTransactionNum){
+		returnString += " ";
+		//obtain the number of transactions from the account		
+		String numTransString = String.valueOf(this.num_trans_).trim();
+		//pad the transaciton number to 4 characters
+		while (numTransString.length() < 4){
+		    numTransString = "0" + numTransString;
+		}
+		returnString += numTransString; //update the final string
 	    }
-	    returnString += num_trans_string + " ";   
 	return returnString;
     }
 
-    //temp - Debugging print showing if there are any untrimmed spaces
-    public String toStringDebug(){
-	String returnString = "";
-	returnString += "|" + this.number_ + "|";
-	returnString += this.name_ + "|";
-	returnString += this.status_ + "|";
-	returnString += this.balance_ + "|";
-	returnString += this.plan_ + "|";
-	returnString += this.num_trans_ + "|";   
-	return returnString;
-    }
 }
 
 

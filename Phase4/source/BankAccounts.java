@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @since       2016-03-16
  */
 
-//Holds all data related to Bank Accounts and is able to read in a master bank accounts file into an internal "database" of bank accounts.
+//Holds all data related to Bank Accounts in an internal list of Accounts. It is also responsible for reading in a Master Bank Accounts File and populate its internal data structure with all the Accounts in the file. Additionally BankAccounts is able to write the new Master Bank Accounts File by taking all the accounts it holds and writing out to a file in the required format. The Class also has a bunch of utility functions relating to interactions with Accounts, since the internal List of Accounts is private and other classes do not have direct access to it. These utility functions allow other classes to add/remove accounts, check if an account exists, and obtain a unique account number that doesn’t yet exist in the “database”.
 public class BankAccounts{
     /**
      * List of all the bank accounts that are held internally
@@ -78,7 +78,6 @@ public class BankAccounts{
 	return null;
     }
 
-    //
     /**
      * checkStatus Prints information about a given account
      * <p>
@@ -93,14 +92,13 @@ public class BankAccounts{
 	    //Look for the account that matches the accNumber
 	    if (accNumber.compareTo(this.bankAccounts.get(i).number_) == 0){
 		//found the account
-		System.out.println(this.bankAccounts.get(i).toString());
+		System.out.println(this.bankAccounts.get(i).toString(true));
 		return;
 	    }
 	}
 	System.out.println("[BankAccounts->checkStatus]ERROR: Did not find the account!");
     }
 
-        //
     /**
      * checkExists check if a given account exists in the database
      * <p>
@@ -122,8 +120,6 @@ public class BankAccounts{
 	return false;
     }
 
-    //Find a unique account number
-    //
     /**
      *  getUniqueAccountNumber Finds a unique account number
      * <p>
@@ -206,8 +202,10 @@ public class BankAccounts{
      * the file provided
      * <p>
      * @param filename The name/path to the file the bank accounts should be written to
+     * @param withTransactionNum a boolean value indicating if the transactionNumber 
+     * number should be included when printing the account information to the file
      */
-    public void writeToFile(String filename){
+    public void writeToFile(String filename, boolean withTransactionNum){
 	//put the end of file account at the end of the file being written to
 	//Since it might be in the middle after accounts have been created
 	//Last line should always be: 99999 END OF FILE          A 00000.00 S 0000 
@@ -226,7 +224,7 @@ public class BankAccounts{
 	    //Iterate through all the accounts 
 	    for (int i = 0; i < this.bankAccounts.size(); i++){
 		//Write out each account on a separate line in the file
-		writer.write(this.bankAccounts.get(i).toString() + "\n");
+		writer.write(this.bankAccounts.get(i).toString(withTransactionNum) + "\n");
 	    }
 	    writer.close(); //close the file that was being written to
 	} catch (IOException e) {
