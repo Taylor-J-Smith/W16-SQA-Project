@@ -2,6 +2,7 @@
 ###Software quality assurance project in the winter 2016 semester.
 
 #DEPENDENCIES
+
 ###g++-4.9 (Regex)
 
 	sudo add-apt-repository ppa:ubuntu-toolchain-r/test
