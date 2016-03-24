@@ -7,7 +7,7 @@ public class JUnitTest {
     double STUDENT_FEE = 0.05;
     double STANDARD_FEE = 0.10;
     String mbafFilename = "old.mbaf";
-    
+
     /* MBAF STATUS
        00001 TESTUSER1            A 99999.99 N 0000
        00002 TESTUSER2            A 00005.10 N 0000
@@ -21,12 +21,12 @@ public class JUnitTest {
      */
     // *****************TransactionHandler.java******************
     //---------LOGIN-------
-    @Test       
+    @Test
     public void loginTest1() {
 	//check if account is a non-student account (ie isAdmin=false)
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction t = new Transaction("00 TESTUSER1            00001 00000.00 S ");
-	TransactionHandler.login(t,b); 
+	TransactionHandler.login(t,b);
         assertEquals(false, TransactionHandler.getIsAdmin());
     }
 
@@ -36,12 +36,12 @@ public class JUnitTest {
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction t = new Transaction("10 ADMIN                00000 00000.00 A ");
 	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
-	TransactionHandler.login(t,b); 
+	TransactionHandler.login(t,b);
         assertEquals(true, TransactionHandler.getIsAdmin()); //should be admin
     }
 
     //---------LOGOUT-------
-    @Test       
+    @Test
     public void logoutTest() {
 	//Check if the logout changes the isAdmin member from true to false on logout
 	BankAccounts b = new BankAccounts(mbafFilename);
@@ -66,7 +66,7 @@ public class JUnitTest {
 	assertEquals(tWithdrawal.fundsInvolved, 5.0, ERROR_THRESHOLD); //verify the withdrawal amt
 	TransactionHandler.withdrawal(tWithdrawal,b);
 	assertEquals(99999.99 - 5.0,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 	
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -81,7 +81,7 @@ public class JUnitTest {
 	assertEquals(5.0, tWithdrawal.fundsInvolved, ERROR_THRESHOLD); //verify the withdrawal amt
 	TransactionHandler.withdrawal(tWithdrawal,b);
 	assertEquals(99999.99 - 5.0 - STANDARD_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -96,7 +96,7 @@ public class JUnitTest {
 	assertEquals(5.0, tWithdrawal.fundsInvolved, ERROR_THRESHOLD); //verify the withdrawal amt
 	TransactionHandler.withdrawal(tWithdrawal,b);
 	assertEquals(99999.99 - 5.0 - STUDENT_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -114,7 +114,7 @@ public class JUnitTest {
 	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD);
     }
 
-    //----------------------TRANSFER PLACEHOLDER--------------- 
+    //----------------------TRANSFER PLACEHOLDER---------------
     @Test
     public void transferTest1() {
 	//ADMIN case - check if amount was removed from account
@@ -133,7 +133,7 @@ public class JUnitTest {
 	assertEquals(99999.99 - 1.0,
 		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
 	assertEquals(5.10 + 1.0,
-		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance
     }
 
     @Test
@@ -154,13 +154,13 @@ public class JUnitTest {
 	assertEquals(99999.99 - 1.0 - STANDARD_FEE,
 		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
 	assertEquals(5.10 + 1.0 - STANDARD_FEE,
-		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance
     }
 
     @Test
     public void transferTest3() {
 	//STUDENT case - check if amount was removed from account
-	BankAccounts b = new BankAccounts(mbafFilename);	
+	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT1         99998 00001.00 S ");
 	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT2         99997 00001.00 S ");
@@ -175,13 +175,13 @@ public class JUnitTest {
 	assertEquals(99999.99 - 1.0 - STUDENT_FEE,
 		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
 	assertEquals(5.05 + 1.0 - STUDENT_FEE,
-		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance
     }
 
     @Test
     public void transferTest4() {
 	//STANDARD case - Fee places first account at negative balance, expect error
-	BankAccounts b = new BankAccounts(mbafFilename);	
+	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00005.10 S ");
 	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT5         00005 00005.10 S ");
@@ -196,13 +196,13 @@ public class JUnitTest {
 	assertEquals(5.10,
 		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
 	assertEquals(0.0,
-		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance
     }
 
     @Test
     public void transferTest5() {
 	//STANDARD case - Fee places second account at negative balance, expect error
-	BankAccounts b = new BankAccounts(mbafFilename);	
+	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00000.01 S ");
 	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT5         00005 00000.01 S ");
@@ -217,7 +217,7 @@ public class JUnitTest {
 	assertEquals(5.10,
 		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
 	assertEquals(0.0,
-		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance
     }
 
     //---------PAYBILL-------
@@ -233,7 +233,7 @@ public class JUnitTest {
 	assertEquals(tPaybill.fundsInvolved, 5.0, ERROR_THRESHOLD); //verify the paybill amt
 	TransactionHandler.paybill(tPaybill,b);
 	assertEquals(99999.99 - 5.0,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 	
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -248,7 +248,7 @@ public class JUnitTest {
 	assertEquals(5.0, tPaybill.fundsInvolved, ERROR_THRESHOLD); //verify the paybill amt
 	TransactionHandler.paybill(tPaybill,b);
 	assertEquals(99999.99 - 5.0 - STANDARD_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -263,7 +263,7 @@ public class JUnitTest {
 	assertEquals(5.0, tPaybill.fundsInvolved, ERROR_THRESHOLD); //verify the paybill amt
 	TransactionHandler.paybill(tPaybill,b);
 	assertEquals(99999.99 - 5.0 - STUDENT_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -294,7 +294,7 @@ public class JUnitTest {
 	assertEquals(tDeposit.fundsInvolved, 5.0, ERROR_THRESHOLD); //verify the deposit amt
 	TransactionHandler.deposit(tDeposit,b);
 	assertEquals(99999.99 + 5.0,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 	
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -309,7 +309,7 @@ public class JUnitTest {
 	assertEquals(5.0, tDeposit.fundsInvolved, ERROR_THRESHOLD); //verify the deposit amt
 	TransactionHandler.deposit(tDeposit,b);
 	assertEquals(99999.99 + 5.0 - STANDARD_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -324,7 +324,7 @@ public class JUnitTest {
 	assertEquals(5.0, tDeposit.fundsInvolved, ERROR_THRESHOLD); //verify the deposit amt
 	TransactionHandler.deposit(tDeposit,b);
 	assertEquals(99999.99 + 5.0 - STUDENT_FEE,
-		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance
     }
 
     @Test
@@ -341,7 +341,32 @@ public class JUnitTest {
 	//The final balance should not have changed from original since invalid transaction
 	assertEquals(0.0, currAccount.balance_, ERROR_THRESHOLD);
     }
-    
+
+    @Test
+    public void createTest1(){
+      BankAccounts b = new BankAccounts(mbafFilename);
+      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+      Transaction tCreate = new Transaction("05 AAAAAAAAAAAAAAAAAAAA 00000 00500.00 A ");
+      assertEquals(false, b.checkExists(tCreate.accountName)); //verify the account doesnt exist
+      TransactionHandler.login(tAdminLogin,b); //Set account to admin
+      TransactionHandler.create(tCreate,b);
+      assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account exists now
+
+    }
+
+    @Test
+    public void createTest2(){
+      BankAccounts b = new BankAccounts(mbafFilename);
+      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+      Transaction tCreate = new Transaction("05 TESTUSER1            00000 00500.00 A ");
+      assertEquals(true, b.checkExists(tCreate.accountName));
+      TransactionHandler.login(tAdminLogin,b); //Set account to admin
+      TransactionHandler.create(tCreate,b);
+      assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account still exists
+      assertEquals(99999.99, b.getAccount("00001").balance_, ERROR_THRESHOLD); //verify the funds were unchanged by create
+
+    }
+
     public static junit.framework.Test suite(){
        return new JUnit4TestAdapter(JUnitTest.class);
     }
