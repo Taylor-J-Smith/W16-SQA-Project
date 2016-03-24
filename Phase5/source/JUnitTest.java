@@ -114,7 +114,69 @@ public class JUnitTest {
 	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD);
     }
 
-    //----------------------TRANSFER PLACEHOLDER---------------
+    //----------------------TRANSFER PLACEHOLDER--------------- 
+    @Test
+    public void transferTest1() {
+	//ADMIN case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tTransfer1 = new Transaction("02 TESTUSER1            00001 00001.00   ");
+	Transaction tTransfer2 = new Transaction("02 TESTUSER2            00002 00001.00   ");
+	Account currAccount1 = b.getAccount(tTransfer1.accountNumber);
+	Account currAccount2 = b.getAccount(tTransfer2.accountNumber);
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals(true, TransactionHandler.getIsAdmin()); //should be admin
+	assertEquals(currAccount1.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(currAccount2.balance_,5.10, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tTransfer1.fundsInvolved, 1.0, ERROR_THRESHOLD); //verify the transfer amt
+	TransactionHandler.transfer(tTransfer1, tTransfer2, b);
+	assertEquals(99999.99 - 1.0,
+		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
+	assertEquals(5.10 + 1.0,
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+    }
+
+    @Test
+    public void transferTest2() {
+	//STANDARD case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
+	Transaction tTransfer1 = new Transaction("02 TESTUSER1            00001 00001.00   ");
+	Transaction tTransfer2 = new Transaction("02 TESTUSER2            00002 00001.00   ");
+	Account currAccount1 = b.getAccount(tTransfer1.accountNumber);
+	Account currAccount2 = b.getAccount(tTransfer2.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
+	assertEquals(currAccount1.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(currAccount2.balance_,5.10, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tTransfer1.fundsInvolved, 1.0, ERROR_THRESHOLD); //verify the transfer amt
+	TransactionHandler.transfer(tTransfer1, tTransfer2, b);
+	assertEquals(99999.99 - 1.0 - STANDARD_FEE,
+		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
+	assertEquals(5.10 + 1.0 - STANDARD_FEE,
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+    }
+
+    @Test
+    public void transferTest3() {
+	//STUDENT case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);	
+	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
+	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT1         99998 00001.00 S ");
+	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT2         99997 00001.00 S ");
+	Account currAccount1 = b.getAccount(tTransfer1.accountNumber);
+	Account currAccount2 = b.getAccount(tTransfer2.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
+	assertEquals(currAccount1.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(currAccount2.balance_,5.05, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tTransfer1.fundsInvolved, 1.0, ERROR_THRESHOLD); //verify the transfer amt
+	TransactionHandler.transfer(tTransfer1, tTransfer2, b);
+	assertEquals(99999.99 - 1.0 - STUDENT_FEE,
+		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
+	assertEquals(5.05 + 1.0 - STUDENT_FEE,
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+    }
 
     //---------PAYBILL-------
     @Test

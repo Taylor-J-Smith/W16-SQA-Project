@@ -114,9 +114,9 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void transfer(Transaction t1, Transaction t2, BankAccounts b){
-	System.out.println(t1.transactionType);
-	b.checkStatus(t1.accountNumber); //temp
-	b.checkStatus(t2.accountNumber); //temp
+	//System.out.println(t1.transactionType);
+	//b.checkStatus(t1.accountNumber); //temp
+	//b.checkStatus(t2.accountNumber); //temp
 
 	//obtain the current account in question
 	Account firstAccount = b.getAccount(t1.accountNumber);
@@ -136,21 +136,21 @@ public class TransactionHandler{
 	    }
 	}
 	//add the fee to the transferAmount
-	transferAmount += fee;
+	//transferAmount += fee;
 	//Check if the account balance is less than 0 once amount has been transfered
-	if (firstAccount.balance_ - transferAmount < 0){
+	if (firstAccount.balance_ - transferAmount - fee < 0){
 	    System.out.println("ERROR: Attempt to transfer more funds than possible");
 	}else{
 	    //finally remove the funds from the accounts balance
-	    firstAccount.balance_ -= transferAmount;
+	    firstAccount.balance_ -= transferAmount + fee ;
 	    firstAccount.balance_ = Math.round(firstAccount.balance_ * 100.0) / 100.0; //rounding
 	    secondAccount.balance_ += transferAmount - fee;
 	    secondAccount.balance_ = Math.round(secondAccount.balance_ * 100.0) / 100.0; //rounding
 	    firstAccount.num_trans_++; //increment the transaction number
 	    secondAccount.num_trans_++; //increment the transaction number   
 	}
-	b.checkStatus(t1.accountNumber); //temp
-	b.checkStatus(t2.accountNumber); //temp
+	//b.checkStatus(t1.accountNumber); //temp
+	//b.checkStatus(t2.accountNumber); //temp
     }
 
     /**
