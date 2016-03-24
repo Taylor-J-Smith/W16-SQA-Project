@@ -138,8 +138,13 @@ public class TransactionHandler{
 	//add the fee to the transferAmount
 	//transferAmount += fee;
 	//Check if the account balance is less than 0 once amount has been transfered
+	//System.out.println("acc1 balance:" + firstAccount.balance_ +
+	//" transfer Amount:" + transferAmount +
+	//" fee:" + fee);
 	if (firstAccount.balance_ - transferAmount - fee < 0){
-	    System.out.println("ERROR: Attempt to transfer more funds than possible");
+	    System.out.println("ERROR: Transaction leaves First account in negative balance");
+	}else if(secondAccount.balance_ + transferAmount - fee < 0){
+	    System.out.println("ERROR: Transaction leaves Second account in negative balance");
 	}else{
 	    //finally remove the funds from the accounts balance
 	    firstAccount.balance_ -= transferAmount + fee ;

@@ -178,6 +178,48 @@ public class JUnitTest {
 		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
     }
 
+    @Test
+    public void transferTest4() {
+	//STANDARD case - Fee places first account at negative balance, expect error
+	BankAccounts b = new BankAccounts(mbafFilename);	
+	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
+	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00005.10 S ");
+	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT5         00005 00005.10 S ");
+	Account currAccount1 = b.getAccount(tTransfer1.accountNumber);
+	Account currAccount2 = b.getAccount(tTransfer2.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
+	assertEquals(currAccount1.balance_, 5.10, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(currAccount2.balance_,0.0, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tTransfer1.fundsInvolved, 5.10, ERROR_THRESHOLD); //verify the transfer amt
+	TransactionHandler.transfer(tTransfer1, tTransfer2, b);
+	assertEquals(5.10,
+		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
+	assertEquals(0.0,
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+    }
+
+    @Test
+    public void transferTest5() {
+	//STANDARD case - Fee places second account at negative balance, expect error
+	BankAccounts b = new BankAccounts(mbafFilename);	
+	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
+	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00000.01 S ");
+	Transaction tTransfer2 = new Transaction("02 TESTSTUDENT5         00005 00000.01 S ");
+	Account currAccount1 = b.getAccount(tTransfer1.accountNumber);
+	Account currAccount2 = b.getAccount(tTransfer2.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
+	assertEquals(currAccount1.balance_, 5.10, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(currAccount2.balance_,0.0, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tTransfer1.fundsInvolved, 0.01, ERROR_THRESHOLD); //verify the transfer amt
+	TransactionHandler.transfer(tTransfer1, tTransfer2, b);
+	assertEquals(5.10,
+		     currAccount1.balance_, ERROR_THRESHOLD); //verify the final acc1 balance
+	assertEquals(0.0,
+		     currAccount2.balance_, ERROR_THRESHOLD); //verify the final acc2 balance 	
+    }
+
     //---------PAYBILL-------
     @Test
     public void paybillTest1() {
