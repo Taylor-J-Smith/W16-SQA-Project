@@ -15,7 +15,7 @@ public class StackTest {
 		r.push(3);
 		r.push(5);
 		r.push(7);
-		assertEquals(8,r.pop());
+		assertEquals(7,r.pop());
 		assertEquals(r.peek(),5);
 	}
     public static junit.framework.Test suite(){

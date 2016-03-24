@@ -18,6 +18,27 @@ public class TransactionHandler{
     
     //keeps track if the transaction being handled is done by an admin
     private static boolean isAdmin = false;
+    /**
+     * setIsAdmin Sets the value for the isAdmin private member 
+     * <p>
+     * Used as a setter for the isAdmin variable
+     * <p>
+     * @param setValue Value used to set isAdmin
+     */
+    public static void setIsAdmin(boolean setValue){
+	isAdmin = setValue;
+    }
+
+    /**
+     * getIsAdmin gets the value for the isAdmin private member 
+     * <p>
+     * Used as a getter for the isAdmin variable
+     * <p>
+     * @return return value for isAdmin
+     */
+    public static boolean getIsAdmin(){
+	return isAdmin;
+    }
 
     /**
      * logout responsible for the logout transaction
@@ -60,6 +81,7 @@ public class TransactionHandler{
 	    //not an admin - apply fees	    
 	    if (currAccount.plan_.compareTo("S") == 0){
 		//is a student account
+		System.out.println("student");
 		withdrawalAmount += 0.05;
 	    }else{
 		//Not a student account
@@ -349,7 +371,7 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void login(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
+    	//System.out.println(t.transactionType);
 	//check if it is an admin logging in
 	if (t.misc.compareTo("A ") == 0){
 	    //is an admin logged in
