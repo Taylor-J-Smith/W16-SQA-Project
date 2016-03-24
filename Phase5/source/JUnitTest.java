@@ -374,7 +374,7 @@ public class JUnitTest {
       Transaction tDelete = new Transaction("05 TESTUSER1            00000 00500.00 A ");
       TransactionHandler.login(tAdminLogin,b); //Set account to admin
       assertEquals(true, b.checkExists(tDelete.accountName)); //verify the account exists
-      TranactionHandler.delete(tDelete, b);
+      TransactionHandler.delete(tDelete, b);
       //assertEquals(false, b.checkExists(tCreate.accountName)); //verify the account has been deleted
 
     }
