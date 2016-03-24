@@ -13,7 +13,7 @@ public class BankAccounts{
      * List of all the bank accounts that are held internally
      * and used to represent the internal "database" of the backEnd
      */
-    private static ArrayList<Account> bankAccounts = new ArrayList<Account>();
+    private ArrayList<Account> bankAccounts = new ArrayList<Account>();
 
 
     /**

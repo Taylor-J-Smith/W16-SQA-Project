@@ -51,7 +51,7 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void logout(Transaction t, BankAccounts b){
-	System.out.println(t.transactionType);
+	//System.out.println(t.transactionType);
 	//set the admin variable to false
 	isAdmin = false;
     }
@@ -70,10 +70,10 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void withdrawal(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
+    	//System.out.println(t.transactionType);
 	//obtain the current account in question
 	Account currAccount = b.getAccount(t.accountNumber);
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
 	//remove the withdrawn amount
 	double withdrawalAmount = t.fundsInvolved;
 	//check if it is an admin
@@ -81,7 +81,6 @@ public class TransactionHandler{
 	    //not an admin - apply fees	    
 	    if (currAccount.plan_.compareTo("S") == 0){
 		//is a student account
-		System.out.println("student");
 		withdrawalAmount += 0.05;
 	    }else{
 		//Not a student account
@@ -98,7 +97,7 @@ public class TransactionHandler{
 	    currAccount.balance_ = Math.round(currAccount.balance_ * 100.0) / 100.0; //rounding
 	    currAccount.num_trans_++; //increment the transaction number   
 	}
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**
