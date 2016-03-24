@@ -20,6 +20,7 @@ public class JUnitTest {
        99998 TESTSTUDENT1         A 99999.99 S 0000
      */
     // *****************TransactionHandler.java******************
+    //---------LOGIN-------
     @Test       
     public void loginTest1() {
 	//check if account is a non-student account (ie isAdmin=false)
@@ -38,7 +39,8 @@ public class JUnitTest {
 	TransactionHandler.login(t,b); 
         assertEquals(true, TransactionHandler.getIsAdmin()); //should be admin
     }
-    
+
+    //---------LOGOUT-------
     @Test       
     public void logoutTest() {
 	//Check if the logout changes the isAdmin member from true to false on logout
@@ -50,7 +52,8 @@ public class JUnitTest {
         assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
     }
 
-    
+
+    //---------WITHDRAWAL-------
     @Test
     public void withdrawalTest1() {
 	//ADMIN case - check if amount was removed from account
@@ -111,6 +114,69 @@ public class JUnitTest {
 	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD);
     }
 
+    //----------------------TRANSFER PLACEHOLDER---------------
+
+    //---------PAYBILL-------
+    @Test
+    public void paybillTest1() {
+	//ADMIN case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tPaybill = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Account currAccount = b.getAccount(tPaybill.accountNumber);
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals(currAccount.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tPaybill.fundsInvolved, 5.0, ERROR_THRESHOLD); //verify the paybill amt
+	TransactionHandler.paybill(tPaybill,b);
+	assertEquals(99999.99 - 5.0,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 	
+    }
+
+    @Test
+    public void paybillTest2() {
+	//STANDARD case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
+	Transaction tPaybill = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Account currAccount = b.getAccount(tPaybill.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(5.0, tPaybill.fundsInvolved, ERROR_THRESHOLD); //verify the paybill amt
+	TransactionHandler.paybill(tPaybill,b);
+	assertEquals(99999.99 - 5.0 - STANDARD_FEE,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+    }
+
+    @Test
+    public void paybillTest3() {
+	//STUDENT case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99998 00000.00 S ");
+	Transaction tPaybill = new Transaction("10 TESTSTUDENT1         99998 00005.00 S ");
+	Account currAccount = b.getAccount(tPaybill.accountNumber);
+	TransactionHandler.login(tStudentLogin,b); //Set account to admin
+	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(5.0, tPaybill.fundsInvolved, ERROR_THRESHOLD); //verify the paybill amt
+	TransactionHandler.paybill(tPaybill,b);
+	assertEquals(99999.99 - 5.0 - STUDENT_FEE,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+    }
+
+    @Test
+    public void paybillTest4() {
+	//Attempt to paybill more funds than possible - Expect Error
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT3         99996 00000.00 S ");
+	Transaction tPaybill = new Transaction("10 TESTSTUDENT1         99996 00005.00 S ");
+	Account currAccount = b.getAccount(tPaybill.accountNumber);
+	TransactionHandler.login(tStudentLogin,b); //Set account to admin
+	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(5.0, tPaybill.fundsInvolved, ERROR_THRESHOLD); //verify the paybill amt
+	TransactionHandler.paybill(tPaybill,b);
+	//The final balance should not have changed from original since invalid transaction
+	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD);
+    }
+    
     public static junit.framework.Test suite(){
        return new JUnit4TestAdapter(JUnitTest.class);
     }
