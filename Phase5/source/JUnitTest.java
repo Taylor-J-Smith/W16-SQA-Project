@@ -387,8 +387,30 @@ public class JUnitTest {
       TransactionHandler.login(tAdminLogin,b); //Set account to admin
       assertEquals("A", b.getAccount("00001").status_);
       TransactionHandler.disable(tDisable, b);
-      assertEquals("D", b.getAccount("00001").status_);     
+      assertEquals("D", b.getAccount("00001").status_);
 
+    }
+
+    @Test
+    public void changeplanTest1(){
+      BankAccounts b = new BankAccounts(mbafFilename);
+      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+      Transaction tChangeplan = new Transaction("08 TESTUSER1            00001 00000.00 A ");
+      TransactionHandler.login(tAdminLogin,b); //Set account to admin
+      assertEquals("N", b.getAccount("00001").plan_);
+      TransactionHandler.changeplan(tChangeplan, b);
+      assertEquals("S", b.getAccount("00001").plan_);
+    }
+
+    @Test
+    public void changeplanTest2(){
+      BankAccounts b = new BankAccounts(mbafFilename);
+      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+      Transaction tChangeplan = new Transaction("08 TESTSTUDENT3         00001 00000.00 A ");
+      TransactionHandler.login(tAdminLogin,b); //Set account to admin
+      assertEquals("N", b.getAccount("00001").plan_);
+      TransactionHandler.changeplan(tChangeplan, b);
+      assertEquals("S", b.getAccount("00001").plan_);
     }
 
     public static junit.framework.Test suite(){
