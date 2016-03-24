@@ -413,6 +413,18 @@ public class JUnitTest {
       assertEquals("S", b.getAccount("00001").plan_);
     }
 
+    @Test
+    public void enableTest(){
+      BankAccounts b = new BankAccounts(mbafFilename);
+      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+      Transaction tEnable = new Transaction("09 TESTUSER4            00004 00000.00 A ");
+      TransactionHandler.login(tAdminLogin,b); //Set account to admin
+      assertEquals("D", b.getAccount("00004").status_);
+      TransactionHandler.enable(tEnable, b);
+      assertEquals("A", b.getAccount("00004").status_);
+
+    }
+
     public static junit.framework.Test suite(){
        return new JUnit4TestAdapter(JUnitTest.class);
     }
