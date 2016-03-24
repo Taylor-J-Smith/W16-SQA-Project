@@ -425,6 +425,24 @@ public class JUnitTest {
 
     }
 
+    @Test
+    public void accountConstructorTest(){
+      Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
+      assertEquals("TESTUSER1           ", a.name_);
+      assertEquals("00001", a.number_);
+      assertEquals("A", a.status_);
+      assertEquals(99999.99, a.balance_, ERROR_THRESHOLD);
+      assertEquals("N", a.plan_);
+      assertEquals(0, a.num_trans_);
+
+    }
+
+    @Test
+    public void accountToStringTest1(){
+      Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
+      assertEquals("00001 TESTUSER1            A 99999.99", a.toString(false));
+    }
+
     public static junit.framework.Test suite(){
        return new JUnit4TestAdapter(JUnitTest.class);
     }
