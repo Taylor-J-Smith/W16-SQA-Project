@@ -90,7 +90,7 @@ public class TransactionHandler{
 
 	//Check if the account balance is less than 0 once amount has been withdrawn
 	if (currAccount.balance_ - withdrawalAmount < 0){
-	    System.out.println("[Withdrawal]ERROR: Attempt to withdrawal more funds than possible");
+	    System.out.println("ERROR: Attempt to withdrawal more funds than possible");
 	}else{
 	    //finally remove the funds from the account balance
 	    currAccount.balance_ -= withdrawalAmount;	    
@@ -139,7 +139,7 @@ public class TransactionHandler{
 	transferAmount += fee;
 	//Check if the account balance is less than 0 once amount has been transfered
 	if (firstAccount.balance_ - transferAmount < 0){
-	    System.out.println("[Transfer]ERROR: Attempt to transfer more funds than possible");
+	    System.out.println("ERROR: Attempt to transfer more funds than possible");
 	}else{
 	    //finally remove the funds from the accounts balance
 	    firstAccount.balance_ -= transferAmount;
@@ -187,7 +187,7 @@ public class TransactionHandler{
 
 	//Check if the account balance is less than 0 once amount has been withdrawn
 	if (currAccount.balance_ - paybillAmount < 0){
-	    System.out.println("[Paybill]ERROR: Attempt to paybill more funds than possible");
+	    System.out.println("ERROR: Attempt to paybill more funds than possible");
 	}else{
 	    //finally remove the funds from the account balance
 	    currAccount.balance_ -= paybillAmount;
@@ -211,10 +211,10 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void deposit(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
+    	//System.out.println(t.transactionType);
 	//obtain the current account in question
 	Account currAccount = b.getAccount(t.accountNumber);
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
 	//remove the deposit amount
 	double depositAmount = t.fundsInvolved;
 	//check if it is an admin
@@ -238,7 +238,7 @@ public class TransactionHandler{
 	    currAccount.balance_ = Math.round(currAccount.balance_ * 100.0) / 100.0; //rounding
 	    currAccount.num_trans_++; //increment the transaction number   
 	}
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**

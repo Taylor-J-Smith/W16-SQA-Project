@@ -176,6 +176,67 @@ public class JUnitTest {
 	//The final balance should not have changed from original since invalid transaction
 	assertEquals(5.0, currAccount.balance_, ERROR_THRESHOLD);
     }
+
+    //---------DEPOSIT-------
+    @Test
+    public void depositTest1() {
+	//ADMIN case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tDeposit = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Account currAccount = b.getAccount(tDeposit.accountNumber);
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals(currAccount.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(tDeposit.fundsInvolved, 5.0, ERROR_THRESHOLD); //verify the deposit amt
+	TransactionHandler.deposit(tDeposit,b);
+	assertEquals(99999.99 + 5.0,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 	
+    }
+
+    @Test
+    public void depositTest2() {
+	//STANDARD case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
+	Transaction tDeposit = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Account currAccount = b.getAccount(tDeposit.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(5.0, tDeposit.fundsInvolved, ERROR_THRESHOLD); //verify the deposit amt
+	TransactionHandler.deposit(tDeposit,b);
+	assertEquals(99999.99 + 5.0 - STANDARD_FEE,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+    }
+
+    @Test
+    public void depositTest3() {
+	//STUDENT case - check if amount was removed from account
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99998 00000.00 S ");
+	Transaction tDeposit = new Transaction("10 TESTSTUDENT1         99998 00005.00 S ");
+	Account currAccount = b.getAccount(tDeposit.accountNumber);
+	TransactionHandler.login(tStudentLogin,b); //Set account to admin
+	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(5.0, tDeposit.fundsInvolved, ERROR_THRESHOLD); //verify the deposit amt
+	TransactionHandler.deposit(tDeposit,b);
+	assertEquals(99999.99 + 5.0 - STUDENT_FEE,
+		     currAccount.balance_, ERROR_THRESHOLD); //verify the final balance 
+    }
+
+    @Test
+    public void depositTest4() {
+	//Attempt to deposit more funds than possible - Expect Error
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tStdLogin = new Transaction("10 TESTUSER5            00005 00000.00   ");
+	Transaction tDeposit = new Transaction("01 TESTUSER5            00005 00000.01   ");
+	Account currAccount = b.getAccount(tDeposit.accountNumber);
+	TransactionHandler.login(tStdLogin,b); //Set account to admin
+	assertEquals(0.0, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
+	assertEquals(0.01, tDeposit.fundsInvolved, ERROR_THRESHOLD); //verify the deposit amt
+	TransactionHandler.deposit(tDeposit,b);
+	//The final balance should not have changed from original since invalid transaction
+	assertEquals(0.0, currAccount.balance_, ERROR_THRESHOLD);
+    }
     
     public static junit.framework.Test suite(){
        return new JUnit4TestAdapter(JUnitTest.class);
