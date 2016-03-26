@@ -51,13 +51,7 @@ public class TransFileReader{
 	    System.err.println("IndexOutOfBoundsException: " + e.getMessage());
 	} catch (IOException e) {
 	    System.err.println("Caught IOException: " + e.getMessage());
-	}	
-
-	//TEMP - read out all the transactions from the arraylist
-	//for (int i = 0; i < transactions_list.size(); i++){
-	    //System.out.println(this.transactions_list.get(i));
-	//}
-  
+	}	 
 	return transactions_list;
     }
 }

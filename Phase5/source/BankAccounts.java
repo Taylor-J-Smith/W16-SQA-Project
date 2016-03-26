@@ -17,6 +17,18 @@ public class BankAccounts{
 
 
     /**
+     * getBankAccountsDatabase getter for the private bankAccounts ArrayList
+     * <p>
+     * Getter that returns the bankAccounts ArrayList 
+     * <p>
+     * @return returns the private member database to anybody calling this function
+     */    
+    public ArrayList<Account> getBankAccountsDatabase(){
+	return this.bankAccounts;
+    }
+
+
+    /**
      * BankAccounts  Constructor
      * <p>
      * Constructor for the BankAccounts class that is able to
@@ -74,7 +86,7 @@ public class BankAccounts{
 	    }
 	}
 	//Error Did not find the account
-	System.out.println("[BankAccounts->getAccount]ERROR: Did not find the account!");
+	System.out.println("ERROR: BankAccounts::getAccount Did not find the account!");
 	return null;
     }
 
@@ -86,17 +98,16 @@ public class BankAccounts{
      * <p>
      * @param accNumber A string holding the account number requested by user
      */
-    public void checkStatus(String accNumber){
+    public String checkStatus(String accNumber){
 	//Iterate through the entire database
 	for (int i = 0; i < this.bankAccounts.size(); i++){
 	    //Look for the account that matches the accNumber
 	    if (accNumber.compareTo(this.bankAccounts.get(i).number_) == 0){
 		//found the account
-		System.out.println(this.bankAccounts.get(i).toString(true));
-		return;
+		return this.bankAccounts.get(i).toString(true);
 	    }
 	}
-	System.out.println("[BankAccounts->checkStatus]ERROR: Did not find the account!");
+	return "ERROR: BankAccounts::checkStatus did not find the account!";
     }
 
     /**

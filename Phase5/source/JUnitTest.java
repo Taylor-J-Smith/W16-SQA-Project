@@ -525,7 +525,7 @@ public class JUnitTest {
 	    
 	    //Now we compare the transactionList made by TransFileReader and the actual
 	    //Strings that are read from each individual transaction file
-	    int tApproxIndex = 0;
+	    int tActualIndex = 0;
 	    
 	    //Iterate through all the files in the given directory
 	    for (int i = 1; i < filenameArray.length; i++){
@@ -541,10 +541,10 @@ public class JUnitTest {
 		//Iterate over all the lines in the file
 		while(curr_trans_line != null){
 		    String expected = curr_trans_line;
-		    String actual = transactionList.get(tApproxIndex).toString();
+		    String actual = transactionList.get(tActualIndex).toString();
 		    // THE ACTUAL TEST -> compare the expected vs the actual
 		    assertEquals(expected,actual);
-		    tApproxIndex++;
+		    tActualIndex++; 
 		    curr_trans_line = trans_file.readLine();//read the next line
 		}
 		//close the file
@@ -556,6 +556,97 @@ public class JUnitTest {
 	    System.err.println("Caught IOException: " + e.getMessage());
 	}	
     }
+
+    // *****************BankAccounts.java******************
+    
+    @Test
+    //Tests to see if the mbaf file is read in and properly stores the Accounts in its internal
+    //private member database of accounts
+    public void bankAccountsConstructorTest(){
+	String mbafFilename = "old.mbaf";
+	//read in the Actual Master Bank Accounts file
+	ArrayList<Account> bActual = (new BankAccounts(mbafFilename)).getBankAccountsDatabase();
+	int actualIndex = 0;
+
+	//Read in the expected bank Accounts
+	try{
+	    //read in the mbaf file
+	    InputStream in = new FileInputStream(mbafFilename);
+	    Reader reader = new InputStreamReader(in, "UTF8");
+	    BufferedReader mbafFile = new BufferedReader(reader);
+
+	    //read the file in line by line
+	    String currAccLine = mbafFile.readLine();
+	    while (currAccLine != null){
+		//get the expected and actual accounts to Test
+		String expectedAccount = new Account(currAccLine).toString(true);
+		String actualAccount = bActual.get(actualIndex).toString(true);
+		//System.out.println(expectedAccount + ":::::" + actualAccount);
+		//The Actual Test that compares the expected vs the actual
+		assertEquals(expectedAccount, actualAccount);
+		
+		//read in the next line
+		actualIndex++;
+		currAccLine = mbafFile.readLine();
+	    }
+	    //Catch any exceptions thrown by reading in the mbaf file
+	} catch (IndexOutOfBoundsException e) {
+	    System.err.println("IndexOutOfBoundsException: " + e.getMessage());
+	} catch (IOException e) {
+	    System.err.println("Caught IOException: " + e.getMessage());
+	}
+    }
+
+    @Test
+    //Case where the account exists and returns it successfully from the database
+    public void getAccountTest1(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Account expectedAccount = b.getBankAccountsDatabase().get(0);
+	Account actualAccount = b.getAccount(expectedAccount.number_);
+	//System.out.println(expectedAccount.toString(true)); //temp
+	//System.out.println(actualAccount.toString(true)); //temp
+
+	//Compare the two accounts make sure they are the same
+	assertEquals(expectedAccount.number_, actualAccount.number_);
+	assertEquals(expectedAccount.name_, actualAccount.name_);
+	assertEquals(expectedAccount.status_, actualAccount.status_);
+	assertEquals(expectedAccount.balance_, actualAccount.balance_, ERROR_THRESHOLD);
+	assertEquals(expectedAccount.plan_, actualAccount.plan_);
+	assertEquals(expectedAccount.num_trans_, actualAccount.num_trans_);
+    }
+
+    @Test
+    //Case where the account being searched for does not exist - Expect an error
+    public void getAccountTest2(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Account actualAccount = b.getAccount("00000");
+	//Nothing to assert, expect an error
+    }
+
+    @Test
+    //Case where the account exists and returns it successfully from the database
+    public void checkStatusTest1(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Account expectedAccount = b.getBankAccountsDatabase().get(0);
+	String expectedAccountString = expectedAccount.toString(true);
+	String actualAccountString = b.checkStatus(expectedAccount.number_);
+
+	//compare the expected vs the actual
+	assertEquals(expectedAccountString, actualAccountString);
+    }
+
+    @Test
+    //Case where the account being searched for does not exist - Expect an error
+    public void checkStatusTest2(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	String expectedError = "ERROR: BankAccounts::checkStatus did not find the account!";
+	String actualError = b.checkStatus("00000");
+
+	//Compare the expected error vs the actual error
+	assertEquals(expectedError, actualError);
+    }
+
+    
     
     public static junit.framework.Test suite(){
 	return new JUnit4TestAdapter(JUnitTest.class);
