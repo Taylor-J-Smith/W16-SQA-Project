@@ -202,7 +202,7 @@ public class BankAccounts{
 		return;
 	    }
 	}
-	System.out.println("[BankAccounts->removeAccount]ERROR: Did not find the account!");
+	System.out.println("ERROR: BankAccounts::removeAccount did not find the account!");
 	return;
     }
 

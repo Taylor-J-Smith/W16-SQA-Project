@@ -646,7 +646,118 @@ public class JUnitTest {
 	assertEquals(expectedError, actualError);
     }
 
+    @Test
+    //Case where the account being searched for by checkExists() function actually exists
+    public void checkExistsTest1(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Account existingAccount = b.getBankAccountsDatabase().get(0);
+	//Check if the account is actually found
+	assertEquals(true, b.checkExists(existingAccount.name_));
+    }
+
+    @Test
+    //Case where the account being searched for by checkExists() function does NOT exist
+    public void checkExistsTest2(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	//Check if a non existent is being searched for that it returns false
+	assertEquals(false, b.checkExists(""));
+    }
+
+    @Test
+    //Case where getUniqueAccountNumber starts at 1 and finds the next available unique number
+    //**Note that this case covers every statement, the error at the end should never be reached
+    //but is put in place as a safety precaution that cannot be tested
+    public void getUniqueAccountNumberTest1(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	//00001 - 00006 are all taken, so we expect that 00007 is the next available
+	String expectedNumber = "00007";
+	assertEquals(expectedNumber, b.getUniqueAccountNumber());
+    }
+
+    @Test
+    //Check to see if an account exists = false, adds it, then check if it exists = true
+    public void addAcountTest(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Account a = new Account("00007 TESTUSER7            A 99999.99 N 0000");
+	assertEquals(false, b.checkExists("TESTUSER7           "));
+	b.addAccount(a); //adding the account to the database
+	assertEquals(true, b.checkExists("TESTUSER7           "));
+    }
+
+    @Test
+    //Check to see if an account that exists is successfully removed from the account database
+    public void removeAccountTest1(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	assertEquals(true, b.checkExists("TESTUSER1           "));
+	b.removeAccount("00001"); //adding the account to the database
+	assertEquals(false, b.checkExists("TESTUSER1           "));
+    }
     
+    @Test
+    //Check to see if an account that does NOT exists it simply throws an error when removing it
+    public void removeAccountTest2(){
+	BankAccounts b = new BankAccounts(mbafFilename);
+	b.removeAccount("00007"); //adding the account to the database
+	//Nothing to assert since we are expecting a printed error
+    }
+
+    @Test
+    //Check to see if the mbaf (with Transaction Numbers) was written successfully
+    public void writeToFileTest1() throws Exception{
+	boolean withTransactionNum = true;
+	
+	BankAccounts b = new BankAccounts(mbafFilename);
+	ArrayList<Account> bArrayList = b.getBankAccountsDatabase();
+	//Write the actual mbaf file
+	String actualMbafFilename = "new.mbaf";
+	b.writeToFile(actualMbafFilename, withTransactionNum);
+
+	//read in the mbaf file
+	InputStream in = new FileInputStream(actualMbafFilename);
+	Reader reader = new InputStreamReader(in, "UTF8");
+	BufferedReader mbafFile = new BufferedReader(reader);
+
+	//set an index to keep track of the expected Account we are on
+	int expectedIndex = 0;
+	//read the file in line by line	
+	String actualAccountString = mbafFile.readLine();
+	while (actualAccountString != null){
+	    String expectedAccountString = bArrayList.get(expectedIndex).toString(withTransactionNum);
+	    //System.out.println(expectedAccountString + "::::" + actualAccountString);
+	    assertEquals(expectedAccountString, actualAccountString);
+	    expectedIndex++; //increment the expected index
+	    actualAccountString = mbafFile.readLine(); //read the next line
+	}	
+    }
+
+    @Test
+    //Check to see if the cbaf (WITHOUT Transaction Numbers) was written successfully
+    public void writeToFileTest2() throws Exception{
+	boolean withTransactionNum = false;
+	
+	BankAccounts b = new BankAccounts(mbafFilename);
+	ArrayList<Account> bArrayList = b.getBankAccountsDatabase();
+	//Write the actual mbaf file
+	String actualMbafFilename = "new.cbaf";
+	b.writeToFile(actualMbafFilename, withTransactionNum);
+
+	//read in the mbaf file
+	InputStream in = new FileInputStream(actualMbafFilename);
+	Reader reader = new InputStreamReader(in, "UTF8");
+	BufferedReader mbafFile = new BufferedReader(reader);
+
+	//set an index to keep track of the expected Account we are on
+	int expectedIndex = 0;
+	//read the file in line by line	
+	String actualAccountString = mbafFile.readLine();
+	while (actualAccountString != null){
+	    String expectedAccountString = bArrayList.get(expectedIndex).toString(withTransactionNum);
+	    //System.out.println(expectedAccountString + "::::" + actualAccountString);
+	    assertEquals(expectedAccountString, actualAccountString);
+	    expectedIndex++; //increment the expected index
+	    actualAccountString = mbafFile.readLine(); //read the next line
+	}	
+    }
     
     public static junit.framework.Test suite(){
 	return new JUnit4TestAdapter(JUnitTest.class);
