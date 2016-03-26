@@ -10,7 +10,9 @@ import java.util.*;
  * @since       2016-03-26
  */
 
-public class JUnitTest {
+//A set of JUnit Test cases for each method with statement coverage
+public class JUnitStmtCov {    
+    //Define the constants used for test cases
     double ERROR_THRESHOLD = 1e-2;
     double STUDENT_FEE = 0.05;
     double STANDARD_FEE = 0.10;
@@ -760,6 +762,6 @@ public class JUnitTest {
     }
     
     public static junit.framework.Test suite(){
-	return new JUnit4TestAdapter(JUnitTest.class);
+	return new JUnit4TestAdapter(JUnitStmtCov.class);
     }
 }

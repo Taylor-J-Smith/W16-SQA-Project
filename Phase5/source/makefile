@@ -4,8 +4,11 @@ compile:
 
 run: compile
 	java backEnd old.mbaf trans-files/*.tf
-test: compile
-	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitTest
+test: test1 test2
+test1: compile
+	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitStmtCov
+test2: compile
+	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitDecCov
 clean:
 	rm *.class
 	rm *~
