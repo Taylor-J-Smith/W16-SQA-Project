@@ -1,3 +1,5 @@
+import java.text.*;
+
 /**
  * @author      ATT 
  * @version     1.0
@@ -36,17 +38,17 @@ public class Transaction{
      * number should be included in the final string being returned
      */
     public Transaction(String transactionFileLine){      
-      this.transactionCode = transactionFileLine.substring(TRANSACTION_CODE_START,
-							   TRANSACTION_CODE_END);
-      this.transactionType = TransactionName.values()[Integer.parseInt(transactionCode)];
-      this.accountName = transactionFileLine.substring(ACCOUNT_NAME_START,
-						       ACCOUNT_NAME_END);
-      this.accountNumber = transactionFileLine.substring(ACCOUNT_NUMBER_START,
-							 ACCOUNT_NUMBER_END);
-      this.fundsInvolved = Float.parseFloat(transactionFileLine.substring(FUNDS_INVOLVED_START,
-									  FUNDS_INVOLVED_END));
-      this.misc = transactionFileLine.substring(MISC_START,
-						MISC_END);      
+	this.transactionCode = transactionFileLine.substring(TRANSACTION_CODE_START,
+							     TRANSACTION_CODE_END);
+	this.transactionType = TransactionName.values()[Integer.parseInt(transactionCode)];
+	this.accountName = transactionFileLine.substring(ACCOUNT_NAME_START,
+							 ACCOUNT_NAME_END);
+	this.accountNumber = transactionFileLine.substring(ACCOUNT_NUMBER_START,
+							   ACCOUNT_NUMBER_END);
+	this.fundsInvolved = Float.parseFloat(transactionFileLine.substring(FUNDS_INVOLVED_START,
+									    FUNDS_INVOLVED_END));
+	this.misc = transactionFileLine.substring(MISC_START,
+						  MISC_END);      
     }
     
     String transactionCode;
@@ -66,20 +68,22 @@ public class Transaction{
      */    
     @Override
     public String toString(){
-      String returnString = "";
+	//Set the format of how the transaction balance will be read
+	DecimalFormat df = new DecimalFormat("#.00");
+	String returnString = "";
       
-      String paddedFundsInvolved = String.valueOf(fundsInvolved);
+	String paddedFundsInvolved = df.format(this.fundsInvolved);
       
-      while(paddedFundsInvolved.length() < 8){
-        paddedFundsInvolved = "0" + paddedFundsInvolved;
-      }
+	while(paddedFundsInvolved.length() < 8){
+	    paddedFundsInvolved = "0" + paddedFundsInvolved;
+	}
       
-      returnString += this.transactionCode;
-      returnString += this.accountName;
-      returnString += this.accountNumber;
-      returnString += paddedFundsInvolved;
-      returnString += this.misc;
+	returnString += this.transactionCode + " ";
+	returnString += this.accountName + " ";
+	returnString += this.accountNumber + " ";
+	returnString += paddedFundsInvolved + " ";
+	returnString += this.misc;
       
-      return returnString;
+	return returnString;
     }
 }

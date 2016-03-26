@@ -19,11 +19,13 @@ public class JUnitTest {
        99997 TESTSTUDENT2         A 00005.05 S 0000
        99998 TESTSTUDENT1         A 99999.99 S 0000
     */
+    
     // *****************TransactionHandler.java******************
+    
     //---------LOGIN-------
     @Test
+    //check if account is a non-student account (ie isAdmin=false)
     public void loginTest1() {
-	//check if account is a non-student account (ie isAdmin=false)
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction t = new Transaction("00 TESTUSER1            00001 00000.00 S ");
 	TransactionHandler.login(t,b);
@@ -31,8 +33,8 @@ public class JUnitTest {
     }
 
     @Test
+    //check if account is a student account (ie isAdmin=true)
     public void loginTest2() {
-	//check if account is a student account (ie isAdmin=true)
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction t = new Transaction("10 ADMIN                00000 00000.00 A ");
 	assertEquals(false, TransactionHandler.getIsAdmin()); //should not be admin
@@ -42,8 +44,8 @@ public class JUnitTest {
 
     //---------LOGOUT-------
     @Test
+    //Check if the logout changes the isAdmin member from true to false on logout
     public void logoutTest() {
-	//Check if the logout changes the isAdmin member from true to false on logout
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction t = new Transaction("10 ADMIN                00000 00000.00 A ");
 	TransactionHandler.login(t,b); //Set account to admin
@@ -55,8 +57,8 @@ public class JUnitTest {
 
     //---------WITHDRAWAL-------
     @Test
+    //ADMIN case - check if amount was removed from account
     public void withdrawalTest1() {
-	//ADMIN case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
 	Transaction tWithdrawal = new Transaction("01 TESTUSER1            00001 00005.00   ");
@@ -70,8 +72,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - check if amount was removed from account
     public void withdrawalTest2() {
-	//STANDARD case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
 	Transaction tWithdrawal = new Transaction("01 TESTUSER1            00001 00005.00   ");
@@ -85,8 +87,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STUDENT case - check if amount was removed from account
     public void withdrawalTest3() {
-	//STUDENT case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99998 00000.00 S ");
 	Transaction tWithdrawal = new Transaction("10 TESTSTUDENT1         99998 00005.00 S ");
@@ -100,8 +102,8 @@ public class JUnitTest {
     }
 
     @Test
+    //Attempt to withdrawal more funds than possible - Expect Error
     public void withdrawalTest4() {
-	//Attempt to withdrawal more funds than possible - Expect Error
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT3         99996 00000.00 S ");
 	Transaction tWithdrawal = new Transaction("10 TESTSTUDENT1         99996 00005.00 S ");
@@ -116,8 +118,8 @@ public class JUnitTest {
 
     //----------------------TRANSFER PLACEHOLDER---------------
     @Test
+    //ADMIN case - check if amount was removed from account
     public void transferTest1() {
-	//ADMIN case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
 	Transaction tTransfer1 = new Transaction("02 TESTUSER1            00001 00001.00   ");
@@ -137,8 +139,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - check if amount was removed from account
     public void transferTest2() {
-	//STANDARD case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTUSER1            00001 00001.00   ");
@@ -158,8 +160,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STUDENT case - check if amount was removed from account
     public void transferTest3() {
-	//STUDENT case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT1         99998 00001.00 S ");
@@ -179,8 +181,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - Fee places first account at negative balance, expect error
     public void transferTest4() {
-	//STANDARD case - Fee places first account at negative balance, expect error
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00005.10 S ");
@@ -200,8 +202,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - Fee places second account at negative balance, expect error
     public void transferTest5() {
-	//STANDARD case - Fee places second account at negative balance, expect error
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER2            00002 00000.00 S ");
 	Transaction tTransfer1 = new Transaction("02 TESTSTUDENT2         00002 00000.01 S ");
@@ -222,8 +224,8 @@ public class JUnitTest {
 
     //---------PAYBILL-------
     @Test
+    //ADMIN case - check if amount was removed from account
     public void paybillTest1() {
-	//ADMIN case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
 	Transaction tPaybill = new Transaction("01 TESTUSER1            00001 00005.00   ");
@@ -237,8 +239,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - check if amount was removed from account
     public void paybillTest2() {
-	//STANDARD case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
 	Transaction tPaybill = new Transaction("01 TESTUSER1            00001 00005.00   ");
@@ -252,8 +254,8 @@ public class JUnitTest {
     }
 
     @Test
+    //STUDENT case - check if amount was removed from account
     public void paybillTest3() {
-	//STUDENT case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99998 00000.00 S ");
 	Transaction tPaybill = new Transaction("10 TESTSTUDENT1         99998 00005.00 S ");
@@ -267,8 +269,8 @@ public class JUnitTest {
     }
 
     @Test
+    //Attempt to paybill more funds than possible - Expect Error
     public void paybillTest4() {
-	//Attempt to paybill more funds than possible - Expect Error
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT3         99996 00000.00 S ");
 	Transaction tPaybill = new Transaction("10 TESTSTUDENT1         99996 00005.00 S ");
@@ -283,11 +285,11 @@ public class JUnitTest {
 
     //---------DEPOSIT-------
     @Test
+    //ADMIN case - check if amount was removed from account
     public void depositTest1() {
-	//ADMIN case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-	Transaction tDeposit = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Transaction tDeposit = new Transaction("04 TESTUSER1            00001 00005.00   ");
 	Account currAccount = b.getAccount(tDeposit.accountNumber);
 	TransactionHandler.login(tAdminLogin,b); //Set account to admin
 	assertEquals(currAccount.balance_,99999.99, ERROR_THRESHOLD); //verify the initial funds
@@ -298,11 +300,11 @@ public class JUnitTest {
     }
 
     @Test
+    //STANDARD case - check if amount was removed from account
     public void depositTest2() {
-	//STANDARD case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER1            00001 00000.00 S ");
-	Transaction tDeposit = new Transaction("01 TESTUSER1            00001 00005.00   ");
+	Transaction tDeposit = new Transaction("04 TESTUSER1            00001 00005.00   ");
 	Account currAccount = b.getAccount(tDeposit.accountNumber);
 	TransactionHandler.login(tStdLogin,b); //Set account to admin
 	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
@@ -313,11 +315,11 @@ public class JUnitTest {
     }
 
     @Test
+    //STUDENT case - check if amount was removed from account
     public void depositTest3() {
-	//STUDENT case - check if amount was removed from account
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99998 00000.00 S ");
-	Transaction tDeposit = new Transaction("10 TESTSTUDENT1         99998 00005.00 S ");
+	Transaction tDeposit = new Transaction("04 TESTSTUDENT1         99998 00005.00 S ");
 	Account currAccount = b.getAccount(tDeposit.accountNumber);
 	TransactionHandler.login(tStudentLogin,b); //Set account to admin
 	assertEquals(99999.99, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
@@ -328,11 +330,11 @@ public class JUnitTest {
     }
 
     @Test
+    //Attempt to deposit more funds than possible - Expect Error
     public void depositTest4() {
-	//Attempt to deposit more funds than possible - Expect Error
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStdLogin = new Transaction("10 TESTUSER5            00005 00000.00   ");
-	Transaction tDeposit = new Transaction("01 TESTUSER5            00005 00000.01   ");
+	Transaction tDeposit = new Transaction("04 TESTUSER5            00005 00000.01   ");
 	Account currAccount = b.getAccount(tDeposit.accountNumber);
 	TransactionHandler.login(tStdLogin,b); //Set account to admin
 	assertEquals(0.0, currAccount.balance_, ERROR_THRESHOLD); //verify the initial funds
@@ -343,6 +345,7 @@ public class JUnitTest {
     }
     
     @Test
+    //Check to see if the account was actually created
     public void createTest1(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -355,6 +358,7 @@ public class JUnitTest {
     }
 
     @Test
+    //Check if the funds of the original account were the same
     public void createTest2(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -369,6 +373,7 @@ public class JUnitTest {
     
 
     @Test
+    //If the account is successfully removed from the bank database
     public void deleteTest(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -381,6 +386,7 @@ public class JUnitTest {
     }
 
     @Test
+    //Check if the account is disabled with the "D" flag in its status_ member
     public void disableTest(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -393,6 +399,7 @@ public class JUnitTest {
     }
 
     @Test
+    //Change an account from Non-Student "N" to Student "S" with changeplan
     public void changeplanTest1(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -404,17 +411,19 @@ public class JUnitTest {
     }
 
     @Test
+    //Change an account from Student "S" to Non-Student "N" with changeplan
     public void changeplanTest2(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-	Transaction tChangeplan = new Transaction("08 TESTSTUDENT3         00001 00000.00 A ");
+	Transaction tChangeplan = new Transaction("08 TESTSTUDENT3         99996 00000.00 A ");
 	TransactionHandler.login(tAdminLogin,b); //Set account to admin
-	assertEquals("N", b.getAccount("00001").plan_);
+	assertEquals("S", b.getAccount("99996").plan_);
 	TransactionHandler.changeplan(tChangeplan, b);
-	assertEquals("S", b.getAccount("00001").plan_);
+	assertEquals("N", b.getAccount("99996").plan_);
     }
 
     @Test
+    //See if an already disactivated account "D" is actived "A" after calling enable
     public void enableTest(){
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
@@ -429,6 +438,7 @@ public class JUnitTest {
     // *****************Account.java******************
     
     @Test
+    //Check to see if the Account Constructor class correctly parses the raw account string
     public void accountConstructorTest(){
 	Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
 	assertEquals("TESTUSER1           ", a.name_);
@@ -441,15 +451,38 @@ public class JUnitTest {
 
     
     @Test
+    //If the toString() function properly outputs the account object into a string
     public void accountToStringTest1(){
 	Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
 	assertEquals("00001 TESTUSER1            A 99999.99", a.toString(false));
     }
 
+        
+    // *****************Transaction.java******************
+    
+    @Test
+    //Check to see if the constructors parses and stores the raw
+    //transaction string correctly
+    public void transactionConstructorTest(){
+	Transaction tDeposit = new Transaction("04 TESTUSER5            00005 00000.01 A ");
+	assertEquals("04", tDeposit.transactionCode);
+	assertEquals("DEPOSIT", tDeposit.transactionType.toString());
+	assertEquals("TESTUSER5           ", tDeposit.accountName);
+	assertEquals("00005", tDeposit.accountNumber);
+	assertEquals(0.01, tDeposit.fundsInvolved, ERROR_THRESHOLD);
+	assertEquals("A ", tDeposit.misc);
+    }
+
+    //Test to see if the toString() function properly outputs a transaction object
+    @Test    
+    public void transactionToStringTest(){
+	String tRawString = "04 TESTUSER5            00005 00000.01 A ";
+	Transaction tDeposit = new Transaction(tRawString);
+	assertEquals(tRawString, tDeposit.toString());
+    }
+
     public static junit.framework.Test suite(){
 	return new JUnit4TestAdapter(JUnitTest.class);
     }
-    
-    // *****************Transaction.java******************
 
 }
