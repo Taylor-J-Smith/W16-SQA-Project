@@ -494,7 +494,7 @@ public class JUnitStmtCov {
 
     //*****************TransFileReader.java******************
     @Test
-    //See if all the transaction files are read correctly into the inernal ArrayList
+    //See if all the transaction files are read correctly into the internal ArrayList
     public void transFileReaderTest(){
 	//First we create a String of transaction filenames that replicates the
 	//args[] used to call the back end, and then call the TransactionFileReader with them
