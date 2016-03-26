@@ -16,7 +16,7 @@ public class TransFileReader{
 
 	try {
 	    //Create a writer for the merged transaction file
-	    String merged_trans_file = "trans-files/mergedTransactions.tf";
+	    String merged_trans_file = "mergedTransactions.tf";
 	    File outFile = new File(merged_trans_file);
 	    Writer writer = new BufferedWriter(
 					       new OutputStreamWriter(
@@ -24,6 +24,7 @@ public class TransFileReader{
 	    
 	    //Iterate through all the transaction files - ignore 1st since it is mbaf
 	    for (int i = 1; i < trans_file_names.length; i++) {
+		//System.out.println(trans_file_names[i]); //temp
 		//read in the current transaction file
 		InputStream in = new FileInputStream(trans_file_names[i]);
 		Reader reader = new InputStreamReader(in, "UTF8");
@@ -53,9 +54,9 @@ public class TransFileReader{
 	}	
 
 	//TEMP - read out all the transactions from the arraylist
-	for (int i = 0; i < transactions_list.size(); i++){
+	//for (int i = 0; i < transactions_list.size(); i++){
 	    //System.out.println(this.transactions_list.get(i));
-	}
+	//}
   
 	return transactions_list;
     }

@@ -1,6 +1,14 @@
 import static org.junit.Assert.*;
+import java.io.*;
 import junit.framework.JUnit4TestAdapter;
 import org.junit.Test;
+import java.util.*;
+
+/**
+ * @author      ATT 
+ * @version     1.0
+ * @since       2016-03-26
+ */
 
 public class JUnitTest {
     double ERROR_THRESHOLD = 1e-2;
@@ -481,8 +489,75 @@ public class JUnitTest {
 	assertEquals(tRawString, tDeposit.toString());
     }
 
+
+    //*****************TransFileReader.java******************
+    @Test
+    //See if all the transaction files are read correctly into the inernal ArrayList
+    public void transFileReaderTest(){
+	//First we create a String of transaction filenames that replicates the
+	//args[] used to call the back end, and then call the TransactionFileReader with them
+	try{
+	    String transFileDir = "trans-files/";
+	    File[] files = new File(transFileDir).listFiles();
+	    //Store the files into an arraylist
+	    ArrayList<String> filenameArrayList = new ArrayList<String>();
+	    //Add placehold in first index of arraylist since TransFileReader takes in an array
+	    //with the first element being the old.mbaf file which is not relevant to this test
+	    filenameArrayList.add("mbaf_placeholder");
+	    //Add all the files in the given tf directory
+	    for (File file: files){
+		if (file.isFile() &&
+		    file.getName().substring(file.getName().length() -1).compareTo("~") != 0){
+		    filenameArrayList.add(transFileDir + file.getName());
+		}
+	    }
+
+	    //sort the filenames in alphabetical order
+	    Collections.sort(filenameArrayList);
+	    
+	    //Convert the arrayList into a regular array since TransFileReader Constructurs requires
+	    String[] filenameArray = new String[filenameArrayList.size()];
+	    filenameArray = filenameArrayList.toArray(filenameArray);
+	    //filenameArray now holds the same array as args[] used to call backEnd
+
+	    //Load the transaction files with TransactionFileReader
+	    ArrayList<Transaction> transactionList = TransFileReader.read(filenameArray);
+	    
+	    //Now we compare the transactionList made by TransFileReader and the actual
+	    //Strings that are read from each individual transaction file
+	    int tApproxIndex = 0;
+	    
+	    //Iterate through all the files in the given directory
+	    for (int i = 1; i < filenameArray.length; i++){
+		String transFilename = filenameArray[i];
+		//System.out.println(transFilename); //temp
+		//create the java boilerplate code for reading in file
+		InputStream in = new FileInputStream(transFilename);
+		Reader reader = new InputStreamReader(in, "UTF8");
+		BufferedReader trans_file = new BufferedReader(reader);
+
+		//holds every line that will be read in
+		String curr_trans_line = trans_file.readLine();
+		//Iterate over all the lines in the file
+		while(curr_trans_line != null){
+		    String expected = curr_trans_line;
+		    String actual = transactionList.get(tApproxIndex).toString();
+		    // THE ACTUAL TEST -> compare the expected vs the actual
+		    assertEquals(expected,actual);
+		    tApproxIndex++;
+		    curr_trans_line = trans_file.readLine();//read the next line
+		}
+		//close the file
+		trans_file.close();
+	    }   
+	} catch (IndexOutOfBoundsException e) {
+	    System.err.println("IndexOutOfBoundsException: " + e.getMessage());
+	} catch (IOException e) {
+	    System.err.println("Caught IOException: " + e.getMessage());
+	}	
+    }
+    
     public static junit.framework.Test suite(){
 	return new JUnit4TestAdapter(JUnitTest.class);
     }
-
 }
