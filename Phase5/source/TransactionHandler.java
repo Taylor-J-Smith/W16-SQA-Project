@@ -261,8 +261,8 @@ public class TransactionHandler{
      */
     public static void create(Transaction t, BankAccounts b){
 	String newAccountNumber = "";
-    	System.out.println(t.transactionType);
-	b.checkStatus(t.accountNumber); //temp
+    	//System.out.println(t.transactionType);
+	//b.checkStatus(t.accountNumber); //temp
 	if(!b.checkExists(t.accountName)){
 	    //accunt does not exist
 	    newAccountNumber =  b.getUniqueAccountNumber();
@@ -287,7 +287,7 @@ public class TransactionHandler{
 	    //System.out.println(newAccount.toString()); //temp
 	    b.addAccount(newAccount);//add the account to the database
 	};
-	b.checkStatus(newAccountNumber); //temp
+	//b.checkStatus(newAccountNumber); //temp
     }
 
     /**
@@ -301,10 +301,10 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void delete(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
-	b.checkStatus(t.accountNumber); //temp
-	//b.removeAccount(t.accountNumber);  //other tests depend on this account
-	b.checkStatus(t.accountNumber); //temp
+    	//System.out.println(t.transactionType);
+	//b.checkStatus(t.accountNumber); //temp
+	b.removeAccount(t.accountNumber);  //other tests depend on this account
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**
@@ -318,10 +318,10 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void disable(Transaction t, BankAccounts b){
-    	System.out.println(t.transactionType);
-	b.checkStatus(t.accountNumber); //temp
+    	//System.out.println(t.transactionType);
+	//b.checkStatus(t.accountNumber); //temp
 	b.getAccount(t.accountNumber).status_ = "D";
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**
@@ -336,15 +336,15 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void changeplan(Transaction t, BankAccounts b){	
-    	System.out.println(t.transactionType);
-	b.checkStatus(t.accountNumber); //temp
+    	//System.out.println(t.transactionType);
+	//b.checkStatus(t.accountNumber); //temp
 	String currentPlan = b.getAccount(t.accountNumber).plan_;
 	if (currentPlan.compareTo("N") == 0){
 	    b.getAccount(t.accountNumber).plan_ = "S";
 	}else{
 	    b.getAccount(t.accountNumber).plan_ = "N";
 	}
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**
@@ -358,10 +358,10 @@ public class TransactionHandler{
      * the bank accounts in the system
      */
     public static void enable(Transaction t, BankAccounts b){
-	System.out.println(t.transactionType);
-	b.checkStatus(t.accountNumber); //temp
+	//System.out.println(t.transactionType);
+	//b.checkStatus(t.accountNumber); //temp
 	b.getAccount(t.accountNumber).status_ = "A";
-	b.checkStatus(t.accountNumber); //temp
+	//b.checkStatus(t.accountNumber); //temp
     }
 
     /**

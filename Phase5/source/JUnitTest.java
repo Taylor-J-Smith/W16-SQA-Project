@@ -18,7 +18,7 @@ public class JUnitTest {
        99996 TESTSTUDENT3         A 00005.00 S 0000
        99997 TESTSTUDENT2         A 00005.05 S 0000
        99998 TESTSTUDENT1         A 99999.99 S 0000
-     */
+    */
     // *****************TransactionHandler.java******************
     //---------LOGIN-------
     @Test
@@ -341,109 +341,115 @@ public class JUnitTest {
 	//The final balance should not have changed from original since invalid transaction
 	assertEquals(0.0, currAccount.balance_, ERROR_THRESHOLD);
     }
-
+    
     @Test
     public void createTest1(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tCreate = new Transaction("05 AAAAAAAAAAAAAAAAAAAA 00000 00500.00 A ");
-      assertEquals(false, b.checkExists(tCreate.accountName)); //verify the account doesnt exist
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      TransactionHandler.create(tCreate,b);
-      assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account exists now
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tCreate = new Transaction("05 AAAAAAAAAAAAAAAAAAAA 00000 00500.00 A ");
+	assertEquals(false, b.checkExists(tCreate.accountName)); //verify the account doesnt exist
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	TransactionHandler.create(tCreate,b);
+	assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account exists now
 
     }
 
     @Test
     public void createTest2(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tCreate = new Transaction("05 TESTUSER1            00000 00500.00 A ");
-      assertEquals(true, b.checkExists(tCreate.accountName));
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      TransactionHandler.create(tCreate,b);
-      assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account still exists
-      assertEquals(99999.99, b.getAccount("00001").balance_, ERROR_THRESHOLD); //verify the funds were unchanged by create
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tCreate = new Transaction("05 TESTUSER1            00000 00500.00 A ");
+	assertEquals(true, b.checkExists(tCreate.accountName));
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	TransactionHandler.create(tCreate,b);
+	assertEquals(true, b.checkExists(tCreate.accountName)); //verify the account still exists
+	assertEquals(99999.99, b.getAccount("00001").balance_, ERROR_THRESHOLD); //verify the funds were unchanged by create
 
     }
+    
 
     @Test
     public void deleteTest(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tDelete = new Transaction("05 TESTUSER1            00000 00500.00 A ");
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      assertEquals(true, b.checkExists(tDelete.accountName)); //verify the account exists
-      TransactionHandler.delete(tDelete, b);
-      //assertEquals(false, b.checkExists(tCreate.accountName)); //verify the account has been deleted
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tDelete = new Transaction("06 TESTUSER1            00001 00000.00 A ");
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals(true, b.checkExists(tDelete.accountName)); //verify the account exists
+	TransactionHandler.delete(tDelete, b);
+	assertEquals(false, b.checkExists(tDelete.accountName)); //verify the account has been deleted
 
     }
 
     @Test
     public void disableTest(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tDisable = new Transaction("07 TESTUSER1            00001 00000.00 A ");
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      assertEquals("A", b.getAccount("00001").status_);
-      TransactionHandler.disable(tDisable, b);
-      assertEquals("D", b.getAccount("00001").status_);
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tDisable = new Transaction("07 TESTUSER1            00001 00000.00 A ");
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals("A", b.getAccount("00001").status_);
+	TransactionHandler.disable(tDisable, b);
+	assertEquals("D", b.getAccount("00001").status_);
 
     }
 
     @Test
     public void changeplanTest1(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tChangeplan = new Transaction("08 TESTUSER1            00001 00000.00 A ");
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      assertEquals("N", b.getAccount("00001").plan_);
-      TransactionHandler.changeplan(tChangeplan, b);
-      assertEquals("S", b.getAccount("00001").plan_);
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tChangeplan = new Transaction("08 TESTUSER1            00001 00000.00 A ");
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals("N", b.getAccount("00001").plan_);
+	TransactionHandler.changeplan(tChangeplan, b);
+	assertEquals("S", b.getAccount("00001").plan_);
     }
 
     @Test
     public void changeplanTest2(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tChangeplan = new Transaction("08 TESTSTUDENT3         00001 00000.00 A ");
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      assertEquals("N", b.getAccount("00001").plan_);
-      TransactionHandler.changeplan(tChangeplan, b);
-      assertEquals("S", b.getAccount("00001").plan_);
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tChangeplan = new Transaction("08 TESTSTUDENT3         00001 00000.00 A ");
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals("N", b.getAccount("00001").plan_);
+	TransactionHandler.changeplan(tChangeplan, b);
+	assertEquals("S", b.getAccount("00001").plan_);
     }
 
     @Test
     public void enableTest(){
-      BankAccounts b = new BankAccounts(mbafFilename);
-      Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
-      Transaction tEnable = new Transaction("09 TESTUSER4            00004 00000.00 A ");
-      TransactionHandler.login(tAdminLogin,b); //Set account to admin
-      assertEquals("D", b.getAccount("00004").status_);
-      TransactionHandler.enable(tEnable, b);
-      assertEquals("A", b.getAccount("00004").status_);
+	BankAccounts b = new BankAccounts(mbafFilename);
+	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
+	Transaction tEnable = new Transaction("09 TESTUSER4            00004 00000.00 A ");
+	TransactionHandler.login(tAdminLogin,b); //Set account to admin
+	assertEquals("D", b.getAccount("00004").status_);
+	TransactionHandler.enable(tEnable, b);
+	assertEquals("A", b.getAccount("00004").status_);
 
     }
 
+    // *****************Account.java******************
+    
     @Test
     public void accountConstructorTest(){
-      Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
-      assertEquals("TESTUSER1           ", a.name_);
-      assertEquals("00001", a.number_);
-      assertEquals("A", a.status_);
-      assertEquals(99999.99, a.balance_, ERROR_THRESHOLD);
-      assertEquals("N", a.plan_);
-      assertEquals(0, a.num_trans_);
-
+	Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
+	assertEquals("TESTUSER1           ", a.name_);
+	assertEquals("00001", a.number_);
+	assertEquals("A", a.status_);
+	assertEquals(99999.99, a.balance_, ERROR_THRESHOLD);
+	assertEquals("N", a.plan_);
+	assertEquals(0, a.num_trans_);
     }
 
+    
     @Test
     public void accountToStringTest1(){
-      Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
-      assertEquals("00001 TESTUSER1            A 99999.99", a.toString(false));
+	Account a = new Account("00001 TESTUSER1            A 99999.99 N 0000");
+	assertEquals("00001 TESTUSER1            A 99999.99", a.toString(false));
     }
 
     public static junit.framework.Test suite(){
-       return new JUnit4TestAdapter(JUnitTest.class);
+	return new JUnit4TestAdapter(JUnitTest.class);
     }
+    
+    // *****************Transaction.java******************
+
 }

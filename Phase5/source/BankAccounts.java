@@ -186,8 +186,8 @@ public class BankAccounts{
 	for (int i = 0; i < this.bankAccounts.size(); i++){
 	    //Look for the acount that matches the account number provided in the parameter
 	    if (accountNumber.compareTo(this.bankAccounts.get(i).number_) == 0){
-		//found the account - remove it
-		this.bankAccounts.remove(i);
+		//found the account - remove it		
+		this.bankAccounts.remove(i);		
 		return;
 	    }
 	}
