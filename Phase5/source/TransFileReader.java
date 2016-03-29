@@ -7,6 +7,8 @@ import java.util.ArrayList;
  * @since       2016-03-16
  */
 
+
+//Take in all the transaction files, and merges them into a single transaction file. Then an internal datastructure of transactions.
 public class TransFileReader{
       
     public static ArrayList<Transaction> read(String[] trans_file_names){

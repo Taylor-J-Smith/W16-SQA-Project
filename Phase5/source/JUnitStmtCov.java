@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+ import static org.junit.Assert.*;
 import java.io.*;
 import junit.framework.JUnit4TestAdapter;
 import org.junit.Test;
@@ -759,6 +759,107 @@ public class JUnitStmtCov {
 	    expectedIndex++; //increment the expected index
 	    actualAccountString = mbafFile.readLine(); //read the next line
 	}	
+    }
+
+    // *****************backEnd.java******************
+
+    @Test
+    //Test the backend main function that is the main control loop of the program
+    //Responsible for loading in the bank accounts, transactions and finally run
+    //each transaction by calling its respective handler
+    //NOTE** There is no delete transaction since all accounts are needed to
+    //run every other transaction
+    public void mainTest1(){
+	//Obtain all the transaction file names in the trans-files/ directory
+	String transFileDir = "trans-files/";
+	File[] files = new File(transFileDir).listFiles();
+	//Store the files into an arraylist
+	ArrayList<String> filenameArrayList = new ArrayList<String>();
+
+	//Add the master bank accounts file as the first argument
+	filenameArrayList.add("old.mbaf");
+	//Add all the files in the given tf directory
+	for (File file: files){
+	    if (file.isFile() &&
+		file.getName().substring(file.getName().length() -1).compareTo("~") != 0){
+		filenameArrayList.add(transFileDir + file.getName());
+	    }
+	}
+
+	//sort the filenames in alphabetical order
+	Collections.sort(filenameArrayList);
+
+	//Convert the arrayList into a regular array since TransFileReader Constructurs requires
+	String[] filenameArray = new String[filenameArrayList.size()];
+	filenameArray = filenameArrayList.toArray(filenameArray);
+
+	//call the back end and ensure that there are no errors
+	backEnd.main(filenameArray);
+
+	//Compare the expected cbaf and mbaf to the actual cbaf and mbaf generated
+	//Read in the expected bank Accounts
+	try{
+	    String expectedMbafFilename = "expected-new.mbaf";
+	    String expectedCbafFilename = "expected-new.cbaf";
+	    String mbafFilename = "new.mbaf";
+	    String cbafFilename = "new.cbaf";
+	    //read in the expected mbaf file
+	    InputStream in = new FileInputStream(expectedMbafFilename);
+	    Reader reader = new InputStreamReader(in, "UTF8");
+	    BufferedReader expectedMbaf = new BufferedReader(reader);
+
+	    //read in the expected mbaf file
+	    in = new FileInputStream(expectedCbafFilename);
+	    reader = new InputStreamReader(in, "UTF8");
+	    BufferedReader expectedCbaf = new BufferedReader(reader);
+
+	    //read in the expected mbaf file
+	    in = new FileInputStream(mbafFilename);
+	    reader = new InputStreamReader(in, "UTF8");
+	    BufferedReader mbaf = new BufferedReader(reader);
+
+	    //read in the expected mbaf file
+	    in = new FileInputStream(cbafFilename);
+	    reader = new InputStreamReader(in, "UTF8");
+	    BufferedReader cbaf = new BufferedReader(reader);
+
+	    //Compare the expected MBAF and the actual MBAF files
+	    String expectMbafLine = expectedMbaf.readLine();
+	    String mbafLine = mbaf.readLine();
+	    while (expectMbafLine != null && mbafLine != null){
+		//get the expected and actual lines to test
+		//System.out.println(expectMbafLine + ":::::" + mbafLine);
+		assertEquals(expectMbafLine,mbafLine);
+		
+		//read in the next lines
+		mbafLine = mbaf.readLine();
+		expectMbafLine = expectedMbaf.readLine();
+	    }
+
+	    //Compare the expected CBAF and the actual CBAF files
+	    //get the expected and actual lines to test and
+	    String expectCbafLine = expectedCbaf.readLine();
+	    String cbafLine = cbaf.readLine();
+	    while (expectCbafLine != null && cbafLine != null){
+		//Assert that the expect cbaf and actual cbaf lines match
+		assertEquals(expectCbafLine,cbafLine);
+		
+		//read in the next lines
+		cbafLine = cbaf.readLine();
+		expectCbafLine = expectedCbaf.readLine();
+	    }
+
+	    //Close the files
+	    expectedMbaf.close();
+	    expectedCbaf.close();
+	    mbaf.close();
+	    cbaf.close();
+	    //Catch any exceptions thrown by reading in the mbaf file
+	} catch (IndexOutOfBoundsException e) {
+	    System.err.println("IndexOutOfBoundsException: " + e.getMessage());
+	} catch (IOException e) {
+	    System.err.println("Caught IOException: " + e.getMessage());
+	}
     }
     
     public static junit.framework.Test suite(){
