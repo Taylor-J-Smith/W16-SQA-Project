@@ -766,9 +766,8 @@ public class JUnitStmtCov {
     @Test
     //Test the backend main function that is the main control loop of the program
     //Responsible for loading in the bank accounts, transactions and finally run
-    //each transaction by calling its respective handler
-    //NOTE** There is no delete transaction since all accounts are needed to
-    //run every other transaction
+    //each transaction by calling its respective handler. Then finally compare the
+    //output mbaf and cbaf files vs the expected mbaf and cbaf files
     public void mainTest1(){
 	//Obtain all the transaction file names in the trans-files/ directory
 	String transFileDir = "trans-files/";
