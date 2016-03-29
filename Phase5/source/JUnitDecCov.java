@@ -6,12 +6,12 @@ import java.util.*;
 import java.lang.*;
 
 /**
- * @author      ATT 
+ * @author      ATT
  * @version     1.0
  * @since       2016-03-26
  */
 
-//10 ADMIN                00000 00000.00 A 
+//10 ADMIN                00000 00000.00 A
 
 
 //A set of JUnit Test cases for the withdrawal method with decision and loop coverage
@@ -21,19 +21,18 @@ public class JUnitDecCov{
     double STUDENT_FEE = 0.05;
     double STANDARD_FEE = 0.10;
     String mbafFilename = "old.mbaf";
-    
+
     // Test Decision Coverage for "if(!isAdmin)"
     @Test
     public void decCov_Withdrawal1() {
     BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tAdminLogin = new Transaction("10 ADMIN                00000 00000.00 A ");
 	Transaction tWithdrawal = new Transaction("01 TESTUSER1            00001 00005.00   ");
-	Account currAccount = b.getAccount(tAdminLogin.accountNumber);
 	TransactionHandler.login(tAdminLogin, b);
 	assertEquals(true, TransactionHandler.getIsAdmin());
 
     }
-    
+
     // Test Decision Coverage for "if (currAccount.plan_.compareTo("S") == 0)"
     @Test
     public void decCov_Withdrawal2() {
@@ -61,7 +60,7 @@ public class JUnitDecCov{
     public void decCov_Withdrawal4() {
 	BankAccounts b = new BankAccounts(mbafFilename);
 	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT3         99996 00000.00 S ");
-	Transaction tWithdrawal = new Transaction("10 TESTSTUDENT1         99996 00005.00 S ");
+	Transaction tWithdrawal = new Transaction("10 TESTSTUDENT3         99996 00005.00 S ");
 	Account currAccount = b.getAccount(tWithdrawal.accountNumber);
 	TransactionHandler.login(tStudentLogin,b); //Set account to admin
 	TransactionHandler.withdrawal(tWithdrawal,b);
@@ -72,7 +71,7 @@ public class JUnitDecCov{
     // Test Decision Coverage for "if (currAccount.balance_ - withdrawalAmount > 0)"
     public void decCov_Withdrawal5() {
 	BankAccounts b = new BankAccounts(mbafFilename);
-	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT1         99996 00005.00 S ");
+	Transaction tStudentLogin = new Transaction("10 TESTSTUDENT3         99996 00005.00 S ");
 	Transaction tWithdrawal = new Transaction("10 TESTSTUDENT3         99996 00000.00 S ");
 	Account currAccount = b.getAccount(tWithdrawal.accountNumber);
 	TransactionHandler.login(tStudentLogin,b); //Set account to admin
@@ -115,37 +114,8 @@ public class JUnitDecCov{
     	BankAccounts b = new BankAccounts("old.mbaf");
     	assertEquals(false, b.checkExists("account"));
     }
-    
+
     public static junit.framework.Test suite(){
 	return new JUnit4TestAdapter(JUnitDecCov.class);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
