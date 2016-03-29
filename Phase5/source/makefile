@@ -8,7 +8,7 @@ test: test1 test2
 test1: compile
 	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitStmtCov
 test2: compile
-	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitDecCov
+	java -cp ../junit-4.10.jar:. org.junit.runner.JUnitCore JUnitDecLoopCov
 clean:
 	rm *.class
 	rm *~

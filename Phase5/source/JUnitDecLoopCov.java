@@ -15,7 +15,7 @@ import java.lang.*;
 
 
 //A set of JUnit Test cases for the withdrawal method with decision and loop coverage
-public class JUnitDecCov{
+public class JUnitDecLoopCov{
 
 	double ERROR_THRESHOLD = 1e-2;
     double STUDENT_FEE = 0.05;
@@ -116,6 +116,6 @@ public class JUnitDecCov{
     }
 
     public static junit.framework.Test suite(){
-	return new JUnit4TestAdapter(JUnitDecCov.class);
+	return new JUnit4TestAdapter(JUnitDecLoopCov.class);
     }
 }
